@@ -1,0 +1,1 @@
+set allSynthModules {program_counter.MOD adder_4b.MOD instruction_memory.MOD sign_extend_4to16.MOD control_unit.MOD mux_2to1_1b.MOD mux_2to1_4b.MOD register_file.MOD mux_2to1_16b.MOD adder_16b.MOD data_memory.MOD single_cycle_core.MOD}
