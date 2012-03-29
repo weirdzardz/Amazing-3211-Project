@@ -39,7 +39,7 @@ signal sig_result : std_logic_vector(16 downto 0);
 begin
     with (ALUcontrol) SELECT
     sig_result <= ('0' & src_a) + ('0' & src_b) WHEN '0',
-               <= ('0' & src_a) - ('0' & src_b) WHEN OTHERS;
+                ('0' & src_a) - ('0' & src_b) WHEN OTHERS;
     
     sum        <= sig_result(15 downto 0);
     carry_out  <= sig_result(16);
