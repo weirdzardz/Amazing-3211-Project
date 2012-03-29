@@ -17,10 +17,13 @@ vcom "sign_extend_4to16.vhd"
 vcom "single_cycle_core.vhd"
 
 ## 2. compile the tb
-vcom "TestBench_Exercise.vhd"
+#vcom "TestBench_Exercise.vhd"
+vcom *.vhw
 
 ## 3. load the design
-vsim -novopt TestBench
+#vsim -novopt TestBench
+vsim -novopt single_cycle_core_testbench
+
 ## ModelSim6.2+ : vsim -novopt TestBench
 
 ## 4. add wave 

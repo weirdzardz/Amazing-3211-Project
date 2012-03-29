@@ -39,15 +39,15 @@ signal sig_result : std_logic_vector(16 downto 0);
 begin
     with (ALUcontrol) SELECT
     sig_result <= ('0' & src_a) + ('0' & src_b) WHEN '0',
-                ('0' & src_a) - ('0' & src_b) WHEN OTHERS;
+                  ('0' & src_a) - ('0' & src_b) WHEN OTHERS;
     
     sum        <= sig_result(15 downto 0);
     carry_out  <= sig_result(16);
-    zero       <=   sig_result(15) OR sig_result(14) OR sig_result(13) OR 
+    zero       <=  NOT( sig_result(15) OR sig_result(14) OR sig_result(13) OR 
                     sig_result(12) OR sig_result(11) OR sig_result(10) OR
                     sig_result(09) OR sig_result(08) OR sig_result(07) OR
                     sig_result(06) OR sig_result(05) OR sig_result(04) OR
                     sig_result(03) OR sig_result(02) OR sig_result(01) OR
-                    sig_result(0);
+                    sig_result(0));
     
 end behavioural;

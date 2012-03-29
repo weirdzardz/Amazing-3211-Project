@@ -213,12 +213,10 @@ begin
                data_out   => sig_alu_src_b );
 
     alu : adder_16b 
-    port map ( ALUcontrol => sig_alucontrol,
-               src_a     => sig_read_data_a,
+    port map ( src_a     => sig_read_data_a,
                src_b     => sig_alu_src_b,
                sum       => sig_alu_result,
-               carry_out => sig_alu_carry_out,
-               zero => sig_alu_zero );
+               carry_out => sig_alu_carry_out );
 
     data_mem : data_memory 
     port map ( reset        => reset,
