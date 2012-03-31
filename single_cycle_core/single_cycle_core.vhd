@@ -115,12 +115,11 @@ component adder_4b is
            carry_out : out std_logic );
 end component;
 
-component adder_16b is
-    port ( ALUcontrol : in std_logic; --just one bit for now to control add/sub
+component alu_block is
+    port ( alucontrol: in std_logic; --just one bit for now to control add/sub
            src_a     : in  std_logic_vector(15 downto 0);
            src_b     : in  std_logic_vector(15 downto 0);
-           sum       : out std_logic_vector(15 downto 0);
-           carry_out : out std_logic ;
+           res    : out std_logic_vector(15 downto 0);
            zero      : out std_logic );
 end component;
 
@@ -150,7 +149,6 @@ signal sig_read_data_a          : std_logic_vector(15 downto 0);
 signal sig_read_data_b          : std_logic_vector(15 downto 0);
 signal sig_alu_src_b            : std_logic_vector(15 downto 0);
 signal sig_alu_result           : std_logic_vector(15 downto 0); 
-signal sig_alu_carry_out        : std_logic;
 signal sig_data_mem_out         : std_logic_vector(15 downto 0);
 signal sig_alucontrol           : std_logic;
 signal sig_alu_zero             : std_logic;
@@ -212,12 +210,11 @@ begin
                data_b     => sig_sign_extended_offset,
                data_out   => sig_alu_src_b );
 
-    alu : adder_16b 
-    port map ( ALUcontrol => sig_alucontrol,
+    alu : alu_block 
+    port map ( alucontrol => sig_alucontrol,
                src_a     => sig_read_data_a,
                src_b     => sig_alu_src_b,
-               sum       => sig_alu_result,
-               carry_out => sig_alu_carry_out,
+               res       => sig_alu_result,
                zero => sig_alu_zero );
 
     data_mem : data_memory 
