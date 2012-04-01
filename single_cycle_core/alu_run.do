@@ -4,7 +4,7 @@ vlib work
 
 ## 2. compile the dut
 vcom "adder_8b.vhd"
-vcom "add_sum_unit.vhd"
+#vcom "add_sum_unit.vhd"
 vcom "alu.vhd"
 
 
