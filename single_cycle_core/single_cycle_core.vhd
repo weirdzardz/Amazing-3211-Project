@@ -93,7 +93,9 @@ component control_unit is
            reg_write  : out std_logic;
            alu_src    : out std_logic;
            mem_write  : out std_logic;
-           mem_to_reg : out std_logic );
+           mem_to_reg : out std_logic;
+           alucontrol : out std_logic_vector (1 downto 0);
+           jump       : out std_logic );
 end component;
 
 component register_file is
@@ -115,8 +117,8 @@ component adder_4b is
            carry_out : out std_logic );
 end component;
 
-component alu_block is
-    port ( alucontrol: in std_logic; --just one bit for now to control add/sub
+component alu is
+    port ( alucontrol: in std_logic_vector (1 downto 0); --just one bit for now to control add/sub
            src_a     : in  std_logic_vector(15 downto 0);
            src_b     : in  std_logic_vector(15 downto 0);
            res    : out std_logic_vector(15 downto 0);
@@ -133,6 +135,7 @@ component data_memory is
 end component;
 
 signal sig_next_pc              : std_logic_vector(3 downto 0);
+signal sig_pc_adder             : std_logic_vector(3 downto 0);
 signal sig_curr_pc              : std_logic_vector(3 downto 0);
 signal sig_one_4b               : std_logic_vector(3 downto 0);
 signal sig_pc_carry_out         : std_logic;
@@ -150,12 +153,16 @@ signal sig_read_data_b          : std_logic_vector(15 downto 0);
 signal sig_alu_src_b            : std_logic_vector(15 downto 0);
 signal sig_alu_result           : std_logic_vector(15 downto 0); 
 signal sig_data_mem_out         : std_logic_vector(15 downto 0);
-signal sig_alucontrol           : std_logic;
+signal sig_alucontrol           : std_logic_vector (1 downto 0);
 signal sig_alu_zero             : std_logic;
+signal sig_branch               : std_logic;
+signal sig_jump                 : std_logic;
+signal sig_branch_mux           : std_logic_vector (3 downto 0);
 
 begin
 
     sig_one_4b <= "0001";
+    sig_branch <= sig_alu_zero;
 
     pc : program_counter
     port map ( reset    => reset,
@@ -166,7 +173,7 @@ begin
     next_pc : adder_4b 
     port map ( src_a     => sig_curr_pc, 
                src_b     => sig_one_4b,
-               sum       => sig_next_pc,   
+               sum       => sig_pc_adder,   
                carry_out => sig_pc_carry_out );
     
     insn_mem : instruction_memory 
@@ -185,7 +192,9 @@ begin
                reg_write  => sig_reg_write,
                alu_src    => sig_alu_src,
                mem_write  => sig_mem_write,
-               mem_to_reg => sig_mem_to_reg );
+               mem_to_reg => sig_mem_to_reg,
+               alucontrol => sig_alucontrol,
+               jump => sig_jump );
 
 
     reg_file : register_file 
@@ -199,7 +208,7 @@ begin
                read_data_a     => sig_read_data_a,
                read_data_b     => sig_read_data_b );
 
-    alu : alu_block 
+    alu_unit : alu 
     port map ( alucontrol => sig_alucontrol,
                src_a     => sig_read_data_a,
                src_b     => sig_alu_src_b,
@@ -232,6 +241,16 @@ begin
                data_b     => sig_data_mem_out,
                data_out   => sig_write_data );
                
-               
+    mux_branch : mux_2to1_4b 
+    port map ( mux_select => sig_branch,
+               data_a     => sig_pc_adder,
+               data_b     => sig_insn(3 downto 0),
+               data_out   => sig_branch_mux );
+                              
+    mux_jump : mux_2to1_4b 
+    port map ( mux_select => sig_jump,
+               data_a     => sig_branch_mux,
+               data_b     => sig_insn(3 downto 0),
+               data_out   => sig_next_pc );              
 
 end structural;

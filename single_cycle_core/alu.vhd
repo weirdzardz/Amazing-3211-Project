@@ -64,6 +64,8 @@ signal sig_add_res:    STD_LOGIC_VECTOR(7 DOWNTO 0);
 signal sig_sub_res:    STD_LOGIC_VECTOR(7 DOWNTO 0);
 signal  overflow_val:    STD_LOGIC_VECTOR(7 DOWNTO 0);
 signal sig_res : STD_LOGIC_VECTOR(7 downto 0);
+signal sig_beq : std_logic;
+signal sig_zero : std_logic;
 --alucontrol: '01' for add
 --alucontrol: '10' for sub
 --alucontrol: '11' for beq
@@ -92,7 +94,7 @@ adder2: adder_8b
     sig_cin  <= sig_subtract;   --c_in is 1 if subtracting  
     sig_x_in_1 <= src_a(7 downto 0);
     sig_y_in_2 <= src_b(7 downto 0);
-    
+    sig_beq <= alucontrol(1) AND alucontrol(0);
   
   
     WITH sig_subtract SELECT
@@ -118,12 +120,14 @@ adder2: adder_8b
           sig_res        <= ( sig_add_res) WHEN '0',
                         ( sig_sub_res) WHEN OTHERS;
   
- 
+    WITH sig_beq SELECT 
+        sig_zero <=     (NOT( sig_sub_res(07) OR sig_sub_res(06) OR sig_sub_res(05) OR sig_sub_res(04) OR
+                    sig_sub_res(03) OR sig_sub_res(02) OR sig_sub_res(01) OR sig_sub_res(0))) WHEN '1',
+                    '0' WHEN OTHERS;
 
 
     res <= "00000000" & sig_res;
-      
-    zero     <=NOT( sig_sub_res(07) OR sig_sub_res(06) OR sig_sub_res(05) OR sig_sub_res(04) OR
-                    sig_sub_res(03) OR sig_sub_res(02) OR sig_sub_res(01) OR sig_sub_res(0));
+    
+    zero     <= sig_zero;
     
 end structural;

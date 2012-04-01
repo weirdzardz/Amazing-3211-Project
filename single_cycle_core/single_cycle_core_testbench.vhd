@@ -71,7 +71,7 @@ ARCHITECTURE testbench_arch OF single_cycle_core_testbench IS
                 WAIT FOR 285 ns;
                 reset <= '0';
                 -- -------------------------------------
-                WAIT FOR 3175 ns;
+                WAIT FOR 7000 ns;
 
                 IF (TX_ERROR = 0) THEN
                     STD.TEXTIO.write(TX_OUT, string'("No errors or warnings"));
