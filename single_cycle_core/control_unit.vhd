@@ -48,8 +48,8 @@ entity control_unit is
            alu_src    : out std_logic;
            mem_write  : out std_logic;
            mem_to_reg : out std_logic;
-           branch     : out std_logic; --new opcode sig
-               jump   : out std_logic);   --new opcode sig
+           alucontrol : out std_logic_vector (1 downto 0); --new opcode sig
+           jump       : out std_logic);   --new opcode sig
 end control_unit;
 
 
@@ -60,6 +60,7 @@ constant OP_STORE : std_logic_vector(3 downto 0) := "0011";
 constant OP_ADD   : std_logic_vector(3 downto 0) := "1000";
 constant OP_BEQ   : std_logic_vector(3 downto 0) := "0100"; --new opcode
 constant OP_JMP   : std_logic_vector(3 downto 0) := "1100"; --new opcode
+constant OP_SUB   : std_logic_vector(3 downto 0) := "1110"; --new opcode
 
 
 begin
@@ -80,9 +81,13 @@ begin
                  
     mem_to_reg <= '1' when opcode = OP_LOAD else
                   '0';
-     branch    <= '1' when opcode = OP_BEQ else
-                  '0';
-     jump    <=   '1' when opcode = OP_JMP else
+                  
+    with opcode SELECT
+    alucontrol    <=  "11" when OP_BEQ,
+                      "01" when OP_ADD,
+                      "10" when OP_SUB, 
+                      "00" when others;
+    jump    <=   '1' when opcode = OP_JMP else
                   '0';
  
 

@@ -115,12 +115,11 @@ component adder_4b is
            carry_out : out std_logic );
 end component;
 
-component adder_16b is
-    port ( ALUcontrol : in std_logic; --just one bit for now to control add/sub
+component alu_block is
+    port ( alucontrol: in std_logic; --just one bit for now to control add/sub
            src_a     : in  std_logic_vector(15 downto 0);
            src_b     : in  std_logic_vector(15 downto 0);
-           sum       : out std_logic_vector(15 downto 0);
-           carry_out : out std_logic ;
+           res    : out std_logic_vector(15 downto 0);
            zero      : out std_logic );
 end component;
 
@@ -150,7 +149,6 @@ signal sig_read_data_a          : std_logic_vector(15 downto 0);
 signal sig_read_data_b          : std_logic_vector(15 downto 0);
 signal sig_alu_src_b            : std_logic_vector(15 downto 0);
 signal sig_alu_result           : std_logic_vector(15 downto 0); 
-signal sig_alu_carry_out        : std_logic;
 signal sig_data_mem_out         : std_logic_vector(15 downto 0);
 signal sig_alucontrol           : std_logic;
 signal sig_alu_zero             : std_logic;
@@ -189,11 +187,6 @@ begin
                mem_write  => sig_mem_write,
                mem_to_reg => sig_mem_to_reg );
 
-    mux_reg_dst : mux_2to1_4b 
-    port map ( mux_select => sig_reg_dst,
-               data_a     => sig_insn(7 downto 4),
-               data_b     => sig_insn(3 downto 0),
-               data_out   => sig_write_register );
 
     reg_file : register_file 
     port map ( reset           => reset, 
@@ -205,18 +198,13 @@ begin
                write_data      => sig_write_data,
                read_data_a     => sig_read_data_a,
                read_data_b     => sig_read_data_b );
-    
-    mux_alu_src : mux_2to1_16b 
-    port map ( mux_select => sig_alu_src,
-               data_a     => sig_read_data_b,
-               data_b     => sig_sign_extended_offset,
-               data_out   => sig_alu_src_b );
 
-    alu : adder_16b 
-    port map ( src_a     => sig_read_data_a,
+    alu : alu_block 
+    port map ( alucontrol => sig_alucontrol,
+               src_a     => sig_read_data_a,
                src_b     => sig_alu_src_b,
-               sum       => sig_alu_result,
-               carry_out => sig_alu_carry_out );
+               res       => sig_alu_result,
+               zero => sig_alu_zero );
 
     data_mem : data_memory 
     port map ( reset        => reset,
@@ -225,11 +213,25 @@ begin
                write_data   => sig_read_data_b,
                addr_in      => sig_alu_result(3 downto 0),
                data_out     => sig_data_mem_out );
-               
+    
+    mux_reg_dst : mux_2to1_4b 
+    port map ( mux_select => sig_reg_dst,
+               data_a     => sig_insn(7 downto 4),
+               data_b     => sig_insn(3 downto 0),
+               data_out   => sig_write_register );   
+        
+    mux_alu_src : mux_2to1_16b 
+    port map ( mux_select => sig_alu_src,
+               data_a     => sig_read_data_b,
+               data_b     => sig_sign_extended_offset,
+               data_out   => sig_alu_src_b );
+                          
     mux_mem_to_reg : mux_2to1_16b 
     port map ( mux_select => sig_mem_to_reg,
                data_a     => sig_alu_result,
                data_b     => sig_data_mem_out,
                data_out   => sig_write_data );
+               
+               
 
 end structural;
