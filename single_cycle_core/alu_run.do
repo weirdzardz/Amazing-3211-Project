@@ -4,17 +4,15 @@ vlib work
 
 ## 2. compile the dut
 vcom "adder_8b.vhd"
-#vcom "add_sum_unit.vhd"
 vcom "alu.vhd"
+vcom "Comparator.vhd"
 
 
 ## 2. compile the tb
-vcom "alu_testbench.vhd"
-#vcom *.vhw
+vcom "alu_test_bench.vhd"
 
 ## 3. load the design
 vsim -novopt ALUTestBench
-#vsim -novopt single_cycle_core_testbench
 
 ## ModelSim6.2+ : vsim -novopt TestBench
 

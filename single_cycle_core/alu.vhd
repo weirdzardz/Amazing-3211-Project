@@ -92,39 +92,36 @@ adder2: adder_8b
     sig_cin  <= sig_subtract;   --c_in is 1 if subtracting  
     sig_x_in_1 <= src_a(7 downto 0);
     sig_y_in_2 <= src_b(7 downto 0);
-    process(src_a, src_b, alucontrol) is
-      begin
-        
-      if sig_subtract = '1' then
-   
-           sig_y_in_1 <= NOT src_b(7 downto 0);
-            sig_x_in_2 <= NOT src_a(7 downto 0);
-      else
-           sig_y_in_1 <= src_b(7 downto 0);
-            sig_x_in_2 <= src_a(7 downto 0);
-      END IF;
-                
+    
+  
+  
+    WITH sig_subtract SELECT
+          sig_y_in_1 <= NOT src_b(7 downto 0) WHEN '1',  --on adder1: change 'y' to '-y' if subtracting
+                            src_b(7 downto 0) WHEN OTHERS;
+                        
+    WITH sig_subtract SELECT                  
+          sig_x_in_2 <= NOT src_a(7 downto 0) WHEN '1',  --on adder2: change 'x' to '-x' if subtracting
+                            src_a(7 downto 0) WHEN OTHERS;  
+                  
     sig_overflow <= (sig_cout1 XOR sig_prevcout1) AND NOT sig_subtract; 
     --we only look for overflow on adder1 because adder2 is only relevant to subtraction
     
-    IF sig_overflow = '0' then
-          sig_add_res <= sig_sum1;
-    else  sig_add_res <=  overflow_val;
-  end if; 
+    WITH sig_overflow SELECT
+          sig_add_res <= sig_sum1 WHEN '0',
+                            overflow_val WHEN OTHERS; 
      
-    if sig_sum1(7) = '0' then
-          sig_sub_res <= sig_sum1;
-  else    sig_sub_res <= sig_sum2;                        
- end if; 
-    if sig_subtract = '1' then
-      sig_res <= sig_sub_res;
-  else
-        sig_res <= sig_add_res;
-  end if;
-end process;
+    WITH sig_sum1(7) SELECT
+          sig_sub_res    <= sig_sum1 WHEN '0',
+                            sig_sum2 WHEN OTHERS;                        
+    
+    WITH sig_subtract SELECT
+          sig_res        <= ( sig_add_res) WHEN '0',
+                        ( sig_sub_res) WHEN OTHERS;
+  
+ 
 
 
-res <= "00000000" & sig_res;
+    res <= "00000000" & sig_res;
       
     zero     <=NOT( sig_sub_res(07) OR sig_sub_res(06) OR sig_sub_res(05) OR sig_sub_res(04) OR
                     sig_sub_res(03) OR sig_sub_res(02) OR sig_sub_res(01) OR sig_sub_res(0));
