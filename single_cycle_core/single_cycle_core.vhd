@@ -158,6 +158,7 @@ signal sig_alu_zero             : std_logic;
 signal sig_branch               : std_logic;
 signal sig_jump                 : std_logic;
 signal sig_branch_mux           : std_logic_vector (3 downto 0);
+signal sig_jmp_mux           : std_logic_vector (3 downto 0);
 
 begin
 
@@ -171,15 +172,15 @@ begin
                addr_out => sig_curr_pc ); 
 
     next_pc : adder_4b 
-    port map ( src_a     => sig_curr_pc, 
+    port map ( src_a     => sig_jmp_mux, 
                src_b     => sig_one_4b,
-               sum       => sig_pc_adder,   
+               sum       => sig_next_pc,   
                carry_out => sig_pc_carry_out );
     
     insn_mem : instruction_memory 
     port map ( reset    => reset,
                clk      => clk,
-               addr_in  => sig_curr_pc,
+               addr_in  => sig_jmp_mux,
                insn_out => sig_insn );
 
     sign_extend : sign_extend_4to16 
@@ -243,14 +244,14 @@ begin
                
     mux_branch : mux_2to1_4b 
     port map ( mux_select => sig_alu_zero,
-               data_a     => sig_pc_adder,
+               data_a     => sig_curr_pc,
                data_b     => sig_insn(3 downto 0),
                data_out   => sig_branch_mux );
-                              
+                      
     mux_jump : mux_2to1_4b 
     port map ( mux_select => sig_jump,
                data_a     => sig_branch_mux,
                data_b     => sig_insn(3 downto 0),
-               data_out   => sig_next_pc );              
+               data_out   => sig_jmp_mux );              
 
 end structural;
