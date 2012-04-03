@@ -126,8 +126,8 @@ adder2: adder_8b
                     '0' WHEN OTHERS;
 
 
-    res <= "00000000" & sig_res;
+    res <= "00000000" & sig_res after 2 ns;
     
-    zero     <= sig_zero;
+    zero     <= sig_zero after 2 ns;
     
 end structural;

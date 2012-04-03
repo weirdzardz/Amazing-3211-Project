@@ -35,8 +35,8 @@ signal sig_result : std_logic_vector(4 downto 0);
 
 begin
 
-    sig_result <= ('0' & src_a) + ('0' & src_b);
-    sum        <= sig_result(3 downto 0);
-    carry_out  <= sig_result(4);
+    sig_result <= ('0' & src_a) + ('0' & src_b) after 1.5 ns;
+    sum        <= sig_result(3 downto 0) after 1.5 ns;
+    carry_out  <= sig_result(4) after 1.5 ns;
     
 end behavioural;

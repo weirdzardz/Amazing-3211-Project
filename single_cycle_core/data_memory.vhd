@@ -72,12 +72,13 @@ begin
             -- memory writes on the falling clock edge
             var_data_mem(var_addr) := write_data;
         end if;
+        --wait for 5 ns;
        
         -- continuous read of the memory location given by var_addr 
-        data_out <= var_data_mem(var_addr);
+        data_out <= var_data_mem(var_addr) after 1.5 ns;
  
         -- the following are probe signals (for simulation purpose) 
-        sig_data_mem <= var_data_mem;
+        sig_data_mem <= var_data_mem after 1.5 ns;
 
     end process;
   

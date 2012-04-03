@@ -65,30 +65,30 @@ constant OP_SUB   : std_logic_vector(3 downto 0) := "1110"; --new opcode
 
 begin
 
-    reg_dst    <= '1' when opcode = OP_ADD else
-                  '0';
+    reg_dst    <= '1' after 1.5 ns when (opcode = OP_ADD or opcode = OP_SUB) else
+                  '0' after 1.5 ns;
 
-    reg_write  <= '1' when (opcode = OP_ADD 
-                            or opcode = OP_LOAD) else
-                  '0';
+    reg_write  <= '1' after 1.5 ns when (opcode = OP_ADD 
+                            or opcode = OP_LOAD or opcode = OP_SUB) else
+                  '0'after 1.5 ns;
     
-    alu_src    <= '1' when (opcode = OP_LOAD 
+    alu_src    <= '1' after 1.5 ns when (opcode = OP_LOAD 
                            or opcode = OP_STORE) else
-                  '0';
+                  '0' after 1.5 ns;
                  
-    mem_write  <= '1' when opcode = OP_STORE else
-                  '0';
+    mem_write  <= '1' after 1.5 ns when opcode = OP_STORE else
+                  '0'after 1.5 ns;
                  
-    mem_to_reg <= '1' when opcode = OP_LOAD else
-                  '0';
+    mem_to_reg <= '1' after 1.5 ns when opcode = OP_LOAD else
+                  '0'after 1.5 ns;
                   
     with opcode SELECT
-    alucontrol    <=  "11" when OP_BEQ,
-                      "01" when OP_ADD,
-                      "10" when OP_SUB, 
-                      "00" when others;
-    jump    <=   '1' when opcode = OP_JMP else
-                  '0';
+    alucontrol    <=  "11" after 1.5 ns when OP_BEQ,
+                      "01" after 1.5 ns when OP_ADD,
+                      "10" after 1.5 ns when OP_SUB, 
+                      "00" after 1.5 ns when others ;
+    jump    <=   '1' after 1.5 ns when opcode = OP_JMP else
+                  '0'after 1.5 ns;
  
 
 end behavioural;

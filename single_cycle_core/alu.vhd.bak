@@ -120,12 +120,14 @@ adder2: adder_8b
           sig_res        <= ( sig_add_res) WHEN '0',
                         ( sig_sub_res) WHEN OTHERS;
   
- 
+    WITH sig_beq SELECT 
+        sig_zero <=     (NOT( sig_sub_res(07) OR sig_sub_res(06) OR sig_sub_res(05) OR sig_sub_res(04) OR
+                    sig_sub_res(03) OR sig_sub_res(02) OR sig_sub_res(01) OR sig_sub_res(0))) WHEN '1',
+                    '0' WHEN OTHERS;
 
 
-    res <= "00000000" & sig_res;
+    res <= "00000000" & sig_res after 4 ns;
     
-    zero     <= NOT( sig_sub_res(07) OR sig_sub_res(06) OR sig_sub_res(05) OR sig_sub_res(04) OR
-                    sig_sub_res(03) OR sig_sub_res(02) OR sig_sub_res(01) OR sig_sub_res(0));
+    zero     <= sig_zero after 3 ns;
     
 end structural;

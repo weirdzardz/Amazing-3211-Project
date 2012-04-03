@@ -31,9 +31,9 @@ end mux_2to1_1b;
 
 architecture behavioural of mux_2to1_1b is
 begin
-
-    data_out <= data_a when mux_select = '0' else
-                data_b when mux_select = '1' else
-                'X';
+   -- wait for 1 ns;
+    data_out <= data_a after 0.5 ns when mux_select = '0' else
+                data_b after 0.5 ns when mux_select = '1' else
+                'X'  after 0.5 ns ;
 
 end behavioural;

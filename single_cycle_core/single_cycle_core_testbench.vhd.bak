@@ -43,7 +43,7 @@ ARCHITECTURE testbench_arch OF single_cycle_core_testbench IS
     SHARED VARIABLE TX_ERROR : INTEGER := 0;
     SHARED VARIABLE TX_OUT : LINE;
 
-    constant PERIOD : time := 200 ns;
+    constant PERIOD : time := 14 ns;
     constant DUTY_CYCLE : real := 0.5;
     constant OFFSET : time := 0 ns;
 
@@ -71,7 +71,7 @@ ARCHITECTURE testbench_arch OF single_cycle_core_testbench IS
                 WAIT FOR 285 ns;
                 reset <= '0';
                 -- -------------------------------------
-                WAIT FOR 6000 ns;
+                WAIT FOR 2000 ns;
 
                 IF (TX_ERROR = 0) THEN
                     STD.TEXTIO.write(TX_OUT, string'("No errors or warnings"));

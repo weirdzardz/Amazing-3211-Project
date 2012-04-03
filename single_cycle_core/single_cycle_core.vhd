@@ -242,7 +242,7 @@ begin
                data_out   => sig_write_data );
                
     mux_branch : mux_2to1_4b 
-    port map ( mux_select => sig_branch,
+    port map ( mux_select => sig_alu_zero,
                data_a     => sig_pc_adder,
                data_b     => sig_insn(3 downto 0),
                data_out   => sig_branch_mux );

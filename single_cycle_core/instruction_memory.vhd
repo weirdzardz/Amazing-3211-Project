@@ -59,12 +59,13 @@ begin
             --  insn_3 : add   $4, $1, $2  - $4 <- $1 + $2
             --  insn_4 : store $3, $0, 2   - store data $3 into 2($0)
             --  insn_5 : store $4, $0, 3   - store data $4 into 3($0)
+            --  insn_6 : subabs $5, $3, $2
             --  insn_7 : load  $6, $0, 4   - load data 4($0) into $6
             --  insn_8 : add   $7, $6, $7  - $7 <- $6 +$7
             --  insn_9 : beq   $3, $7, D   - jump to insn_13 if $3 == $7
             --  insn_10 : noop
             --  insn_11 : jmp 0, 0, 8      - jump to insn_8
-            --  insn_6 - insn_15 : noop    - end of program
+            --  insn_12 - insn_15 : noop    - end of program
 
 
             var_insn_mem(0)  := X"1010";
@@ -73,12 +74,12 @@ begin
             var_insn_mem(3)  := X"8124";
             var_insn_mem(4)  := X"3032";
             var_insn_mem(5)  := X"3043";
-            var_insn_mem(6)  := X"E325";
+            var_insn_mem(6)  := X"E345";
             var_insn_mem(7)  := X"1064";
             var_insn_mem(8)  := X"8677";
             var_insn_mem(9)  := X"437D";
-            var_insn_mem(10) := X"0000";
-            var_insn_mem(11) := X"C008";
+            var_insn_mem(10) := X"C008";
+            var_insn_mem(11) := X"0000";
             var_insn_mem(12) := X"0000";
             var_insn_mem(13) := X"0000";
             var_insn_mem(14) := X"0000";
@@ -87,7 +88,7 @@ begin
         elsif (rising_edge(clk)) then
             -- read instructions on the rising clock edge
             var_addr := conv_integer(addr_in);
-            insn_out <= var_insn_mem(var_addr);
+            insn_out <= var_insn_mem(var_addr) after 1.5 ns;
         end if;
 
         -- the following are probe signals (for simulation purpose)
