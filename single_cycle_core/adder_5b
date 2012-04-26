@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------
--- sign_extend_4to16.vhd - Sign-Extend A 4-bit Value to A 16-bit Value
+-- adder_5b.vhd - 5-bit Adder Implementation
 -- 
 --
 -- Copyright (C) 2006 by Lih Wen Koh (lwkoh@cse.unsw.edu.au)
@@ -22,25 +22,21 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
-entity sign_extend_4to16 is
-    port ( data_in  : in  std_logic_vector(4 downto 0);
-           data_out : out std_logic_vector(15 downto 0) );
-end sign_extend_4to16;
+entity adder_5b is
+    port ( src_a     : in  std_logic_vector(4 downto 0);
+           src_b     : in  std_logic_vector(4 downto 0);
+           sum       : out std_logic_vector(4 downto 0);
+           carry_out : out std_logic );
+end adder_5b;
 
-architecture behavioral of sign_extend_4to16 is
+architecture behavioural of adder_5b is
+
+signal sig_result : std_logic_vector(5 downto 0);
 
 begin
-    
-    sign_extend : process ( data_in ) is
-    begin
-        data_out(4 downto 0) <= data_in(4 downto 0);
 
-        -- the extended bits take on the value of the most significant
-        -- bit (MSB) of data_in
-        for i in 15 downto 5 loop
-            data_out(i) <= data_in(4);
-        end loop;
-
-    end process;
+    sig_result <= ('0' & src_a) + ('0' & src_b) after 1.5 ns;
+    sum        <= sig_result(4 downto 0) after 1.5 ns;
+    carry_out  <= sig_result(5) after 1.5 ns;
     
-end behavioral;
+end behavioural;
