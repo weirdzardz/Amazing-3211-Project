@@ -4,6 +4,7 @@ vlib work
 
 ## 2. compile the dut
 vcom "adder_4b.vhd"
+vcom "adder_5b.vhd"
 vcom "adder_8b.vhd"
 vcom "alu.vhd"
 vcom "control_unit.vhd"

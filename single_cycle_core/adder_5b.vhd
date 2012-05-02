@@ -1,8 +1,5 @@
 ---------------------------------------------------------------------------
--- program_counter.vhd - Program Counter Implementation 
--- 
--- Note : The program counter is simply a register that updates its output 
--- on the rising clock edge.
+-- adder_4b.vhd - 4-bit Adder Implementation
 -- 
 --
 -- Copyright (C) 2006 by Lih Wen Koh (lwkoh@cse.unsw.edu.au)
@@ -25,23 +22,21 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
-entity program_counter is
-    port ( reset    : in  std_logic;
-           clk      : in  std_logic;
-           addr_in  : in  std_logic_vector(4 downto 0);
-           addr_out : out std_logic_vector(4 downto 0) );
-end program_counter;
+entity adder_5b is
+    port ( src_a     : in  std_logic_vector(4 downto 0);
+           src_b     : in  std_logic_vector(4 downto 0);
+           sum       : out std_logic_vector(4 downto 0);
+           carry_out : out std_logic );
+end adder_5b;
 
-architecture behavioral of program_counter is
+architecture behavioural of adder_5b is
+
+signal sig_result : std_logic_vector(5 downto 0);
+
 begin
 
-    update_process: process ( reset, 
-                              clk ) is
-    begin
-       if (reset = '1') then
-           addr_out <= (others => '0'); 
-       elsif (rising_edge(clk)) then
-           addr_out <= addr_in after 0.5 ns; 
-       end if;
-    end process;
-end behavioral;
+    sig_result <= ('0' & src_a) + ('0' & src_b) after 1.5 ns;
+    sum        <= sig_result(4 downto 0) after 1.5 ns;
+    carry_out  <= sig_result(5) after 1.5 ns;
+    
+end behavioural;
