@@ -37,7 +37,7 @@ type mem_array is array(0 to 31) of std_logic_vector(15 downto 0);
 signal sig_insn_mem : mem_array;
 
 begin
-    mem_process: process ( clk,
+    mem_process: process (
                            addr_in ) is
   
     variable var_insn_mem : mem_array;
@@ -62,7 +62,7 @@ begin
             --  insn_3 : add   $4, $1, $2  - $4 <- $1 + $2
             --  insn_4 : store $3, $0, 2   - store data $3 into 2($0)
             --  insn_5 : store $4, $0, 3   - store data $4 into 3($0)
-            --  insn_6 : subabs $5, $3, $2
+            --  insn_6 : subabs $5, $3, $4
             --  insn_7 : load  $6, $0, 4   - load data 4($0) into $6
             --  insn_8 : add   $7, $6, $7  - $7 <- $6 +$7
             --  insn_9 : beq   $3, $7, D   - jump to insn_13 if $3 == $7

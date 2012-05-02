@@ -37,7 +37,7 @@ type mem_array is array(0 to 31) of std_logic_vector(15 downto 0);
 signal sig_insn_mem : mem_array;
 
 begin
-    mem_process: process ( clk,
+    mem_process: process (
                            addr_in ) is
   
     variable var_insn_mem : mem_array;
@@ -106,7 +106,7 @@ begin
             var_insn_mem(31) := X"0000";
             
         
-        elsif (rising_edge(clk)) then
+        else
             -- read instructions on the rising clock edge
             var_addr := conv_integer(addr_in);
             insn_out <= var_insn_mem(var_addr) after 1.5 ns;

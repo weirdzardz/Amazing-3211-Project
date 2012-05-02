@@ -40,8 +40,8 @@ ARCHITECTURE testbench_arch OF single_cycle_core_testbench IS
     SIGNAL reset : std_logic := '1';
     SIGNAL clk : std_logic := '0';
 
-    --SHARED VARIABLE TX_ERROR : INTEGER := 0;
-    --SHARED VARIABLE TX_OUT : LINE;
+    SHARED VARIABLE TX_ERROR : INTEGER := 0;
+    SHARED VARIABLE TX_OUT : LINE;
 
     constant PERIOD : time := 15 ns;
     constant DUTY_CYCLE : real := 0.5;

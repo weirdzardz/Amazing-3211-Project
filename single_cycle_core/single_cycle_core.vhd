@@ -145,7 +145,7 @@ component data_memory is
 end component;
 
 signal sig_next_pc              : std_logic_vector(4 downto 0);
-signal sig_pc_adder             : std_logic_vector(4 downto 0); --
+signal sig_pc_inc             : std_logic_vector(4 downto 0); --
 signal sig_curr_pc              : std_logic_vector(4 downto 0); --
 signal sig_one_5b               : std_logic_vector(4 downto 0);
 signal sig_pc_carry_out         : std_logic;
@@ -172,7 +172,7 @@ signal sig_branch_mux           : std_logic_vector (4 downto 0);
 begin
 
     sig_one_5b <= "00001";
-    sig_branch <= sig_alu_zero;
+    sig_branch <= sig_alu_zero AND sig_alucontrol(1) AND sig_alucontrol(0);
 
     pc : program_counter
     port map ( reset    => reset,
@@ -181,9 +181,9 @@ begin
                addr_out => sig_curr_pc ); 
 
     next_pc : adder_5b 
-    port map ( src_a     => sig_branch_mux, 
+    port map ( src_a     => sig_curr_pc, 
                src_b     => sig_one_5b,
-               sum       => sig_next_pc,   
+               sum       => sig_pc_inc,   
                carry_out => sig_pc_carry_out );
     
     insn_mem : instruction_memory 
@@ -253,10 +253,10 @@ begin
                data_out   => sig_write_data );
                
     mux_branch : mux_2to1_5b 
-    port map ( mux_select => sig_alu_zero,
-               data_a     => sig_curr_pc,
+    port map ( mux_select => sig_branch,
+               data_a     => sig_pc_inc,
                data_b     => sig_insn(4 downto 0),
-               data_out   => sig_branch_mux );
+               data_out   => sig_next_pc );
                       
  --removed jump mux              
 

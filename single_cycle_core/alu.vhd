@@ -128,6 +128,6 @@ adder2: adder_8b
 
     res <= "00000000" & sig_res after 2 ns;
     
-    zero     <= sig_zero after 2 ns;
+    zero     <= NOT(sig_zero) after 2 ns;
     
 end structural;

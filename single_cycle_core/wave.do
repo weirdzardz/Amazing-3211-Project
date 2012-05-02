@@ -4,10 +4,9 @@ add wave -noupdate /single_cycle_core_testbench/clk
 add wave -noupdate /single_cycle_core_testbench/reset
 add wave -noupdate -expand -group {Program Counter} -radix hexadecimal /single_cycle_core_testbench/uut/pc/addr_in
 add wave -noupdate -expand -group {Program Counter} -radix hexadecimal /single_cycle_core_testbench/uut/pc/addr_out
-add wave -noupdate -expand -group {Mux Jump} /single_cycle_core_testbench/uut/mux_jump/mux_select
-add wave -noupdate -expand -group {Mux Jump} /single_cycle_core_testbench/uut/mux_jump/data_out
-add wave -noupdate -expand -group {Mux Jump} /single_cycle_core_testbench/uut/mux_jump/data_b
-add wave -noupdate -expand -group {Mux Jump} /single_cycle_core_testbench/uut/mux_jump/data_a
+add wave -noupdate -expand -group ALU -radix hexadecimal /single_cycle_core_testbench/uut/alu_unit/zero
+add wave -noupdate -expand -group ALU -radix hexadecimal /single_cycle_core_testbench/uut/alu_unit/src_b
+add wave -noupdate -expand -group ALU -radix hexadecimal /single_cycle_core_testbench/uut/alu_unit/src_a
 add wave -noupdate -expand -group {Mux Branch} /single_cycle_core_testbench/uut/mux_branch/mux_select
 add wave -noupdate -expand -group {Mux Branch} /single_cycle_core_testbench/uut/mux_branch/data_out
 add wave -noupdate -expand -group {Mux Branch} /single_cycle_core_testbench/uut/mux_branch/data_b
@@ -34,7 +33,7 @@ add wave -noupdate -group Branch /single_cycle_core_testbench/uut/sig_branch_mux
 add wave -noupdate -expand -group {Instruction Memory} -radix hexadecimal /single_cycle_core_testbench/uut/insn_mem/insn_out
 add wave -noupdate -expand -group {Instruction Memory} /single_cycle_core_testbench/uut/insn_mem/addr_in
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {653000 ps} 0}
+WaveRestoreCursors {{Cursor 1} {394029 ps} 0}
 configure wave -namecolwidth 365
 configure wave -valuecolwidth 100
 configure wave -justifyvalue left
@@ -49,4 +48,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {536275 ps} {716315 ps}
+WaveRestoreZoom {356248 ps} {524890 ps}

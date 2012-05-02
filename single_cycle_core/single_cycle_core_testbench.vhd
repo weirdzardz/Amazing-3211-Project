@@ -43,7 +43,7 @@ ARCHITECTURE testbench_arch OF single_cycle_core_testbench IS
     SHARED VARIABLE TX_ERROR : INTEGER := 0;
     SHARED VARIABLE TX_OUT : LINE;
 
-    constant PERIOD : time := 15 ns;
+    constant PERIOD : time := 30 ns;
     constant DUTY_CYCLE : real := 0.5;
     constant OFFSET : time := 0 ns;
 
