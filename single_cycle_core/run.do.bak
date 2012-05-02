@@ -19,7 +19,7 @@ vcom "single_cycle_core.vhd"
 
 ## 2. compile the tb
 #vcom "TestBench_Exercise.vhd"
-vcom *.vhw
+vcom "single_cycle_core_testbench.vhd"
 
 ## 3. load the design
 vsim -novopt single_cycle_core_testbench

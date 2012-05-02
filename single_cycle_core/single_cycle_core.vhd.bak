@@ -65,7 +65,7 @@ component instruction_memory is
     port ( reset    : in  std_logic;
            clk      : in  std_logic;
            addr_in  : in  std_logic_vector(4 downto 0);
-           insn_out : out std_logic_vector(15 downto 0) );
+           insn_out : out std_logic_vector(64 downto 0) );
 end component;
 
 --I've made this extend from input of 5 bits, rather than 4.
@@ -193,7 +193,7 @@ begin
                insn_out => sig_insn );
 
     sign_extend : sign_extend_4to16 
-    port map ( data_in  => sig_insn(3 downto 0),
+    port map ( data_in  => sig_insn(4 downto 0),
                data_out => sig_sign_extended_offset );
 
     ctrl_unit : control_unit 
