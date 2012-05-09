@@ -1,0 +1,1 @@
+xst -ise "C:/Users/Sacha/work/amazing3211/multi_cycle_core/Mutilcycle.ise" -intstyle ise -ifn "C:/Users/Sacha/work/amazing3211/multi_cycle_core/ALUTestBench.xst" -ofn "C:/Users/Sacha/work/amazing3211/multi_cycle_core/ALUTestBench.syr" 

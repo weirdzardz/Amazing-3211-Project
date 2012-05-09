@@ -1,0 +1,11 @@
+ 
+cpldfit:  version L.33                              Xilinx Inc.
+                                  No Fit Report
+Design Name: multi_cycle_core                    Date:  5- 9-2012, 11:19AM
+Device Used: 
+Fitting Status: Design Rule Checking Failed
+
+**************************  Errors and Warnings  ***************************
+
+ERROR:Cpld:1005 - Design 'multi_cycle_core' has no outputs. 
+

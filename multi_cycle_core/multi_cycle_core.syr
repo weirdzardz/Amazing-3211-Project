@@ -1,0 +1,501 @@
+Release 11.1 - xst L.33 (nt64)
+Copyright (c) 1995-2009 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.38 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.38 secs
+ 
+--> Reading design: multi_cycle_core.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "multi_cycle_core.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "multi_cycle_core"
+Output Format                      : NGC
+Target Device                      : Automotive 9500XL
+
+---- Source Options
+Top Module Name                    : multi_cycle_core
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+Mux Extraction                     : YES
+Resource Sharing                   : YES
+
+---- Target Options
+Add IO Buffers                     : YES
+MACRO Preserve                     : YES
+XOR Preserve                       : YES
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Library Search Order               : multi_cycle_core.lso
+Keep Hierarchy                     : YES
+Netlist Hierarchy                  : as_optimized
+RTL Output                         : Yes
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : maintain
+Verilog 2001                       : YES
+
+---- Other Options
+Clock Enable                       : YES
+wysiwyg                            : NO
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/multi_cycle_core/mux_2to1_1b.vhd" in Library work.
+Architecture behavioural of Entity mux_2to1_1b is up to date.
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/multi_cycle_core/adder_8b.vhd" in Library work.
+Architecture behavioral of Entity adder_8b is up to date.
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/multi_cycle_core/program_counter.vhd" in Library work.
+Architecture behavioral of Entity program_counter is up to date.
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/multi_cycle_core/adder_5b.vhd" in Library work.
+Architecture behavioural of Entity adder_5b is up to date.
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/multi_cycle_core/instruction_memory.vhd" in Library work.
+Architecture behavioral of Entity instruction_memory is up to date.
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/multi_cycle_core/sign_extend_4to16.vhd" in Library work.
+Architecture behavioral of Entity sign_extend_4to16 is up to date.
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/multi_cycle_core/control_unit.vhd" in Library work.
+Architecture behavioural of Entity control_unit is up to date.
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/multi_cycle_core/register_file.vhd" in Library work.
+Architecture behavioral of Entity register_file is up to date.
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/multi_cycle_core/alu.vhd" in Library work.
+Architecture structural of Entity alu is up to date.
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/multi_cycle_core/data_memory.vhd" in Library work.
+Architecture behavioral of Entity data_memory is up to date.
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/multi_cycle_core/mux_2to1_4b.vhd" in Library work.
+Architecture structural of Entity mux_2to1_4b is up to date.
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/multi_cycle_core/mux_2to1_16b.vhd" in Library work.
+Architecture structural of Entity mux_2to1_16b is up to date.
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/multi_cycle_core/mux_2to1_5b.vhd" in Library work.
+Architecture structural of Entity mux_2to1_5b is up to date.
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/multi_cycle_core/multi_cycle_core.vhd" in Library work.
+Architecture structural of Entity multi_cycle_core is up to date.
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for entity <multi_cycle_core> in library <work> (architecture <structural>).
+
+Analyzing hierarchy for entity <program_counter> in library <work> (architecture <behavioral>).
+
+Analyzing hierarchy for entity <adder_5b> in library <work> (architecture <behavioural>).
+
+Analyzing hierarchy for entity <instruction_memory> in library <work> (architecture <behavioral>).
+
+Analyzing hierarchy for entity <sign_extend_4to16> in library <work> (architecture <behavioral>).
+
+Analyzing hierarchy for entity <control_unit> in library <work> (architecture <behavioural>).
+
+Analyzing hierarchy for entity <register_file> in library <work> (architecture <behavioral>).
+
+Analyzing hierarchy for entity <alu> in library <work> (architecture <structural>).
+
+Analyzing hierarchy for entity <data_memory> in library <work> (architecture <behavioral>).
+
+Analyzing hierarchy for entity <mux_2to1_4b> in library <work> (architecture <structural>).
+
+Analyzing hierarchy for entity <mux_2to1_16b> in library <work> (architecture <structural>).
+
+Analyzing hierarchy for entity <mux_2to1_5b> in library <work> (architecture <structural>).
+
+Analyzing hierarchy for entity <adder_8b> in library <work> (architecture <behavioral>).
+
+Analyzing hierarchy for entity <mux_2to1_1b> in library <work> (architecture <behavioural>).
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing Entity <multi_cycle_core> in library <work> (Architecture <structural>).
+Entity <multi_cycle_core> analyzed. Unit <multi_cycle_core> generated.
+
+Analyzing Entity <program_counter> in library <work> (Architecture <behavioral>).
+Entity <program_counter> analyzed. Unit <program_counter> generated.
+
+Analyzing Entity <adder_5b> in library <work> (Architecture <behavioural>).
+Entity <adder_5b> analyzed. Unit <adder_5b> generated.
+
+Analyzing Entity <instruction_memory> in library <work> (Architecture <behavioral>).
+WARNING:Xst:819 - "C:/Users/Sacha/work/amazing3211/multi_cycle_core/instruction_memory.vhd" line 40: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <reset>
+INFO:Xst:2679 - Register <var_insn_mem_0$mux0000> in unit <instruction_memory> has a constant value of 0010000000100000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_1$mux0000> in unit <instruction_memory> has a constant value of 0010000001000001 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_2$mux0000> in unit <instruction_memory> has a constant value of 0000001000000011 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_3$mux0000> in unit <instruction_memory> has a constant value of 0000001001000100 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_4$mux0000> in unit <instruction_memory> has a constant value of 0110000001100010 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_5$mux0000> in unit <instruction_memory> has a constant value of 0110000010000011 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_6$mux0000> in unit <instruction_memory> has a constant value of 1100011010000101 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_7$mux0000> in unit <instruction_memory> has a constant value of 0010000011000100 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_8$mux0000> in unit <instruction_memory> has a constant value of 0000110011100111 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_9$mux0000> in unit <instruction_memory> has a constant value of 1000011011101000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_10$mux0000> in unit <instruction_memory> has a constant value of 0000000000000000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_11$mux0000> in unit <instruction_memory> has a constant value of 0000000000000000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_12$mux0000> in unit <instruction_memory> has a constant value of 0000000000000000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_13$mux0000> in unit <instruction_memory> has a constant value of 0000000000000000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_14$mux0000> in unit <instruction_memory> has a constant value of 0000000000000000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_15$mux0000> in unit <instruction_memory> has a constant value of 0000000000000000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_16$mux0000> in unit <instruction_memory> has a constant value of 0000000000000000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_17$mux0000> in unit <instruction_memory> has a constant value of 0000000000000000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_18$mux0000> in unit <instruction_memory> has a constant value of 0000000000000000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_19$mux0000> in unit <instruction_memory> has a constant value of 0000000000000000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_20$mux0000> in unit <instruction_memory> has a constant value of 0000000000000000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_21$mux0000> in unit <instruction_memory> has a constant value of 0000000000000000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_22$mux0000> in unit <instruction_memory> has a constant value of 0000000000000000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_23$mux0000> in unit <instruction_memory> has a constant value of 0000000000000000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_24$mux0000> in unit <instruction_memory> has a constant value of 0000000000000000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_25$mux0000> in unit <instruction_memory> has a constant value of 0000000000000000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_26$mux0000> in unit <instruction_memory> has a constant value of 0000000000000000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_27$mux0000> in unit <instruction_memory> has a constant value of 0000000000000000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_28$mux0000> in unit <instruction_memory> has a constant value of 0000000000000000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_29$mux0000> in unit <instruction_memory> has a constant value of 0000000000000000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_30$mux0000> in unit <instruction_memory> has a constant value of 0000000000000000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <var_insn_mem_31$mux0000> in unit <instruction_memory> has a constant value of 0000000000000000 during circuit operation. The register is replaced by logic.
+Entity <instruction_memory> analyzed. Unit <instruction_memory> generated.
+
+Analyzing Entity <sign_extend_4to16> in library <work> (Architecture <behavioral>).
+Entity <sign_extend_4to16> analyzed. Unit <sign_extend_4to16> generated.
+
+Analyzing Entity <control_unit> in library <work> (Architecture <behavioural>).
+Entity <control_unit> analyzed. Unit <control_unit> generated.
+
+Analyzing Entity <register_file> in library <work> (Architecture <behavioral>).
+Entity <register_file> analyzed. Unit <register_file> generated.
+
+Analyzing Entity <alu> in library <work> (Architecture <structural>).
+Entity <alu> analyzed. Unit <alu> generated.
+
+Analyzing Entity <adder_8b> in library <work> (Architecture <behavioral>).
+WARNING:Xst:819 - "C:/Users/Sacha/work/amazing3211/multi_cycle_core/adder_8b.vhd" line 27: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <c_in>
+Entity <adder_8b> analyzed. Unit <adder_8b> generated.
+
+Analyzing Entity <data_memory> in library <work> (Architecture <behavioral>).
+WARNING:Xst:819 - "C:/Users/Sacha/work/amazing3211/multi_cycle_core/data_memory.vhd" line 41: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <reset>
+Entity <data_memory> analyzed. Unit <data_memory> generated.
+
+Analyzing Entity <mux_2to1_4b> in library <work> (Architecture <structural>).
+Entity <mux_2to1_4b> analyzed. Unit <mux_2to1_4b> generated.
+
+Analyzing Entity <mux_2to1_1b> in library <work> (Architecture <behavioural>).
+Entity <mux_2to1_1b> analyzed. Unit <mux_2to1_1b> generated.
+
+Analyzing Entity <mux_2to1_16b> in library <work> (Architecture <structural>).
+Entity <mux_2to1_16b> analyzed. Unit <mux_2to1_16b> generated.
+
+Analyzing Entity <mux_2to1_5b> in library <work> (Architecture <structural>).
+Entity <mux_2to1_5b> analyzed. Unit <mux_2to1_5b> generated.
+
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <program_counter>.
+    Related source file is "C:/Users/Sacha/work/amazing3211/multi_cycle_core/program_counter.vhd".
+    Found 5-bit register for signal <addr_out>.
+Unit <program_counter> synthesized.
+
+
+Synthesizing Unit <adder_5b>.
+    Related source file is "C:/Users/Sacha/work/amazing3211/multi_cycle_core/adder_5b.vhd".
+    Found 6-bit adder for signal <sig_result>.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+Unit <adder_5b> synthesized.
+
+
+Synthesizing Unit <instruction_memory>.
+    Related source file is "C:/Users/Sacha/work/amazing3211/multi_cycle_core/instruction_memory.vhd".
+WARNING:Xst:647 - Input <clk> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:646 - Signal <sig_insn_mem> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:737 - Found 16-bit latch for signal <insn_out>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+    Found 32x16-bit ROM for signal <insn_out$mux0000> created at line 112.
+    Summary:
+	inferred   1 ROM(s).
+Unit <instruction_memory> synthesized.
+
+
+Synthesizing Unit <sign_extend_4to16>.
+    Related source file is "C:/Users/Sacha/work/amazing3211/multi_cycle_core/sign_extend_4to16.vhd".
+Unit <sign_extend_4to16> synthesized.
+
+
+Synthesizing Unit <control_unit>.
+    Related source file is "C:/Users/Sacha/work/amazing3211/multi_cycle_core/control_unit.vhd".
+Unit <control_unit> synthesized.
+
+
+Synthesizing Unit <register_file>.
+    Related source file is "C:/Users/Sacha/work/amazing3211/multi_cycle_core/register_file.vhd".
+WARNING:Xst:1780 - Signal <var_regfile<0>> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <sig_regfile> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 16-bit 16-to-1 multiplexer for signal <read_data_a>.
+    Found 16-bit 16-to-1 multiplexer for signal <read_data_b>.
+    Found 240-bit register for signal <var_regfile<1:15>>.
+Unit <register_file> synthesized.
+
+
+Synthesizing Unit <data_memory>.
+    Related source file is "C:/Users/Sacha/work/amazing3211/multi_cycle_core/data_memory.vhd".
+WARNING:Xst:646 - Signal <sig_data_mem> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 16-bit 16-to-1 multiplexer for signal <data_out>.
+    Found 256-bit register for signal <var_data_mem>.
+Unit <data_memory> synthesized.
+
+
+Synthesizing Unit <adder_8b>.
+    Related source file is "C:/Users/Sacha/work/amazing3211/multi_cycle_core/adder_8b.vhd".
+    Found 8-bit xor2 for signal <sum>.
+    Found 8-bit xor2 for signal <h_sum>.
+    Summary:
+	inferred   8 Xor(s).
+Unit <adder_8b> synthesized.
+
+
+Synthesizing Unit <mux_2to1_1b>.
+    Related source file is "C:/Users/Sacha/work/amazing3211/multi_cycle_core/mux_2to1_1b.vhd".
+Unit <mux_2to1_1b> synthesized.
+
+
+Synthesizing Unit <alu>.
+    Related source file is "C:/Users/Sacha/work/amazing3211/multi_cycle_core/alu.vhd".
+WARNING:Xst:647 - Input <src_a<15:8>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <src_b<15:8>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:1780 - Signal <sig_result> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <sig_prevcout2> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <sig_cout2> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 1-bit xor2 for signal <sig_overflow$xor0000> created at line 108.
+    Summary:
+	inferred   1 Xor(s).
+Unit <alu> synthesized.
+
+
+Synthesizing Unit <mux_2to1_4b>.
+    Related source file is "C:/Users/Sacha/work/amazing3211/multi_cycle_core/mux_2to1_4b.vhd".
+Unit <mux_2to1_4b> synthesized.
+
+
+Synthesizing Unit <mux_2to1_16b>.
+    Related source file is "C:/Users/Sacha/work/amazing3211/multi_cycle_core/mux_2to1_16b.vhd".
+Unit <mux_2to1_16b> synthesized.
+
+
+Synthesizing Unit <mux_2to1_5b>.
+    Related source file is "C:/Users/Sacha/work/amazing3211/multi_cycle_core/mux_2to1_5b.vhd".
+Unit <mux_2to1_5b> synthesized.
+
+
+Synthesizing Unit <multi_cycle_core>.
+    Related source file is "C:/Users/Sacha/work/amazing3211/multi_cycle_core/multi_cycle_core.vhd".
+WARNING:Xst:646 - Signal <sig_pc_carry_out> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <sig_branch_mux> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+Unit <multi_cycle_core> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# ROMs                                                 : 1
+ 32x16-bit ROM                                         : 1
+# Adders/Subtractors                                   : 1
+ 6-bit adder                                           : 1
+# Registers                                            : 32
+ 16-bit register                                       : 31
+ 5-bit register                                        : 1
+# Latches                                              : 1
+ 16-bit latch                                          : 1
+# Multiplexers                                         : 3
+ 16-bit 16-to-1 multiplexer                            : 3
+# Xors                                                 : 19
+ 1-bit xor2                                            : 17
+ 8-bit xor2                                            : 2
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+WARNING:Xst:1290 - Hierarchical block <pc> is unconnected in block <multi_cycle_core>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <next_pc> is unconnected in block <multi_cycle_core>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <insn_mem> is unconnected in block <multi_cycle_core>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <sign_extend> is unconnected in block <multi_cycle_core>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <ctrl_unit> is unconnected in block <multi_cycle_core>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <reg_file> is unconnected in block <multi_cycle_core>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <alu_unit> is unconnected in block <multi_cycle_core>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <data_mem> is unconnected in block <multi_cycle_core>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <mux_reg_dst> is unconnected in block <multi_cycle_core>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <mux_alu_src> is unconnected in block <multi_cycle_core>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <mux_mem_to_reg> is unconnected in block <multi_cycle_core>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <mux_branch> is unconnected in block <multi_cycle_core>.
+   It will be removed from the design.
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# ROMs                                                 : 1
+ 32x16-bit ROM                                         : 1
+# Adders/Subtractors                                   : 1
+ 6-bit adder                                           : 1
+# Latches                                              : 1
+ 16-bit latch                                          : 1
+# Multiplexers                                         : 3
+ 16-bit 16-to-1 multiplexer                            : 3
+# Xors                                                 : 2
+ 8-bit xor2                                            : 2
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:1710 - FF/Latch <insn_out_4> (without init value) has a constant value of 0 in block <instruction_memory>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <insn_out_8> (without init value) has a constant value of 0 in block <instruction_memory>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <insn_out_12> (without init value) has a constant value of 0 in block <instruction_memory>. This FF/Latch will be trimmed during the optimization process.
+
+Optimizing unit <multi_cycle_core> ...
+
+Optimizing unit <sign_extend_4to16> ...
+
+Optimizing unit <control_unit> ...
+
+Optimizing unit <mux_2to1_1b> ...
+
+Optimizing unit <adder_8b> ...
+
+Optimizing unit <mux_2to1_4b> ...
+
+Optimizing unit <mux_2to1_16b> ...
+
+Optimizing unit <mux_2to1_5b> ...
+
+Optimizing unit <program_counter> ...
+
+Optimizing unit <adder_5b> ...
+
+Optimizing unit <instruction_memory> ...
+
+Optimizing unit <register_file> ...
+
+Optimizing unit <data_memory> ...
+
+Optimizing unit <alu> ...
+WARNING:Xst:1290 - Hierarchical block <sign_extend> is unconnected in block <multi_cycle_core>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <ctrl_unit> is unconnected in block <multi_cycle_core>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <mux_reg_dst> is unconnected in block <multi_cycle_core>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <mux_mem_to_reg> is unconnected in block <multi_cycle_core>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <mux_alu_src> is unconnected in block <multi_cycle_core>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <mux_branch> is unconnected in block <multi_cycle_core>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <pc> is unconnected in block <multi_cycle_core>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <next_pc> is unconnected in block <multi_cycle_core>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <insn_mem> is unconnected in block <multi_cycle_core>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <reg_file> is unconnected in block <multi_cycle_core>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <data_mem> is unconnected in block <multi_cycle_core>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <alu_unit> is unconnected in block <multi_cycle_core>.
+   It will be removed from the design.
+
+=========================================================================
+*                           Partition Report                             *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : multi_cycle_core.ngr
+Top Level Output File Name         : multi_cycle_core
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : YES
+Target Technology                  : Automotive 9500XL
+Macro Preserve                     : YES
+XOR Preserve                       : YES
+Clock Enable                       : YES
+wysiwyg                            : NO
+
+Design Statistics
+# IOs                              : 2
+
+Cell Usage :
+=========================================================================
+
+
+Total REAL time to Xst completion: 15.00 secs
+Total CPU time to Xst completion: 14.60 secs
+ 
+--> 
+
+Total memory usage is 258812 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :   43 (   0 filtered)
+Number of infos    :   32 (   0 filtered)
+
