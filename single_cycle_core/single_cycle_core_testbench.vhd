@@ -68,10 +68,10 @@ ARCHITECTURE testbench_arch OF single_cycle_core_testbench IS
         PROCESS
             BEGIN
                 -- -------------  Current Time:  285ns
-                WAIT FOR 285 ns;
+                WAIT FOR 270 ns;
                 reset <= '0';
                 -- -------------------------------------
-                WAIT FOR 2000 ns;
+                WAIT FOR 29000 ns;
 
                 IF (TX_ERROR = 0) THEN
                     STD.TEXTIO.write(TX_OUT, string'("No errors or warnings"));

@@ -32,4 +32,4 @@ vsim -novopt single_cycle_core_testbench
 do wave.do
 
 ## 5. run simulation
-run 50us
+run 5000us

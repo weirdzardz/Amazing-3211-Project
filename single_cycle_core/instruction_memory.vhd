@@ -52,60 +52,77 @@ begin
             -- load : 1 - "001"
             -- store : 3 - "011"
             -- add : 0   - "000"
-            -- beq : 4   - "100"
-            -- sub : 5   - "110"
+            -- addi : 5  - "101"  --new instruction
+            -- bne : 4   - "100"
+            -- sub : 6   - "110"
        
-            -- initial values of the instruction memory :
-            --  insn_0 : load  $1, $0, 0   - load data 0($0) into $1
-            --  insn_1 : load  $2, $0, 1   - load data 1($0) into $2
-            --  insn_2 : add   $3, $0, $1  - $3 <- $0 + $1
-            --  insn_3 : add   $4, $1, $2  - $4 <- $1 + $2
-            --  insn_4 : store $3, $0, 2   - store data $3 into 2($0)
-            --  insn_5 : store $4, $0, 3   - store data $4 into 3($0)
-            --  insn_6 : subabs $5, $3, $4
-            --  insn_7 : load  $6, $0, 4   - load data 4($0) into $6
-            --  insn_8 : add   $7, $6, $7  - $7 <- $6 +$7
-            --  insn_9 : beq   $3, $7, D   - jump to insn_13 if $3 == $7
-            --  insn_10 : noop
-            --  insn_11 : jmp 0, 0, 8      - jump to insn_8
-            --  insn_12 - insn_15 : noop    - end of program
+--REGISTER MAPPING       
+-- R0  -> '0'
+-- R1  -> i
+-- R2  -> j
+-- R3  -> k
+-- R4  -> temp4
+-- R5  -> jN
+-- R6  -> N
+-- R7  -> memA
+-- R8  -> memB
+-- R9  -> memC
+-- R10 -> indexA
+-- R11 -> indexB
+-- R12 -> indexC
+-- R13 -> temp1
+-- R14 -> temp2
+-- R15 -> temp3
 
 
-            var_insn_mem(0)  := "0010000000100000"; --001 0000 0001 0 0000
-            var_insn_mem(1)  := "0010000001000001"; --001 0000 0010 0 0001
-            var_insn_mem(2)  := "0000001000000011"; --000 0001 0000 0 0011
-            var_insn_mem(3)  := "0000001001000100"; --000 0001 0010 0 0100
-            var_insn_mem(4)  := "0110000001100010"; --011 0000 0011 0 0010
-            var_insn_mem(5)  := "0110000010000011"; --011 0000 0100 0 0011
-            var_insn_mem(6)  := "1100011010000101"; --110 0011 0100 0 0101
-            var_insn_mem(7)  := "0010000011000100"; --001 0000 0110 0 0100
-            var_insn_mem(8)  := "0000110011100111"; --000 0110 0111 0 0111
-            var_insn_mem(9)  := "1000100011101000";  --100 0100 0111 01000
-            var_insn_mem(10) := X"0000";
-            var_insn_mem(11) := X"0000";
-            var_insn_mem(12) := X"0000";
-            var_insn_mem(13) := X"0000";
-            var_insn_mem(14) := X"0000";
-            var_insn_mem(15) := X"0000";
-            --the following adresses need to have proper values entered.
-            var_insn_mem(16)  := X"0000";
-            var_insn_mem(17)  := X"0000";
-            var_insn_mem(18)  := X"0000";
-            var_insn_mem(19)  := X"0000";
-            var_insn_mem(20)  := X"0000";
-            var_insn_mem(21)  := X"0000";
-            var_insn_mem(22)  := X"0000";
-            var_insn_mem(23)  := X"0000";
-            var_insn_mem(24)  := X"0000";
-            var_insn_mem(25)  := X"0000";
-            var_insn_mem(26) := X"0000";
-            var_insn_mem(27) := X"0000";
-            var_insn_mem(28) := X"0000";
-            var_insn_mem(29) := X"0000";
-            var_insn_mem(30) := X"0000";
-            var_insn_mem(31) := X"0000";
+--init to 0
             
-        
+-- R10 -> indexA
+-- R11 -> indexB
+-- R12 -> indexC
+-- R13 -> temp1
+-- R14 -> temp2
+-- R15 -> temp3
+
+
+--init to 0
+       
+var_insn_mem(0) := "0010000011000000";   --LOAD N, r0					 	
+var_insn_mem(1) := "1010000011100001";   --ADDI memA, r0, 1
+var_insn_mem(2) := "0001101011001101";   --ADD temp1, temp1, N
+var_insn_mem(3) := "1011110111000001";   --ADDI temp2, temp2, 1
+var_insn_mem(4) := "1001110011000010";   --BNE temp2, N, 2
+var_insn_mem(5) := "0000111110101000";   --ADD memB, memA, temp1
+var_insn_mem(6) := "0001000110101001";   --ADD memC, memB, temp1
+var_insn_mem(7) := "0000101001101010";   --ADD indexA, iN, k 			#find address A
+var_insn_mem(8) := "0001010011101010";   --ADD indexA, indexA, memA
+var_insn_mem(9) := "0000100001001011";   --ADD indexB, kN, j 			#find address B
+var_insn_mem(10) := "0001011100001011";   --ADD indexB, indexB, memB
+var_insn_mem(11) := "0000101001001100";   --ADD indexC, iN, j 			#find address C
+var_insn_mem(12) := "0001100100101100";   --ADD indexC, indexC, memC
+var_insn_mem(13) := "0011010110100000";   --LOAD temp1, indexA 			#load value A from memory
+var_insn_mem(14) := "0011011111000000";   --LOAD temp2, indexB 			#load value B form memory
+var_insn_mem(15) := "1101101111001101";   --SUB temp1, temp1, temp2 	#subtract
+var_insn_mem(16) := "0001111110101111";   --ADD temp3, temp3, temp1 	#accumulate (sum) C value  
+var_insn_mem(17) := "1010011001100001";   --ADDI k, k, 1
+var_insn_mem(18) := "0000100011000100";   --ADD kN, kN, N
+var_insn_mem(19) := "1000011011000111";   --BNE k, N, 7
+var_insn_mem(20) := "0111100111100000";   --STORE temp3, indexC 	#store into C
+var_insn_mem(21) := "0000000000001111";   --ADD temp3, r0, r0 		#temp3 cleared
+var_insn_mem(22) := "0000000000000011";   --ADD k, r0, r0 			#k cleared
+var_insn_mem(23) := "0000000000000100";   --ADD kN, r0, r0 			#kN cleared
+var_insn_mem(24) := "1010010001000001";   --ADDI j, j, 1			#inc J
+var_insn_mem(25) := "1000010011000111";   --BNE j, N, 7
+var_insn_mem(26) := "0000000000000010";   --ADD j, r0, r0
+var_insn_mem(27) := "1010001000100001";   --ADDI i, i, 1
+var_insn_mem(28) := "0000101011000101";   --ADD iN, iN, N
+var_insn_mem(29) := "1000001011000111";   --BNE i, N, 7
+var_insn_mem(30) := "0000000000000001";   --ADD i, r0, r0
+var_insn_mem(31) := "0000000000000101";   --ADD iN, r0, r0	 
+
+
+           
+
         else
             -- read instructions on the rising clock edge
             var_addr := conv_integer(addr_in);
