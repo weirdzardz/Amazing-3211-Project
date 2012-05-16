@@ -28,22 +28,35 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 --use UNISIM.VComponents.all;
 
 entity if_id_reg is
+    port( reset         : in std_logic;
+          clk           : in std_logic;
+          instruction_in   : in std_logic_vector(15 downto 0);
+          instruction_out : out std_logic_vector(15 downto 0)  
+    );
+  
 end if_id_reg;
 
 architecture Behavioral of if_id_reg is
 
-type reg_file is array(0 to 15) of std_logic_vector(15 downto 0);
-signal sig_regfile : reg_file;
-
+signal var_regfile : std_logic_vector(15 downto 0);
 
 begin
-
-
-
-
-
-
-
-
+  
+  reg_process: process (reset, clk, instruction_in) is 
+  
+  begin 
+    
+  if (reset = '1') then
+    var_regfile <=  X"0000";
+  elsif (rising_edge(clk)  ) then 
+    var_regfile <= instruction_in;
+    
+  end if;
+  
+  
+  
+  
+end process;
+instruction_out <= var_regfile after 250 ps;
 end Behavioral;
 

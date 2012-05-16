@@ -39,7 +39,7 @@ begin
                               clk ) is
     begin
        if (reset = '1') then
-           addr_out <= (others => '0'); 
+           addr_out <= (others => '1'); 
        elsif (rising_edge(clk)) then
            addr_out <= addr_in after 0.5 ns; 
        end if;

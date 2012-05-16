@@ -17,6 +17,10 @@ vcom "mux_2to1_16b.vhd"
 vcom "program_counter.vhd"
 vcom "register_file.vhd"
 vcom "sign_extend_4to16.vhd"
+vcom "if_id_reg.vhd"
+vcom "id_ex_reg.vhd"
+vcom "ex_mem_reg.vhd"
+vcom "mem_wb_reg.vhd"
 vcom "multi_cycle_core.vhd"
 
 ## 2. compile the tb

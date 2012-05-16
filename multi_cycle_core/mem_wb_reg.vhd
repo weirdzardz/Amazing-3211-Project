@@ -28,12 +28,60 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 --use UNISIM.VComponents.all;
 
 entity mem_wb_reg is
+port( reset         : in std_logic;
+      clk           : in std_logic;
+      mem_to_reg_in : in std_logic;
+      mem_to_reg_out: out std_logic;
+      write_reg_in    : in std_logic_vector(3 downto 0);
+      write_reg_out   : out std_logic_vector(3 downto 0);
+      reg_write_in  : in std_logic;
+      reg_write_out : out std_logic;         
+      alu_result_in  : in std_logic_vector(15 downto 0);
+      alu_result_out : out std_logic_vector(15 downto 0);
+      data_mem_in     :in std_logic_vector(15 downto 0);
+      data_mem_out    :out std_logic_vector(15 downto 0)
+      
+        
+);  
 end mem_wb_reg;
 
 architecture Behavioral of mem_wb_reg is
-
+  
+  signal mem_to_reg : std_logic;
+  signal write_reg  : std_logic_vector(3 downto 0);
+  signal reg_write  : std_logic;
+  signal alu_result : std_logic_vector(15 downto 0);
+  signal data_mem   : std_logic_vector(15 downto 0);
+  
 begin
+  
+  reg_process: process (reset, clk, mem_to_reg_in, write_reg_in, reg_write_in, alu_result_in, data_mem_in) is 
+  
+  begin 
+    
+  if (reset = '1') then
+    mem_to_reg <= '0';
+    write_reg <= X"0";
+    reg_write <= '0';
+    alu_result <= X"0000";
+    data_mem <= X"0000";
+    
+  elsif (rising_edge(clk)  ) then 
+    mem_to_reg <= mem_to_reg_in;
+    write_reg <= write_reg_in;
+    reg_write <= reg_write_in;
+    alu_result <= alu_result_in;
+    data_mem <= data_mem_in;
+  end if;
+  
 
-
+  
+  
+end process;
+  mem_to_reg_out <= mem_to_reg after 250 ps;
+  write_reg_out <= write_reg after 250 ps;
+  reg_write_out <= reg_write after 250 ps;
+  alu_result_out <= alu_result after 250 ps;
+  data_mem_out <= data_mem after 250 ps;
 end Behavioral;
 

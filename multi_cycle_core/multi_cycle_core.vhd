@@ -68,11 +68,6 @@ component instruction_memory is
            insn_out : out std_logic_vector(15 downto 0) );
 end component;
 
---I've made this extend from input of 5 bits, rather than 4.
-component sign_extend_4to16 is
-    port ( data_in  : in  std_logic_vector(4 downto 0);
-           data_out : out std_logic_vector(15 downto 0) );
-end component;
 
 component mux_2to1_4b is
     port ( mux_select : in  std_logic;
@@ -120,6 +115,11 @@ component register_file is
            read_data_b     : out std_logic_vector(15 downto 0) );
 end component;
 
+component sign_extend_4to16 is
+    port ( data_in  : in  std_logic_vector(4 downto 0);
+           data_out : out std_logic_vector(15 downto 0) );
+end component;
+
 component adder_5b is
     port ( src_a     : in  std_logic_vector(4 downto 0);
            src_b     : in  std_logic_vector(4 downto 0);
@@ -144,28 +144,118 @@ component data_memory is
            data_out     : out std_logic_vector(15 downto 0) );
 end component;
 
-signal sig_next_pc              : std_logic_vector(4 downto 0);
-signal sig_pc_inc             : std_logic_vector(4 downto 0); --
-signal sig_curr_pc              : std_logic_vector(4 downto 0); --
-signal sig_one_5b               : std_logic_vector(4 downto 0);
-signal sig_pc_carry_out         : std_logic;
-signal sig_insn                 : std_logic_vector(15 downto 0);
-signal sig_sign_extended_offset : std_logic_vector(15 downto 0);
-signal sig_reg_dst              : std_logic;
-signal sig_reg_write            : std_logic;
-signal sig_alu_src              : std_logic;
-signal sig_mem_write            : std_logic;
-signal sig_mem_to_reg           : std_logic;
-signal sig_write_register       : std_logic_vector(3 downto 0);
-signal sig_write_data           : std_logic_vector(15 downto 0);
-signal sig_read_data_a          : std_logic_vector(15 downto 0);
-signal sig_read_data_b          : std_logic_vector(15 downto 0);
-signal sig_alu_src_b            : std_logic_vector(15 downto 0);
-signal sig_alu_result           : std_logic_vector(15 downto 0); 
-signal sig_data_mem_out         : std_logic_vector(15 downto 0);
-signal sig_alucontrol           : std_logic_vector (1 downto 0);
-signal sig_alu_zero             : std_logic;
-signal sig_branch               : std_logic;
+component if_id_reg is 
+    port( reset         : in std_logic;
+          clk           : in std_logic;
+          instruction_in   : in std_logic_vector(15 downto 0);
+          instruction_out : out std_logic_vector(15 downto 0)  
+    );
+end component;
+
+component id_ex_reg is
+    port( reset         : in std_logic;
+          clk           : in std_logic;
+          alu_ctl_in    : in std_logic_vector(1 downto 0);
+          alu_ctl_out   : out std_logic_vector(1 downto 0);
+          mem_write_in  : in std_logic;
+          mem_to_reg_in : in std_logic;
+          mem_write_out : out std_logic;
+          mem_to_reg_out: out std_logic;
+          write_reg_in    : in std_logic_vector(3 downto 0);
+          write_reg_out   : out std_logic_vector(3 downto 0);
+          reg_write_in  : in std_logic;
+          reg_write_out : out std_logic;          
+          read_a_in  : in std_logic_vector(15 downto 0);
+          read_b_in  : in std_logic_vector(15 downto 0);
+          read_a_out : out std_logic_vector(15 downto 0);
+          read_b_out : out std_logic_vector(15 downto 0)  
+    );
+  
+end component;
+component ex_mem_reg is
+port( reset         : in std_logic;
+      clk           : in std_logic;
+      mem_write_in  : in std_logic;
+      mem_to_reg_in : in std_logic;
+      mem_write_out : out std_logic;
+      mem_to_reg_out: out std_logic;
+      write_reg_in    : in std_logic_vector(3 downto 0);
+      write_reg_out   : out std_logic_vector(3 downto 0);
+      reg_write_in  : in std_logic;
+      reg_write_out : out std_logic;
+      data_b_in       : in std_logic_vector(15 downto 0);
+      data_b_out        : out std_logic_vector(15 downto 0);  
+      alu_zero_in     : in std_logic;
+      alu_zero_out    : out std_logic;         
+      alu_result_in  : in std_logic_vector(15 downto 0);
+      alu_result_out : out std_logic_vector(15 downto 0)  
+);
+end component;
+
+component mem_wb_reg is
+port( reset         : in std_logic;
+      clk           : in std_logic;
+      mem_to_reg_in : in std_logic;
+      mem_to_reg_out: out std_logic;
+      write_reg_in    : in std_logic_vector(3 downto 0);
+      write_reg_out   : out std_logic_vector(3 downto 0);
+      reg_write_in  : in std_logic;
+      reg_write_out : out std_logic;         
+      alu_result_in  : in std_logic_vector(15 downto 0);
+      alu_result_out : out std_logic_vector(15 downto 0);
+      data_mem_in     :in std_logic_vector(15 downto 0);
+      data_mem_out    :out std_logic_vector(15 downto 0)
+      
+        
+);  
+end component;
+
+
+
+
+signal sig_next_pc                  : std_logic_vector(4 downto 0);
+signal sig_pc_inc                   : std_logic_vector(4 downto 0); --
+signal sig_curr_pc                  : std_logic_vector(4 downto 0); --
+signal sig_one_5b                   : std_logic_vector(4 downto 0);
+signal sig_pc_carry_out             : std_logic;
+signal sig_insn                     : std_logic_vector(15 downto 0);
+signal sig_insn_to_ppl              : std_logic_vector(15 downto 0);
+signal sig_reg_dst                  : std_logic;
+signal sig_reg_write                : std_logic;
+signal sig_reg_write_to_ppl_id_ex   : std_logic;
+signal sig_reg_write_to_ppl_ex_mem  : std_logic;
+signal sig_reg_write_to_ppl_mem_wb  : std_logic;
+signal sig_mem_write                : std_logic;
+signal sig_mem_to_reg               : std_logic;
+signal sig_mem_write_to_ppl_id_ex         : std_logic;
+signal sig_mem_to_reg_to_ppl_id_ex        : std_logic;
+signal sig_mem_write_to_ppl_ex_mem         : std_logic;
+signal sig_mem_to_reg_to_ppl_ex_mem        : std_logic;
+signal sig_mem_write_to_ppl_mem_wb         : std_logic;
+signal sig_mem_to_reg_to_ppl_mem_wb        : std_logic;
+signal sig_write_reg_to_ppl_id_ex   : std_logic_vector(3 downto 0);
+signal sig_write_reg_to_ppl_ex_mem  : std_logic_vector(3 downto 0);
+signal sig_write_reg_to_ppl_mem_wb  : std_logic_vector(3 downto 0);
+signal sig_write_register           : std_logic_vector(3 downto 0);
+signal sig_write_data               : std_logic_vector(15 downto 0);
+signal sig_read_data_a              : std_logic_vector(15 downto 0);
+signal sig_read_data_b              : std_logic_vector(15 downto 0);
+signal sig_read_data_b_to_mux              : std_logic_vector(15 downto 0);
+signal sig_read_data_a_to_ppl       : std_logic_vector(15 downto 0);
+signal sig_read_data_b_to_ppl_id_ex       : std_logic_vector(15 downto 0);
+signal sig_read_data_b_to_ppl_ex_mem       : std_logic_vector(15 downto 0);
+signal sig_alu_result               : std_logic_vector(15 downto 0); 
+signal sig_alu_result_to_ppl_ex_mem : std_logic_vector(15 downto 0);
+signal sig_alu_result_to_ppl_mem_wb : std_logic_vector(15 downto 0);
+signal sig_data_mem_out_to_ppl             : std_logic_vector(15 downto 0);
+signal sig_data_mem_out             : std_logic_vector(15 downto 0);
+signal sig_alucontrol_to_ppl        : std_logic_vector (1 downto 0);
+signal sig_alucontrol               : std_logic_vector (1 downto 0);
+signal sig_alu_zero                 : std_logic;
+signal sig_alu_zero_to_ppl                 : std_logic;
+signal sig_alu_src                   : std_logic;
+signal sig_branch                   : std_logic;
+signal sig_sign_extended_offset   :std_logic_vector (15 downto 0);
 -- took out jump and jump mux
 signal sig_branch_mux           : std_logic_vector (4 downto 0);
 
@@ -190,23 +280,23 @@ begin
     port map ( reset    => reset,
                clk      => clk,
                addr_in  => sig_curr_pc,
-               insn_out => sig_insn );
+               insn_out => sig_insn_to_ppl );
 
-    sign_extend : sign_extend_4to16 
-    port map ( data_in  => sig_insn(4 downto 0),
-               data_out => sig_sign_extended_offset );
 
     ctrl_unit : control_unit 
     port map ( opcode     => sig_insn(15 downto 13),  --shorter opcode is sent to control unit
                reg_dst    => sig_reg_dst,
-               reg_write  => sig_reg_write,
+               reg_write  => sig_reg_write_to_ppl_id_ex,
                alu_src    => sig_alu_src,
-               mem_write  => sig_mem_write,
-               mem_to_reg => sig_mem_to_reg,
-               alucontrol => sig_alucontrol
+               mem_write  => sig_mem_write_to_ppl_id_ex,
+               mem_to_reg => sig_mem_to_reg_to_ppl_id_ex,
+               alucontrol => sig_alucontrol_to_ppl
                --removed jump signal 
                );
-
+               
+    sign_extend : sign_extend_4to16 
+    port map ( data_in  => sig_insn(4 downto 0),
+               data_out => sig_sign_extended_offset );
 
     reg_file : register_file 
     port map ( reset           => reset, 
@@ -216,35 +306,29 @@ begin
                write_enable    => sig_reg_write,
                write_register  => sig_write_register,
                write_data      => sig_write_data,
-               read_data_a     => sig_read_data_a,
+               read_data_a     => sig_read_data_a_to_ppl,
                read_data_b     => sig_read_data_b );
 
     alu_unit : alu 
-    port map ( alucontrol => sig_alucontrol,
+    port map ( alucontrol => sig_alucontrol_to_ppl,
                src_a     => sig_read_data_a,
-               src_b     => sig_alu_src_b,
-               res       => sig_alu_result,
-               zero => sig_alu_zero );
+               src_b     => sig_read_data_b_to_ppl_ex_mem,
+               res       => sig_alu_result_to_ppl_ex_mem,
+               zero => sig_alu_zero_to_ppl );
 
     data_mem : data_memory 
     port map ( reset        => reset,
                clk          => clk,
                write_enable => sig_mem_write,
                write_data   => sig_read_data_b,
-               addr_in      => sig_alu_result(3 downto 0),
-               data_out     => sig_data_mem_out );
+               addr_in      => sig_alu_result_to_ppl_mem_wb(3 downto 0),
+               data_out     => sig_data_mem_out_to_ppl );
     
     mux_reg_dst : mux_2to1_4b 
     port map ( mux_select => sig_reg_dst,
                data_a     => sig_insn(8 downto 5),  --new bit range
                data_b     => sig_insn(3 downto 0),  --SAME bit range
-               data_out   => sig_write_register );   
-        
-    mux_alu_src : mux_2to1_16b 
-    port map ( mux_select => sig_alu_src,
-               data_a     => sig_read_data_b,
-               data_b     => sig_sign_extended_offset,
-               data_out   => sig_alu_src_b );
+               data_out   => sig_write_reg_to_ppl_id_ex );   
                           
     mux_mem_to_reg : mux_2to1_16b 
     port map ( mux_select => sig_mem_to_reg,
@@ -258,6 +342,72 @@ begin
                data_b     => sig_insn(4 downto 0),
                data_out   => sig_next_pc );
                       
+    mux_alu_src : mux_2to1_16b 
+    port map ( mux_select => sig_alu_src,
+               data_a     => sig_read_data_b_to_mux,
+               data_b     => sig_sign_extended_offset,
+               data_out   => sig_read_data_b_to_ppl_id_ex );                      
+                                            
+    if_id_ppl_reg: if_id_reg
+    port map (reset => reset,
+              clk => clk,
+              instruction_in => sig_insn_to_ppl,
+              instruction_out => sig_insn    
+              ); 
+              
+    id_ex_ppl_reg : id_ex_reg
+    port map (  reset =>reset,
+                clk => clk,
+                alu_ctl_in    => sig_alucontrol_to_ppl,
+                alu_ctl_out   => sig_alucontrol,
+                mem_write_in  => sig_mem_write_to_ppl_id_ex,
+                mem_to_reg_in => sig_mem_to_reg_to_ppl_id_ex,
+                mem_write_out => sig_mem_write_to_ppl_ex_mem,
+                mem_to_reg_out => sig_mem_to_reg_to_ppl_ex_mem,
+                write_reg_in    => sig_write_reg_to_ppl_id_ex,
+                write_reg_out   => sig_write_reg_to_ppl_ex_mem,
+                reg_write_in  => sig_reg_write_to_ppl_id_ex,
+                reg_write_out => sig_reg_write_to_ppl_ex_mem,                            
+                read_a_in => sig_read_data_a_to_ppl,
+                read_b_in  => sig_read_data_b_to_ppl_id_ex,
+                read_a_out => sig_read_data_a,
+                read_b_out => sig_read_data_b_to_ppl_ex_mem
+               );   
+               
+    ex_mem_ppl_reg : ex_mem_reg
+    port map (  reset =>reset,
+                clk => clk,
+                mem_write_in  => sig_mem_write_to_ppl_ex_mem,
+                mem_to_reg_in => sig_mem_to_reg_to_ppl_ex_mem,
+                mem_write_out => sig_mem_write_to_ppl_mem_wb,
+                mem_to_reg_out => sig_mem_to_reg_to_ppl_mem_wb,
+                write_reg_in    => sig_write_reg_to_ppl_ex_mem,
+                write_reg_out   => sig_write_reg_to_ppl_mem_wb,
+                reg_write_in  => sig_reg_write_to_ppl_ex_mem,
+                reg_write_out => sig_reg_write_to_ppl_mem_wb,
+                data_b_in    => sig_read_data_b_to_ppl_ex_mem,
+                data_b_out   => sig_read_data_b,                            
+                alu_zero_in  => sig_alu_zero_to_ppl,
+                alu_zero_out => sig_alu_zero,
+                alu_result_in => sig_alu_result_to_ppl_ex_mem,
+                alu_result_out => sig_alu_result_to_ppl_mem_wb
+               ); 
  --removed jump mux              
+
+  mem_wb_ppl_reg : mem_wb_reg
+    port map (  reset =>reset,
+                clk => clk,
+                mem_to_reg_in => sig_mem_to_reg_to_ppl_mem_wb,
+                mem_to_reg_out => sig_mem_to_reg,
+                write_reg_in    => sig_write_reg_to_ppl_mem_wb,
+                write_reg_out   => sig_write_register,
+                reg_write_in  => sig_reg_write_to_ppl_mem_wb,
+                reg_write_out => sig_reg_write,
+                alu_result_in => sig_alu_result_to_ppl_mem_wb,
+                alu_result_out => sig_alu_result,
+                data_mem_in =>  sig_data_mem_out_to_ppl,
+                data_mem_out => sig_data_mem_out
+               ); 
+
 
 end structural;

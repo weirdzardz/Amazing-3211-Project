@@ -1,0 +1,99 @@
+----------------------------------------------------------------------------------
+-- Company: 
+-- Engineer: 
+-- 
+-- Create Date:    16:19:52 05/08/2012 
+-- Design Name: 
+-- Module Name:    id_ex_reg - Behavioral 
+-- Project Name: 
+-- Target Devices: 
+-- Tool versions: 
+-- Description: 
+--
+-- Dependencies: 
+--
+-- Revision: 
+-- Revision 0.01 - File Created
+-- Additional Comments: 
+--
+----------------------------------------------------------------------------------
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+---- Uncomment the following library declaration if instantiating
+---- any Xilinx primitives in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity id_ex_reg is
+port( reset         : in std_logic;
+      clk           : in std_logic;
+      alu_ctl_in    : in std_logic_vector(1 downto 0);
+      alu_ctl_out   : out std_logic_vector(1 downto 0);
+      mem_write_in  : in std_logic;
+      mem_to_reg_in : in std_logic;
+      mem_write_out : out std_logic;
+      mem_to_reg_out: out std_logic;
+      write_reg_in    : in std_logic_vector(3 downto 0);
+      write_reg_out   : out std_logic_vector(3 downto 0);
+      reg_write_in  : in std_logic;
+      reg_write_out : out std_logic;          
+      read_a_in  : in std_logic_vector(15 downto 0);
+      read_b_in  : in std_logic_vector(15 downto 0);
+      read_a_out : out std_logic_vector(15 downto 0);
+      read_b_out : out std_logic_vector(15 downto 0)  
+);
+  
+end id_ex_reg;
+
+architecture Behavioral of id_ex_reg is
+  
+  signal alu_ctl    : std_logic_vector(1 downto 0);
+  signal mem_write  : std_logic;
+  signal mem_to_reg : std_logic;
+  signal write_reg  : std_logic_vector(3 downto 0);
+  signal reg_write  : std_logic;
+  signal read_a     : std_logic_vector(15 downto 0);
+  signal read_b     : std_logic_vector(15 downto 0);
+  
+begin
+  
+  reg_process: process (reset, clk, alu_ctl_in, mem_write_in, mem_to_reg_in,write_reg_in, reg_write_in, read_a_in, read_b_in) is 
+  
+  begin 
+    
+  if (reset = '1') then 
+    alu_ctl <= "00";
+    mem_write <= '0';
+    mem_to_reg <= '0';
+    write_reg <= X"0";
+    reg_write <= '0';
+    read_a <=  X"0000";
+    read_b <=  X"0000"; 
+  elsif (rising_edge(clk)  ) then 
+    
+    alu_ctl <= alu_ctl_in;
+    mem_write <= mem_write_in;
+    mem_to_reg <= mem_to_reg_in;
+    write_reg <= write_reg_in;
+    reg_write <= reg_write_in;
+    read_a <=  read_a_in;
+    read_b <=  read_b_in; 
+
+--  sig_regfile <= var_regfile after 
+  end if;
+
+
+  
+end process;
+    alu_ctl_out <= alu_ctl after 250 ps;
+  mem_write_out <= mem_write after 250 ps;
+  mem_to_reg_out <= mem_to_reg after 250 ps;
+  write_reg_out <= write_reg after 250 ps;
+  reg_write_out <= reg_write after 250 ps;
+  read_a_out <= read_a after 250 ps;
+  read_b_out <= read_b after 250 ps;
+end Behavioral;
+
