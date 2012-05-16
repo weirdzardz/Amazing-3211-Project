@@ -221,30 +221,30 @@ R12
 o-O0
 R9
 !s100 UazOOaJ]<L<Lc?3G`jCnO1
-Eid_ex_reg
-Z32 w1337123960
+Eforward_unit
+Z32 w1337163358
 R2
 R3
 R4
 R5
-Z33 8id_ex_reg.vhd
-Z34 Fid_ex_reg.vhd
+Z33 8forward_unit.vhd
+Z34 Fforward_unit.vhd
 l0
-L30
-VkgF[kdRfd@D0lU9Ci`;b43
+L14
+VKT7[Z?nigm9^n[Xbfjfd50
 R8
 32
 o-O0
 R9
-!s100 G>oJf_oJmS20zCfbajf_Y0
-Abehavioral
+!s100 hnYji^3n5zPOU2QD9CacX3
+Astructural
 R2
 R3
 R4
-DEx4 work 9 id_ex_reg 0 22 kgF[kdRfd@D0lU9Ci`;b43
-l61
-L51
-VQ8P>LhXZm>R2S9@;VeEbJ3
+DEx4 work 12 forward_unit 0 22 KT7[Z?nigm9^n[Xbfjfd50
+l39
+L27
+Vj^S5H?T78f=Si59_hX6`l1
 R8
 32
 R10
@@ -252,15 +252,47 @@ R11
 R12
 o-O0
 R9
-!s100 D:G6:l:G6BRhLE03`4SYb2
-Eif_id_reg
-Z35 w1337132962
+!s100 H=`a<LZmXlMnhc?h?6bHd3
+Eid_ex_reg
+Z35 w1337161671
 R2
 R3
 R4
 R5
-Z36 8if_id_reg.vhd
-Z37 Fif_id_reg.vhd
+Z36 8id_ex_reg.vhd
+Z37 Fid_ex_reg.vhd
+l0
+L30
+VHjMj_HX8LkVf=b7jEVkG<3
+R8
+32
+o-O0
+R9
+!s100 J2k4Xfc>Fa8lX7`db:2^H0
+Abehavioral
+R2
+R3
+R4
+DEx4 work 9 id_ex_reg 0 22 HjMj_HX8LkVf=b7jEVkG<3
+l67
+L55
+VQQE63`4?eh@oQzPCl4g_F1
+R8
+32
+R10
+R11
+R12
+o-O0
+R9
+!s100 @;1QXI<OaHUo>X4dIP1410
+Eif_id_reg
+Z38 w1337132962
+R2
+R3
+R4
+R5
+Z39 8if_id_reg.vhd
+Z40 Fif_id_reg.vhd
 l0
 L30
 VWeTUOQmgKbfhMg8@6_T@a2
@@ -286,13 +318,13 @@ o-O0
 R9
 !s100 Rf?f>nSLjl2GDnKJeEdQK0
 Einstruction_memory
-Z38 w1337124449
+Z41 w1337160412
 R2
 R3
 R4
 R5
-Z39 8instruction_memory.vhd
-Z40 Finstruction_memory.vhd
+Z42 8instruction_memory.vhd
+Z43 Finstruction_memory.vhd
 l0
 L27
 Va`0[[GeH[N=iA69e7T?EP0
@@ -308,7 +340,7 @@ R4
 DEx4 work 18 instruction_memory 0 22 a`0[[GeH[N=iA69e7T?EP0
 l39
 L34
-V@IjSR1E8TIHhPaofBH8kX2
+VdPR>LIBD^MS9oke[HaMka3
 R8
 32
 R10
@@ -316,15 +348,15 @@ R11
 R12
 o-O0
 R9
-!s100 6Q0zHj^`F=n_Jd[cX7`Bi3
+!s100 joE:`jc>ab29z?VFEHILV3
 Emem_wb_reg
-Z41 w1337123980
+Z44 w1337123980
 R2
 R3
 R4
 R5
-Z42 8mem_wb_reg.vhd
-Z43 Fmem_wb_reg.vhd
+Z45 8mem_wb_reg.vhd
+Z46 Fmem_wb_reg.vhd
 l0
 L30
 V_KaJ1RUOMF]X_3]gg0HgP2
@@ -350,13 +382,13 @@ o-O0
 R9
 !s100 V@OS0M>e8<BAzBjR5OAJ`1
 Emulti_cycle_core
-Z44 w1337135679
+Z47 w1337162571
 R2
 R3
 R4
 R5
-Z45 8multi_cycle_core.vhd
-Z46 Fmulti_cycle_core.vhd
+Z48 8multi_cycle_core.vhd
+Z49 Fmulti_cycle_core.vhd
 l0
 L50
 VngjbI7^:@7Je<n:Yn>]Ml3
@@ -370,9 +402,10 @@ R2
 R3
 R4
 DEx4 work 16 multi_cycle_core 0 22 ngjbI7^:@7Je<n:Yn>]Ml3
-l262
+l292
 L55
-VSBbg^UOh<7]>DKc5gWUUf2
+VJh=__@j:?cbGDX>X>KELo1
+!s100 SXVPUkGT;>A]P]zIAJec20
 R8
 32
 R10
@@ -380,15 +413,14 @@ R11
 R12
 o-O0
 R9
-!s100 50XcZo3<8g@BhPh>nCN3K1
 Emux_2to1_16b
-Z47 w1331961493
+Z50 w1331961493
 R2
 R3
 R4
 R5
-Z48 8mux_2to1_16b.vhd
-Z49 Fmux_2to1_16b.vhd
+Z51 8mux_2to1_16b.vhd
+Z52 Fmux_2to1_16b.vhd
 l0
 L25
 V<84N<h^>hXDh]?WUj83K:0
@@ -414,13 +446,13 @@ o-O0
 R9
 !s100 C_KzR6]KTJG[?Q9dASZ3^0
 Emux_2to1_1b
-Z50 w1333364992
+Z53 w1333364992
 R2
 R3
 R4
 R5
-Z51 8mux_2to1_1b.vhd
-Z52 Fmux_2to1_1b.vhd
+Z54 8mux_2to1_1b.vhd
+Z55 Fmux_2to1_1b.vhd
 l0
 L25
 VZ5?Z^R^NXHgSob4Pb3WC30
@@ -446,13 +478,13 @@ o-O0
 R9
 !s100 ZSXz4KaI`Ob4@j]gbBBGP0
 Emux_2to1_4b
-Z53 w1335922750
+Z56 w1335922750
 R2
 R3
 R4
 R5
-Z54 8mux_2to1_4b.vhd
-Z55 Fmux_2to1_4b.vhd
+Z57 8mux_2to1_4b.vhd
+Z58 Fmux_2to1_4b.vhd
 l0
 L25
 V3Fen4DE3SSb`Wf^J?k=AJ2
@@ -478,13 +510,13 @@ o-O0
 R9
 !s100 >`21gTI_0_JT=UTnR<efI0
 Emux_2to1_5b
-Z56 w1335922785
+Z59 w1335922785
 R2
 R3
 R4
 R5
-Z57 8mux_2to1_5b.vhd
-Z58 Fmux_2to1_5b.vhd
+Z60 8mux_2to1_5b.vhd
+Z61 Fmux_2to1_5b.vhd
 l0
 L25
 VWkHPgeTIl=WkN2B]d19EY0
@@ -509,14 +541,78 @@ R12
 o-O0
 R9
 !s100 @^ngKJJeS9W_52IS1;6@C3
-Eprogram_counter
-Z59 w1336796081
+Emux_3to1_16b
+Z62 w1337161171
 R2
 R3
 R4
 R5
-Z60 8program_counter.vhd
-Z61 Fprogram_counter.vhd
+Z63 8mux_3to1_16b.vhd
+Z64 Fmux_3to1_16b.vhd
+l0
+L10
+VOCRGBVlhKL;C1:c=iglH83
+R8
+32
+o-O0
+R9
+!s100 IRb6=D4h:iSo]SGB^;6mK3
+Astructural
+R2
+R3
+R4
+DEx4 work 12 mux_3to1_16b 0 22 OCRGBVlhKL;C1:c=iglH83
+l28
+L18
+VnA9iE<?kJC75n]`6;Sle]3
+R8
+32
+R10
+R11
+R12
+o-O0
+R9
+!s100 aJ<;XE_bO=S12k9OgMX7k2
+Emux_3to1_1b
+Z65 w1337161068
+R2
+R3
+R4
+R5
+Z66 8mux_3to1_1b.vhd
+Z67 Fmux_3to1_1b.vhd
+l0
+L9
+V1>kd8Ub<<h`Uf=7U5B^DS3
+R8
+32
+o-O0
+R9
+!s100 GISfYKe=1:G6UTg`7mK@F2
+Abehavioural
+R2
+R3
+R4
+DEx4 work 11 mux_3to1_1b 0 22 1>kd8Ub<<h`Uf=7U5B^DS3
+l18
+L17
+V3dlKmD4hYknFFQjE6o[[B3
+R8
+32
+R10
+R11
+R12
+o-O0
+R9
+!s100 bo51bJDK?9TSRcIZ>RA0K2
+Eprogram_counter
+Z68 w1336796081
+R2
+R3
+R4
+R5
+Z69 8program_counter.vhd
+Z70 Fprogram_counter.vhd
 l0
 L28
 V?PiQgVA1hegMGoB`<jC6e0
@@ -542,13 +638,13 @@ o-O0
 R9
 !s100 kdV8>n::`:8[WlEBZMcLE2
 Eregister_file
-Z62 w1333363883
+Z71 w1333363883
 R2
 R3
 R4
 R5
-Z63 8register_file.vhd
-Z64 Fregister_file.vhd
+Z72 8register_file.vhd
+Z73 Fregister_file.vhd
 l0
 L26
 Vj`5Rb<j[_Y^fz>f3D8Lin3
@@ -574,13 +670,13 @@ o-O0
 R9
 !s100 ReMXhifCKYheTgOKA9XUG3
 Esign_extend_4to16
-Z65 w1335921097
+Z74 w1335921097
 R2
 R3
 R4
 R5
-Z66 8sign_extend_4to16.vhd
-Z67 Fsign_extend_4to16.vhd
+Z75 8sign_extend_4to16.vhd
+Z76 Fsign_extend_4to16.vhd
 l0
 L25
 VleO7c6^;U`LWnBlED0COm3
@@ -606,15 +702,15 @@ o-O0
 R9
 !s100 R1oZQ=Qn^S;KBc3fV@5mP0
 Esingle_cycle_core_testbench
-Z68 w1337057752
-Z69 DPx3 std 6 textio 0 22 m2KQDRRhmF833<<DjYdL70
-Z70 DPx4 ieee 16 std_logic_textio 0 22 8ONYdGiICLK<GeVc1o<IF0
+Z77 w1337057752
+Z78 DPx3 std 6 textio 0 22 m2KQDRRhmF833<<DjYdL70
+Z79 DPx4 ieee 16 std_logic_textio 0 22 8ONYdGiICLK<GeVc1o<IF0
 R2
 R3
 R4
 R5
-Z71 8single_cycle_core_testbench.vhd
-Z72 Fsingle_cycle_core_testbench.vhd
+Z80 8single_cycle_core_testbench.vhd
+Z81 Fsingle_cycle_core_testbench.vhd
 l0
 L27
 V<h2hcOce;MGzG5eh^39e32
@@ -624,22 +720,22 @@ R8
 o-O0
 R9
 Atestbench_arch
-R69
-R70
+R78
+R79
 R2
 R3
 R4
-Z73 DEx4 work 27 single_cycle_core_testbench 0 22 <h2hcOce;MGzG5eh^39e32
+Z82 DEx4 work 27 single_cycle_core_testbench 0 22 <h2hcOce;MGzG5eh^39e32
 l50
 L30
-Z74 V[;d7MoW;9]AMDL8^cm3Mi3
-Z75 !s100 2e_^CaoY>QF?=1=5WhL3S1
+Z83 V[;d7MoW;9]AMDL8^cm3Mi3
+Z84 !s100 2e_^CaoY>QF?=1=5WhL3S1
 R8
 32
-Z76 Mx5 4 ieee 14 std_logic_1164
-Z77 Mx4 4 ieee 15 std_logic_arith
-Z78 Mx3 4 ieee 18 std_logic_unsigned
-Z79 Mx2 4 ieee 16 std_logic_textio
-Z80 Mx1 3 std 6 textio
+Z85 Mx5 4 ieee 14 std_logic_1164
+Z86 Mx4 4 ieee 15 std_logic_arith
+Z87 Mx3 4 ieee 18 std_logic_unsigned
+Z88 Mx2 4 ieee 16 std_logic_textio
+Z89 Mx1 3 std 6 textio
 o-O0
 R9

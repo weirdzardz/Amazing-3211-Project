@@ -90,6 +90,15 @@ component mux_2to1_16b is
            data_out   : out std_logic_vector(15 downto 0) );
 end component;
 
+
+component mux_3to1_16b is
+    port ( mux_select : in  std_logic_vector(1 downto 0);
+           data_a     : in  std_logic_vector(15 downto 0);
+           data_b     : in  std_logic_vector(15 downto 0);
+           data_c     : in  std_logic_vector(15 downto 0);
+           data_out   : out std_logic_vector(15 downto 0) );
+end component;
+
 ---i've taken out jump control. and input is now 3 bit opcode (not 4)
 component control_unit is
     port ( opcode     : in  std_logic_vector(2 downto 0);
@@ -161,6 +170,10 @@ component id_ex_reg is
           mem_to_reg_in : in std_logic;
           mem_write_out : out std_logic;
           mem_to_reg_out: out std_logic;
+          reg_s_in    : in std_logic_vector(3 downto 0);
+          reg_s_out   : out std_logic_vector(3 downto 0);
+          reg_t_in    : in std_logic_vector(3 downto 0);
+          reg_t_out   : out std_logic_vector(3 downto 0); 
           write_reg_in    : in std_logic_vector(3 downto 0);
           write_reg_out   : out std_logic_vector(3 downto 0);
           reg_write_in  : in std_logic;
@@ -210,7 +223,18 @@ port( reset         : in std_logic;
 );  
 end component;
 
-
+component forward_unit is
+    port( reg_write_ex_mem : in std_logic;
+          reg_write_mem_wb : in std_logic;
+          reg_d_ex_mem   : in std_logic_vector(3 downto 0);
+          reg_d_mem_wb   : in std_logic_vector(3 downto 0);
+          reg_s_id_ex     : in std_logic_vector(3 downto 0);
+          reg_t_id_ex     : in std_logic_vector(3 downto 0);
+          mux_sig_a      : out std_logic_vector(1 downto 0);
+          mux_sig_b      : out std_logic_vector (1 downto 0)
+    );
+  
+end component;
 
 
 signal sig_next_pc                  : std_logic_vector(4 downto 0);
@@ -237,6 +261,8 @@ signal sig_write_reg_to_ppl_id_ex   : std_logic_vector(3 downto 0);
 signal sig_write_reg_to_ppl_ex_mem  : std_logic_vector(3 downto 0);
 signal sig_write_reg_to_ppl_mem_wb  : std_logic_vector(3 downto 0);
 signal sig_write_register           : std_logic_vector(3 downto 0);
+signal sig_reg_s_to_fu           : std_logic_vector(3 downto 0);
+signal sig_reg_t_to_fu           : std_logic_vector(3 downto 0);
 signal sig_write_data               : std_logic_vector(15 downto 0);
 signal sig_read_data_a              : std_logic_vector(15 downto 0);
 signal sig_read_data_b              : std_logic_vector(15 downto 0);
@@ -258,6 +284,10 @@ signal sig_branch                   : std_logic;
 signal sig_sign_extended_offset   :std_logic_vector (15 downto 0);
 -- took out jump and jump mux
 signal sig_branch_mux           : std_logic_vector (4 downto 0);
+signal sig_mux_alu_a                : std_logic_vector(1 downto 0);
+signal sig_mux_alu_b                : std_logic_vector(1 downto 0);
+signal sig_alu_a_in             	   : std_logic_vector(15 downto 0);
+signal sig_alu_b_in             	   : std_logic_vector(15 downto 0);
 
 begin
 
@@ -311,8 +341,8 @@ begin
 
     alu_unit : alu 
     port map ( alucontrol => sig_alucontrol,
-               src_a     => sig_read_data_a,
-               src_b     => sig_read_data_b_to_ppl_ex_mem,
+               src_a     => sig_alu_a_in,
+               src_b     => sig_alu_b_in,
                res       => sig_alu_result_to_ppl_ex_mem,
                zero => sig_alu_zero_to_ppl );
 
@@ -364,6 +394,10 @@ begin
                 mem_to_reg_in => sig_mem_to_reg_to_ppl_id_ex,
                 mem_write_out => sig_mem_write_to_ppl_ex_mem,
                 mem_to_reg_out => sig_mem_to_reg_to_ppl_ex_mem,
+                reg_s_in => sig_insn(12 downto 9),
+                reg_s_out => sig_reg_s_to_fu,
+                reg_t_in => sig_insn(8 downto 5),
+                reg_t_out  => sig_reg_t_to_fu ,
                 write_reg_in    => sig_write_reg_to_ppl_id_ex,
                 write_reg_out   => sig_write_reg_to_ppl_ex_mem,
                 reg_write_in  => sig_reg_write_to_ppl_id_ex,
@@ -408,6 +442,33 @@ begin
                 data_mem_in =>  sig_data_mem_out_to_ppl,
                 data_mem_out => sig_data_mem_out
                ); 
+  forwarding_unit : forward_unit
+    port map( reg_write_ex_mem => sig_reg_write_to_ppl_mem_wb,
+              reg_write_mem_wb => sig_reg_write,
+              reg_d_ex_mem   => sig_write_reg_to_ppl_mem_wb,
+              reg_d_mem_wb   => sig_write_register,
+              reg_s_id_ex     => sig_reg_s_to_fu,
+              reg_t_id_ex     => sig_reg_t_to_fu,
+              mux_sig_a      => sig_mux_alu_a,
+              mux_sig_b      => sig_mux_alu_b
+    );
+
+  my_mux_alu_a : mux_3to1_16b
+      port map( mux_select => sig_mux_alu_a,
+                data_a     => sig_read_data_a,
+                data_b     => sig_write_data,
+                data_c     => sig_alu_result_to_ppl_mem_wb,
+                data_out   => sig_alu_a_in
+    );
+
+  my_mux_alu_b : mux_3to1_16b
+      port map( mux_select => sig_mux_alu_b,
+                data_a     => sig_read_data_b_to_ppl_ex_mem,
+                data_b     => sig_write_data,
+                data_c     => sig_alu_result_to_ppl_mem_wb,
+                data_out   => sig_alu_b_in
+    );
+
 
 
 end structural;

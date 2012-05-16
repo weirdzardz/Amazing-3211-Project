@@ -21,6 +21,9 @@ vcom "if_id_reg.vhd"
 vcom "id_ex_reg.vhd"
 vcom "ex_mem_reg.vhd"
 vcom "mem_wb_reg.vhd"
+vcom "mux_3to1_16b.vhd"
+vcom "mux_3to1_1b.vhd"
+vcom "forward_unit.vhd"
 vcom "multi_cycle_core.vhd"
 
 ## 2. compile the tb
