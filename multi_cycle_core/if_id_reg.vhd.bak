@@ -50,12 +50,13 @@ begin
     var_regfile <=  X"0000";
   elsif (rising_edge(clk)  ) then 
     var_regfile <= instruction_in;
-    instruction_out <= var_regfile after 250 ps;
+    
   end if;
   
   
   
   
 end process;
+instruction_out <= var_regfile after 250 ps;
 end Behavioral;
 

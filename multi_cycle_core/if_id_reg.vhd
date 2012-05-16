@@ -54,8 +54,6 @@ begin
   end if;
   
   
-  
-  
 end process;
 instruction_out <= var_regfile after 250 ps;
 end Behavioral;

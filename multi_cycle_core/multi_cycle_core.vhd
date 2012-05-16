@@ -310,7 +310,7 @@ begin
                read_data_b     => sig_read_data_b_to_mux );
 
     alu_unit : alu 
-    port map ( alucontrol => sig_alucontrol_to_ppl,
+    port map ( alucontrol => sig_alucontrol,
                src_a     => sig_read_data_a,
                src_b     => sig_read_data_b_to_ppl_ex_mem,
                res       => sig_alu_result_to_ppl_ex_mem,
