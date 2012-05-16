@@ -307,7 +307,7 @@ begin
                write_register  => sig_write_register,
                write_data      => sig_write_data,
                read_data_a     => sig_read_data_a_to_ppl,
-               read_data_b     => sig_read_data_b );
+               read_data_b     => sig_read_data_b_to_mux );
 
     alu_unit : alu 
     port map ( alucontrol => sig_alucontrol_to_ppl,

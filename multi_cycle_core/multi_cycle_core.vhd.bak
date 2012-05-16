@@ -344,7 +344,7 @@ begin
                       
     mux_alu_src : mux_2to1_16b 
     port map ( mux_select => sig_alu_src,
-               data_a     => sig_read_data_b,
+               data_a     => sig_read_data_b_to_mux,
                data_b     => sig_sign_extended_offset,
                data_out   => sig_read_data_b_to_ppl_id_ex );                      
                                             
