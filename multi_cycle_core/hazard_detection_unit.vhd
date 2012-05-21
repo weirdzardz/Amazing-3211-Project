@@ -46,12 +46,13 @@ begin
 
 process(EX_write_reg, EX_memread, ID_reg_a, ID_reg_b) is
   begin
+    sig_stall <= '0';
+    
  if(EX_memread = '1' ) then
         if (EX_write_reg = ID_reg_a) then sig_stall <= '1';
         elsif (EX_write_reg = ID_reg_b) then sig_stall <= '1';
-        else sig_stall <= '0';
         end if;
- else sig_stall <= '0';       
+       
  end if;     
 end process;
 

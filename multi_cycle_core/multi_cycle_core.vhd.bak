@@ -237,14 +237,14 @@ port( reset         : in std_logic;
 end component;
 
 component forward_unit is
-    port( reg_write_ex_mem : in std_logic;
-          reg_write_mem_wb : in std_logic;
-          reg_d_ex_mem   : in std_logic_vector(3 downto 0);
-          reg_d_mem_wb   : in std_logic_vector(3 downto 0);
-          reg_s_id_ex     : in std_logic_vector(3 downto 0);
-          reg_t_id_ex     : in std_logic_vector(3 downto 0);
-          mux_sig_a      : out std_logic_vector(1 downto 0);
-          mux_sig_b      : out std_logic_vector (1 downto 0)
+  port(
+          MEM_WB_regWrite : in std_logic;
+          EX_MEM_reg_rd   : in std_logic_vector(3 downto 0);
+          MEM_WB_reg_rd   : in std_logic_vector(3 downto 0);
+          ID_EX_reg_rs    : in std_logic_vector(3 downto 0);
+          ID_EX_reg_rt    : in std_logic_vector(3 downto 0);
+          mux_sig_a       : out std_logic_vector(1 downto 0);
+          mux_sig_b       : out std_logic_vector (1 downto 0)
     );
   
 end component;
@@ -344,7 +344,7 @@ begin
     port map ( mux_select => sig_stall,
            data_a     => sig_insn(15 downto 13),
            data_b     => "000",
-           data_out   => sig_ctrl_unit_input );
+           data_out   => sig_opcode_input );
 
 
     ctrl_unit : control_unit 
@@ -477,12 +477,12 @@ begin
                 data_mem_out => sig_data_mem_out
                ); 
   forwarding_unit : forward_unit
-    port map( reg_write_ex_mem => sig_reg_write_to_ppl_mem_wb,
-              reg_write_mem_wb => sig_reg_write,
-              reg_d_ex_mem   => sig_write_reg_to_ppl_mem_wb,
-              reg_d_mem_wb   => sig_write_register,
-              reg_s_id_ex     => sig_reg_s_to_fu,
-              reg_t_id_ex     => sig_reg_t_to_fu,
+    port map( EX_MEM_regWrite => sig_reg_write_to_ppl_mem_wb,
+              MEM_WB_regWrite => sig_reg_write,
+              EX_MEM_reg_rd   => sig_write_reg_to_ppl_mem_wb,
+              MEM_WB_reg_rd   => sig_write_register,
+              ID_EX_reg_rs    => sig_reg_s_to_fu,
+              ID_EX_reg_rt     => sig_reg_t_to_fu,
               mux_sig_a      => sig_mux_alu_a,
               mux_sig_b      => sig_mux_alu_b
     );
