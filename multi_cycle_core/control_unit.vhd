@@ -59,10 +59,9 @@ architecture behavioural of control_unit is
 constant OP_LOAD  : std_logic_vector(2 downto 0) := "001";
 constant OP_STORE : std_logic_vector(2 downto 0) := "011";
 constant OP_ADD   : std_logic_vector(2 downto 0) := "010";
-constant OP_ADDI   : std_logic_vector(2 downto 0) := "101";
-constant OP_BNE   : std_logic_vector(2 downto 0) := "100"; --new opcode
-constant OP_SUB   : std_logic_vector(2 downto 0) := "110"; --new opcode
-
+constant OP_ADDI  : std_logic_vector(2 downto 0) := "101";
+constant OP_BNE   : std_logic_vector(2 downto 0) := "100"; 
+constant OP_SUB   : std_logic_vector(2 downto 0) := "110"; 
 
 begin
 
@@ -89,8 +88,7 @@ begin
                       "01" after 1.5 ns when OP_ADDI,
                       "10" after 1.5 ns when OP_SUB, 
                       "00" after 1.5 ns when others ;
-  
- 
+
 
 end behavioural;
 

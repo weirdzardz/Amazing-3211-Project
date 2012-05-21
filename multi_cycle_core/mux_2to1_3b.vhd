@@ -1,9 +1,6 @@
 ---------------------------------------------------------------------------
--- program_counter.vhd - Program Counter Implementation 
--- 
--- Note : The program counter is simply a register that updates its output 
--- on the rising clock edge.
--- 
+-- mux_2to1_3b.vhd - 4-bit 2-to-1 Multiplexer Implementation
+--
 --
 -- Copyright (C) 2006 by Lih Wen Koh (lwkoh@cse.unsw.edu.au)
 -- All Rights Reserved. 
@@ -25,25 +22,31 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
-entity program_counter is
-    port ( reset    : in  std_logic;
-           clk      : in  std_logic;
-            write_enable : in std_logic;
-             
-           addr_in  : in  std_logic_vector(4 downto 0);
-           addr_out : out std_logic_vector(4 downto 0) );
-end program_counter;
+entity mux_2to1_3b is
+    port ( mux_select : in  std_logic;
+           data_a     : in  std_logic_vector(2 downto 0);
+           data_b     : in  std_logic_vector(2 downto 0);
+           data_out   : out std_logic_vector(2 downto 0) );
+end mux_2to1_3b;
 
-architecture behavioral of program_counter is
+architecture structural of mux_2to1_3b is
+
+component mux_2to1_1b is
+    port ( mux_select : in  std_logic;
+           data_a     : in  std_logic;
+           data_b     : in  std_logic;
+           data_out   : out std_logic );
+end component;
+
 begin
 
-    update_process: process ( reset, 
-                              clk, write_enable ) is
-    begin
-       if (reset = '1') then
-           addr_out <= (others => '1'); 
-       elsif (rising_edge(clk) AND write_enable = '1') then
-           addr_out <= addr_in after 0.5 ns; 
-       end if;
-    end process;
-end behavioral;
+    -- this for-generate-loop replicates four single-bit 2-to-1 mux
+    muxes : for i in 2 downto 0 generate
+        bit_mux : mux_2to1_1b 
+        port map ( mux_select => mux_select,
+                   data_a     => data_a(i),
+                   data_b     => data_b(i),
+                   data_out   => data_out(i) );
+    end generate muxes;
+    
+end structural;

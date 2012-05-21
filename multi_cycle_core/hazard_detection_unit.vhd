@@ -1,9 +1,11 @@
 ---------------------------------------------------------------------------
--- program_counter.vhd - Program Counter Implementation 
--- 
--- Note : The program counter is simply a register that updates its output 
--- on the rising clock edge.
--- 
+-- hazard_detection_unit.vhd - Control Unit Implementation
+--
+-- Notes: refer to headers in single_cycle_core.vhd for the supported ISA.
+--
+--  control signals:
+--     stall: true if we are inserting a nop into pipeline.
+--
 --
 -- Copyright (C) 2006 by Lih Wen Koh (lwkoh@cse.unsw.edu.au)
 -- All Rights Reserved. 
@@ -25,25 +27,34 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
-entity program_counter is
-    port ( reset    : in  std_logic;
-           clk      : in  std_logic;
-            write_enable : in std_logic;
-             
-           addr_in  : in  std_logic_vector(4 downto 0);
-           addr_out : out std_logic_vector(4 downto 0) );
-end program_counter;
+entity hazard_detection_unit is
+    port ( 
+		   EX_memread         : in std_logic;
+		   EX_write_reg       : in std_logic_vector(3 downto 0);
+		   ID_reg_a           : in std_logic_vector(3 downto 0);
+		   ID_reg_b           : in std_logic_vector(3 downto 0);
+		   stall              : out std_logic
+           );  
+end hazard_detection_unit;
 
-architecture behavioral of program_counter is
+
+architecture behavioural of hazard_detection_unit is
+signal sig_stall : std_logic := '0';
+
+
 begin
 
-    update_process: process ( reset, 
-                              clk, write_enable ) is
-    begin
-       if (reset = '1') then
-           addr_out <= (others => '1'); 
-       elsif (rising_edge(clk) AND write_enable = '1') then
-           addr_out <= addr_in after 0.5 ns; 
-       end if;
-    end process;
-end behavioral;
+process(EX_write_reg, EX_memread, ID_reg_a, ID_reg_b) is
+  begin
+ if(EX_memread = '1' ) then
+        if (EX_write_reg = ID_reg_a) then sig_stall <= '1';
+        elsif (EX_write_reg = ID_reg_b) then sig_stall <= '1';
+        else sig_stall <= '0';
+        end if;
+ else sig_stall <= '0';       
+ end if;     
+end process;
+
+stall <= sig_stall after 1.5 ns;    
+        
+end behavioural;

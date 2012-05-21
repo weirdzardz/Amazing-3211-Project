@@ -70,26 +70,21 @@ begin
             --  insn_11 : jmp 0, 0, 8      - jump to insn_8
             --  insn_12 - insn_15 : noop    - end of program
 
-
-            var_insn_mem(0)  := "0010000000100000"; --001 0000 0001 0 0000    load data(0) ->$1
-            var_insn_mem(1)  := "0010000001000001"; --001 0000 0010 0 0001    load data(1) ->$2
-            var_insn_mem(2) := X"0000";
-
-      --      var_insn_mem(2)  := "0000001000000011"; --000 0001 0000 0 0011    add $3 <- $0 + $1
-     --       var_insn_mem(3)  := "0000001001000100"; --000 0001 0010 0 0100    add $4 <- $1 + $2
-   --        var_insn_mem(4)  := "0110000001100010"; --011 0000 0011 0 0010    store $3 -> data(2)
-      --      var_insn_mem(5)  := "0110000010000011"; --011 0000 0100 0 0011    store $4 -> data(3)
-       --     var_insn_mem(6)  := "1100011010000101"; --110 0011 0100 0 0101    sub $5 <- $3 - $4
-            var_insn_mem(3)  := "0010000011000100"; --001 0000 0110 0 0100    load data(4) -> $6
-            var_insn_mem(4) := X"0000";
-            var_insn_mem(5) := X"0000";
-            var_insn_mem(6) := "1100010000100101";
+var_insn_mem(0) := "0010000011000000";   --LOAD N, r0					 	
+				 	
+var_insn_mem(1) := "1010110011000001";   --addi n, n, 1
+var_insn_mem(2) := X"0000";
+var_insn_mem(3) := "0000000000000000";   --nop
+var_insn_mem(4) := "0000000000000000";   --nop
+var_insn_mem(5) := "0000000000000000";   --nop 
+           
+            var_insn_mem(6) := X"0000";
             var_insn_mem(7) := X"0000";
             var_insn_mem(8)  := X"0000"; --000 0110 0111 0 0111    add $7 <- $7 + $6
             var_insn_mem(9)  := X"0000";  --100 0100 0111 01000    bneq 8 if $7 != $3
-            var_insn_mem(10) := "010 0001 0010 0 0001";
-            var_insn_mem(11) := "010 0001 0010 0 0001";
-            var_insn_mem(12) := "010 0001 0010 0 0001";
+            var_insn_mem(10) := X"0000";-- add $1 <- $1 + $2
+            var_insn_mem(11) := X"0000";
+            var_insn_mem(12) := X"0000";
             var_insn_mem(13) := X"0000";
             var_insn_mem(14) := X"0000";
             var_insn_mem(15) := X"0000";
@@ -97,8 +92,8 @@ begin
             var_insn_mem(16)  := X"0000";
             var_insn_mem(17)  := X"0000";
             var_insn_mem(18)  := X"0000";
-            var_insn_mem(19)  := "0100110011100111";
-            var_insn_mem(20)  := "1000100011101000";
+            var_insn_mem(19)  := X"0000";
+            var_insn_mem(20)  := X"0000";
             var_insn_mem(21)  := X"0000";
             var_insn_mem(22)  := X"0000";
             var_insn_mem(23)  := X"0000";

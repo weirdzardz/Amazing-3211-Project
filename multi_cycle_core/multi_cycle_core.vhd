@@ -57,6 +57,7 @@ architecture structural of multi_cycle_core is
 component program_counter is
     port ( reset    : in  std_logic;
            clk      : in  std_logic;
+           write_enable  : in std_logic; --NEW ENABLE SIG
            addr_in  : in  std_logic_vector(4 downto 0);
            addr_out : out std_logic_vector(4 downto 0) );
 end component;
@@ -76,6 +77,13 @@ component mux_2to1_4b is
            data_out   : out std_logic_vector(3 downto 0) );
 end component;
 
+component mux_2to1_3b is
+    port ( mux_select : in  std_logic;
+           data_a     : in  std_logic_vector(2 downto 0);
+           data_b     : in  std_logic_vector(2 downto 0);
+           data_out   : out std_logic_vector(2 downto 0) );
+end component;
+
 component mux_2to1_5b is
     port ( mux_select : in  std_logic;
            data_a     : in  std_logic_vector(4 downto 0);
@@ -90,6 +98,12 @@ component mux_2to1_16b is
            data_out   : out std_logic_vector(15 downto 0) );
 end component;
 
+component mux_2to1_7b is --NEW MUX
+    port ( mux_select : in  std_logic;
+           data_a     : in  std_logic_vector(6 downto 0);
+           data_b     : in  std_logic_vector(6 downto 0);
+           data_out   : out std_logic_vector(6 downto 0) );
+end component;
 
 component mux_3to1_16b is
     port ( mux_select : in  std_logic_vector(1 downto 0);
@@ -99,7 +113,6 @@ component mux_3to1_16b is
            data_out   : out std_logic_vector(15 downto 0) );
 end component;
 
----i've taken out jump control. and input is now 3 bit opcode (not 4)
 component control_unit is
     port ( opcode     : in  std_logic_vector(2 downto 0);
            reg_dst    : out std_logic;
@@ -111,7 +124,6 @@ component control_unit is
            );
 end component;
 
--- shifted bit indexes for inputs (because we have a smaller opcode)
 component register_file is
     port ( reset           : in  std_logic;
            clk             : in  std_logic;
@@ -156,6 +168,7 @@ end component;
 component if_id_reg is 
     port( reset         : in std_logic;
           clk           : in std_logic;
+          write_enable  : in std_logic; --NEW ENABLE SIG
           instruction_in   : in std_logic_vector(15 downto 0);
           instruction_out : out std_logic_vector(15 downto 0)  
     );
@@ -236,6 +249,16 @@ component forward_unit is
   
 end component;
 
+component hazard_detection_unit is
+    port ( 
+		   EX_memread         : in std_logic;
+		   EX_write_reg       : in std_logic_vector(3 downto 0);
+		   ID_reg_a           : in std_logic_vector(3 downto 0);
+		   ID_reg_b           : in std_logic_vector(3 downto 0);
+		   stall              : out std_logic
+           );  
+end component;
+
 
 signal sig_next_pc                  : std_logic_vector(4 downto 0);
 signal sig_pc_inc                   : std_logic_vector(4 downto 0); --
@@ -289,6 +312,9 @@ signal sig_mux_alu_b                : std_logic_vector(1 downto 0);
 signal sig_alu_a_in             	   : std_logic_vector(15 downto 0);
 signal sig_alu_b_in             	   : std_logic_vector(15 downto 0);
 
+signal sig_stall                    : std_logic;
+signal sig_opcode_input             : std_logic_vector(2 downto 0);
+
 begin
 
     sig_one_5b <= "00001";
@@ -297,6 +323,8 @@ begin
     pc : program_counter
     port map ( reset    => reset,
                clk      => clk,
+                write_enable => sig_stall,
+             
                addr_in  => sig_next_pc,
                addr_out => sig_curr_pc ); 
 
@@ -312,16 +340,21 @@ begin
                addr_in  => sig_curr_pc,
                insn_out => sig_insn_to_ppl );
 
+    control_unit_mux: mux_2to1_3b 
+    port map ( mux_select => sig_stall,
+           data_a     => sig_insn(15 downto 13),
+           data_b     => "000",
+           data_out   => sig_opcode_input );
+
 
     ctrl_unit : control_unit 
-    port map ( opcode     => sig_insn(15 downto 13),  --shorter opcode is sent to control unit
+    port map ( opcode     => sig_opcode_input , 
                reg_dst    => sig_reg_dst,
                reg_write  => sig_reg_write_to_ppl_id_ex,
                alu_src    => sig_alu_src,
                mem_write  => sig_mem_write_to_ppl_id_ex,
                mem_to_reg => sig_mem_to_reg_to_ppl_id_ex,
                alucontrol => sig_alucontrol_to_ppl
-               --removed jump signal 
                );
                
     sign_extend : sign_extend_4to16 
@@ -381,6 +414,7 @@ begin
     if_id_ppl_reg: if_id_reg
     port map (reset => reset,
               clk => clk,
+              write_enable => sig_stall,
               instruction_in => sig_insn_to_ppl,
               instruction_out => sig_insn    
               ); 
@@ -452,6 +486,15 @@ begin
               mux_sig_a      => sig_mux_alu_a,
               mux_sig_b      => sig_mux_alu_b
     );
+    
+  harzard_detection_unit: hazard_detection_unit
+    port map ( 
+		   EX_memread         => sig_mem_to_reg_to_ppl_ex_mem,
+		   EX_write_reg       => sig_write_reg_to_ppl_ex_mem,
+		   ID_reg_a           => sig_insn(12 downto 9),
+		   ID_reg_b           => sig_insn(8 downto 5),
+		   stall              => sig_stall
+           );  
 
   my_mux_alu_a : mux_3to1_16b
       port map( mux_select => sig_mux_alu_a,

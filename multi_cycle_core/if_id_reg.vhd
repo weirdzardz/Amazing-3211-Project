@@ -30,6 +30,7 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 entity if_id_reg is
     port( reset         : in std_logic;
           clk           : in std_logic;
+          write_enable  : in std_logic; --NEW ENABLE SIG
           instruction_in   : in std_logic_vector(15 downto 0);
           instruction_out : out std_logic_vector(15 downto 0)  
     );
@@ -42,15 +43,15 @@ signal var_regfile : std_logic_vector(15 downto 0);
 
 begin
   
-  reg_process: process (reset, clk, instruction_in) is 
+  reg_process: process (reset, clk, instruction_in, write_enable) is 
   
   begin 
     
   if (reset = '1') then
     var_regfile <=  X"0000";
-  elsif (rising_edge(clk)  ) then 
+  elsif (rising_edge(clk) AND write_enable = '0' ) then 
     var_regfile <= instruction_in;
-    
+      
   end if;
   
   

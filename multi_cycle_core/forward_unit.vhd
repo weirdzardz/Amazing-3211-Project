@@ -40,6 +40,7 @@ architecture structural of forward_unit is
   sig_is_rd_ex_mem_not_zero <= (reg_d_ex_mem(3) OR reg_d_ex_mem(2) OR reg_d_ex_mem(1) OR reg_d_ex_mem(0));
   sig_is_rd_ex_mem_eq_rs_id_ex <= (reg_d_ex_mem(3) XNOR reg_s_id_ex(3)) AND (reg_d_ex_mem(2) XNOR reg_s_id_ex(2)) AND (reg_d_ex_mem(1) XNOR reg_s_id_ex(1)) AND (reg_d_ex_mem(0) XNOR reg_s_id_ex(0));
   sig_is_rd_ex_mem_eq_rt_id_ex <= (reg_d_ex_mem(3) XNOR reg_t_id_ex(3)) AND (reg_d_ex_mem(2) XNOR reg_t_id_ex(2)) AND (reg_d_ex_mem(1) XNOR reg_t_id_ex(1)) AND (reg_d_ex_mem(0) XNOR reg_t_id_ex(0));
+ 
  -- IF EX/MEM.RegWrite AND EX/MEM.RegisterRd != 0 AND EX/MEM.RegisterRd = ID/EX.RegisterRs forward ALU result to first ALU op
   mux_sig_a(1) <= reg_write_ex_mem AND sig_is_rd_ex_mem_not_zero AND sig_is_rd_ex_mem_eq_rs_id_ex;
   
