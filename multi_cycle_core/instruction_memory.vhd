@@ -52,7 +52,7 @@ begin
             -- load : 1 - "001"
             -- store : 3 - "011"
             -- add : 0   - "010"
-            -- beq : 4   - "100"
+            -- bne : 4   - "100"
             -- sub : 5   - "110"
        
             -- initial values of the instruction memory :
@@ -69,6 +69,8 @@ begin
             --  insn_10 : noop
             --  insn_11 : jmp 0, 0, 8      - jump to insn_8
             --  insn_12 - insn_15 : noop    - end of program
+
+
 
 var_insn_mem(0) := "0010000011000000";   --load N, r0
 
@@ -94,6 +96,7 @@ var_insn_mem(13) := "0010110001000000";   --load j, N
 var_insn_mem(14) := "1011110111000001";   --addi temp2, temp2, 1
 var_insn_mem(15) := "0100010011000010";   --add j, j, N
 var_insn_mem(16) := "0100110011001101";   --add temp1, n, n
+
            
           
             var_insn_mem(17)  := X"0000";
@@ -101,7 +104,7 @@ var_insn_mem(16) := "0100110011001101";   --add temp1, n, n
             var_insn_mem(19)  := X"0000";
             var_insn_mem(20)  := X"0000";
             var_insn_mem(21)  := X"0000";
-            var_insn_mem(22)  := X"0000";
+            var_insn_mem(22) := "1000011001000010";   --bne k, N, 10
             var_insn_mem(23)  := X"0000";
             var_insn_mem(24)  := X"0000";
             var_insn_mem(25)  := X"0000";

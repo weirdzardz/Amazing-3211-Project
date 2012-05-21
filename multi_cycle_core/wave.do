@@ -3,8 +3,8 @@ quietly WaveActivateNextPane {} 0
 add wave -noupdate -format Logic /single_cycle_core_testbench/clk
 add wave -noupdate -format Logic /single_cycle_core_testbench/reset
 add wave -noupdate -format Literal /single_cycle_core_testbench/uut/sig_opcode_input
-add wave -noupdate -expand -group {Program Counter} -format Literal -radix hexadecimal /single_cycle_core_testbench/uut/pc/addr_in
-add wave -noupdate -expand -group {Program Counter} -format Literal -radix hexadecimal /single_cycle_core_testbench/uut/pc/addr_out
+add wave -noupdate -expand -group {Program Counter} -format Literal -radix unsigned /single_cycle_core_testbench/uut/pc/addr_in
+add wave -noupdate -expand -group {Program Counter} -format Literal -radix unsigned /single_cycle_core_testbench/uut/pc/addr_out
 add wave -noupdate -expand -group {FORWARDING UNIT} -color {Slate Blue} -format Logic /single_cycle_core_testbench/uut/forwarding_unit/ex_mem_regwrite
 add wave -noupdate -expand -group {FORWARDING UNIT} -color {Slate Blue} -format Logic /single_cycle_core_testbench/uut/forwarding_unit/mem_wb_regwrite
 add wave -noupdate -expand -group {FORWARDING UNIT} -color {Slate Blue} -format Literal /single_cycle_core_testbench/uut/forwarding_unit/ex_mem_reg_rd
@@ -30,6 +30,7 @@ add wave -noupdate -expand -group {Control Unit} -color Yellow -format Logic /si
 add wave -noupdate -expand -group {Control Unit} -color Yellow -format Logic /single_cycle_core_testbench/uut/ctrl_unit/alu_src
 add wave -noupdate -expand -group {Control Unit} -color Yellow -format Logic /single_cycle_core_testbench/uut/alu_unit/sig_zero
 add wave -noupdate -expand -group {Control Unit} -color Yellow -format Literal -radix hexadecimal /single_cycle_core_testbench/uut/alu_unit/res
+add wave -noupdate -color Yellow -format Logic /single_cycle_core_testbench/uut/if_id_ppl_reg/flush
 add wave -noupdate -expand -group REGISTERS -color {Cornflower Blue} -format Literal -label R0 -radix unsigned /single_cycle_core_testbench/uut/reg_file/sig_regfile(0)
 add wave -noupdate -expand -group REGISTERS -color {Cornflower Blue} -format Literal -label I -radix unsigned /single_cycle_core_testbench/uut/reg_file/sig_regfile(1)
 add wave -noupdate -expand -group REGISTERS -color {Cornflower Blue} -format Literal -label J -radix unsigned /single_cycle_core_testbench/uut/reg_file/sig_regfile(2)
@@ -60,9 +61,9 @@ add wave -noupdate -group {MUX MEM/WB} -format Logic -radix hexadecimal /single_
 add wave -noupdate -group {MUX MEM/WB} -format Literal -radix hexadecimal /single_cycle_core_testbench/uut/mux_mem_to_reg/data_a
 add wave -noupdate -group {MUX MEM/WB} -format Literal -radix hexadecimal /single_cycle_core_testbench/uut/mux_mem_to_reg/data_b
 add wave -noupdate -group {MUX MEM/WB} -format Literal -radix hexadecimal /single_cycle_core_testbench/uut/mux_mem_to_reg/data_out
-add wave -noupdate -group IF/ID -format Logic /single_cycle_core_testbench/uut/if_id_ppl_reg/reset
-add wave -noupdate -group IF/ID -format Logic /single_cycle_core_testbench/uut/if_id_ppl_reg/clk
-add wave -noupdate -group IF/ID -format Literal -radix hexadecimal /single_cycle_core_testbench/uut/if_id_ppl_reg/instruction_out
+add wave -noupdate -expand -group IF/ID -format Logic /single_cycle_core_testbench/uut/if_id_ppl_reg/reset
+add wave -noupdate -expand -group IF/ID -format Logic /single_cycle_core_testbench/uut/if_id_ppl_reg/clk
+add wave -noupdate -expand -group IF/ID -format Literal -radix hexadecimal /single_cycle_core_testbench/uut/if_id_ppl_reg/instruction_out
 add wave -noupdate -group ID/EX -format Logic -radix hexadecimal /single_cycle_core_testbench/uut/id_ex_ppl_reg/reset
 add wave -noupdate -group ID/EX -format Logic -radix hexadecimal /single_cycle_core_testbench/uut/id_ex_ppl_reg/clk
 add wave -noupdate -group ID/EX -format Literal -radix hexadecimal /single_cycle_core_testbench/uut/id_ex_ppl_reg/alu_ctl_out
@@ -149,4 +150,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {454 ns} {564 ns}
+WaveRestoreZoom {2181 ns} {2291 ns}

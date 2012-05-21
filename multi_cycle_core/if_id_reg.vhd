@@ -31,6 +31,7 @@ entity if_id_reg is
     port( reset         : in std_logic;
           clk           : in std_logic;
           write_enable  : in std_logic; --NEW ENABLE SIG
+          flush         : in std_logic; --NEW FLUSH SIG
           instruction_in   : in std_logic_vector(15 downto 0);
           instruction_out : out std_logic_vector(15 downto 0)  
     );
@@ -49,9 +50,14 @@ begin
     
   if (reset = '1') then
     var_regfile <=  X"0000";
-  elsif (rising_edge(clk) AND write_enable = '0' ) then 
+  
+  elsif (rising_edge(clk)) then 
+    if (flush = '1') then
+    var_regfile <=  X"0000";
+    
+    elsif  (write_enable = '0') then
     var_regfile <= instruction_in;
-      
+  end if;
   end if;
   
   

@@ -120,6 +120,7 @@ component control_unit is
            alu_src    : out std_logic;
            mem_write  : out std_logic;
            mem_to_reg : out std_logic;
+           if_flush   : out std_logic;
            alucontrol : out std_logic_vector (1 downto 0)
            );
 end component;
@@ -169,6 +170,7 @@ component if_id_reg is
     port( reset         : in std_logic;
           clk           : in std_logic;
           write_enable  : in std_logic; --NEW ENABLE SIG
+          flush         : in std_logic;
           instruction_in   : in std_logic_vector(15 downto 0);
           instruction_out : out std_logic_vector(15 downto 0)  
     );
@@ -194,7 +196,9 @@ component id_ex_reg is
           read_a_in  : in std_logic_vector(15 downto 0);
           read_b_in  : in std_logic_vector(15 downto 0);
           read_a_out : out std_logic_vector(15 downto 0);
-          read_b_out : out std_logic_vector(15 downto 0)  
+          read_b_out : out std_logic_vector(15 downto 0);
+          offset_in : in std_logic_vector(4 downto 0);
+          offset_out : out std_logic_vector(4 downto 0)  
     );
   
 end component;
@@ -214,7 +218,11 @@ port( reset         : in std_logic;
       alu_zero_in     : in std_logic;
       alu_zero_out    : out std_logic;         
       alu_result_in  : in std_logic_vector(15 downto 0);
-      alu_result_out : out std_logic_vector(15 downto 0)  
+      alu_result_out : out std_logic_vector(15 downto 0);
+      alu_ctl_in    : in std_logic_vector(1 downto 0);
+      alu_ctl_out   : out std_logic_vector(1 downto 0);
+      offset_in : in std_logic_vector(4 downto 0);
+          offset_out : out std_logic_vector(4 downto 0)  
 );
 end component;
 
@@ -299,10 +307,12 @@ signal sig_alu_result_to_ppl_ex_mem : std_logic_vector(15 downto 0);
 signal sig_alu_result_to_ppl_mem_wb : std_logic_vector(15 downto 0);
 signal sig_data_mem_out_to_ppl             : std_logic_vector(15 downto 0);
 signal sig_data_mem_out             : std_logic_vector(15 downto 0);
-signal sig_alucontrol_to_ppl        : std_logic_vector (1 downto 0);
-signal sig_alucontrol               : std_logic_vector (1 downto 0);
-signal sig_alu_zero                 : std_logic;
-signal sig_alu_zero_to_ppl                 : std_logic;
+
+signal sig_alucontrol_to_ppl_ex_mem        : std_logic_vector (1 downto 0);
+signal sig_alucontrol_to_ppl_id_ex        : std_logic_vector (1 downto 0);
+signal sig_alucontrol_to_branch_decision               : std_logic_vector (1 downto 0);
+signal sig_alu_zero_to_ppl_ex_mem                 : std_logic;
+signal sig_alu_zero_to_branch_decision                 : std_logic;
 signal sig_alu_src                   : std_logic;
 signal sig_branch                   : std_logic;
 signal sig_sign_extended_offset   :std_logic_vector (15 downto 0);
@@ -315,11 +325,17 @@ signal sig_alu_b_in             	   : std_logic_vector(15 downto 0);
 
 signal sig_stall                    : std_logic;
 signal sig_opcode_input             : std_logic_vector(2 downto 0);
+signal sig_if_flush                 : std_logic;
+
+signal sig_offset_to_ex_mem   : std_logic_vector (4 downto 0);
+signal sig_offset_to_pc  : std_logic_vector (4 downto 0);
+
+
 
 begin
 
     sig_one_5b <= "00001";
-    sig_branch <= sig_alucontrol(1) AND sig_alucontrol(0) AND  NOT(sig_alu_zero);
+    sig_branch <= sig_alucontrol_to_branch_decision(1) AND sig_alucontrol_to_branch_decision(0) AND  NOT(sig_alu_zero_to_branch_decision);
 
     pc : program_counter
     port map ( reset    => reset,
@@ -355,7 +371,8 @@ begin
                alu_src    => sig_alu_src,
                mem_write  => sig_mem_write_to_ppl_id_ex,
                mem_to_reg => sig_mem_to_reg_to_ppl_id_ex,
-               alucontrol => sig_alucontrol_to_ppl
+               if_flush   => sig_if_flush,
+               alucontrol => sig_alucontrol_to_ppl_id_ex
                );
                
     sign_extend : sign_extend_4to16 
@@ -374,11 +391,11 @@ begin
                read_data_b     => sig_read_data_b_to_mux );
 
     alu_unit : alu 
-    port map ( alucontrol => sig_alucontrol,
+    port map ( alucontrol => sig_alucontrol_to_ppl_ex_mem,
                src_a     => sig_alu_a_in,
                src_b     => sig_alu_b_in,
                res       => sig_alu_result_to_ppl_ex_mem,
-               zero => sig_alu_zero_to_ppl );
+               zero => sig_alu_zero_to_ppl_ex_mem );
 
     data_mem : data_memory 
     port map ( reset        => reset,
@@ -403,7 +420,7 @@ begin
     mux_branch : mux_2to1_5b 
     port map ( mux_select => sig_branch,
                data_a     => sig_pc_inc,
-               data_b     => sig_insn(4 downto 0),
+               data_b     => sig_offset_to_pc,
                data_out   => sig_next_pc );
                       
     mux_alu_src : mux_2to1_16b 
@@ -416,6 +433,7 @@ begin
     port map (reset => reset,
               clk => clk,
               write_enable => sig_stall,
+              flush => sig_if_flush,
               instruction_in => sig_insn_to_ppl,
               instruction_out => sig_insn    
               ); 
@@ -423,8 +441,8 @@ begin
     id_ex_ppl_reg : id_ex_reg
     port map (  reset =>reset,
                 clk => clk,
-                alu_ctl_in    => sig_alucontrol_to_ppl,
-                alu_ctl_out   => sig_alucontrol,
+                alu_ctl_in    => sig_alucontrol_to_ppl_id_ex,
+                alu_ctl_out   => sig_alucontrol_to_ppl_ex_mem,
                 mem_write_in  => sig_mem_write_to_ppl_id_ex,
                 mem_to_reg_in => sig_mem_to_reg_to_ppl_id_ex,
                 mem_write_out => sig_mem_write_to_ppl_ex_mem,
@@ -440,7 +458,9 @@ begin
                 read_a_in => sig_read_data_a_to_ppl,
                 read_b_in  => sig_read_data_b_to_ppl_id_ex,
                 read_a_out => sig_read_data_a,
-                read_b_out => sig_read_data_b_to_ppl_ex_mem
+                read_b_out => sig_read_data_b_to_ppl_ex_mem,
+                offset_in => sig_insn(4 downto 0),
+                offset_out => sig_offset_to_ex_mem
                );   
                
     ex_mem_ppl_reg : ex_mem_reg
@@ -456,10 +476,14 @@ begin
                 reg_write_out => sig_reg_write_to_ppl_mem_wb,
                 data_b_in    => sig_read_data_b_to_ppl_ex_mem,
                 data_b_out   => sig_read_data_b,                            
-                alu_zero_in  => sig_alu_zero_to_ppl,
-                alu_zero_out => sig_alu_zero,
+                alu_zero_in  => sig_alu_zero_to_ppl_ex_mem,
+                alu_zero_out => sig_alu_zero_to_branch_decision,
                 alu_result_in => sig_alu_result_to_ppl_ex_mem,
-                alu_result_out => sig_alu_result_to_ppl_mem_wb
+                alu_result_out => sig_alu_result_to_ppl_mem_wb,
+                alu_ctl_in     => sig_alucontrol_to_ppl_ex_mem,
+                alu_ctl_out     => sig_alucontrol_to_branch_decision,
+                offset_in => sig_offset_to_ex_mem,
+                offset_out => sig_offset_to_pc
                ); 
  --removed jump mux              
 

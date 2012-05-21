@@ -47,7 +47,10 @@ port( reset         : in std_logic;
       read_a_in  : in std_logic_vector(15 downto 0);
       read_b_in  : in std_logic_vector(15 downto 0);
       read_a_out : out std_logic_vector(15 downto 0);
-      read_b_out : out std_logic_vector(15 downto 0)  
+      read_b_out : out std_logic_vector(15 downto 0);
+      offset_in : in std_logic_vector(4 downto 0);
+      offset_out : out std_logic_vector(4 downto 0)
+      
 );
   
 end id_ex_reg;
@@ -63,6 +66,8 @@ architecture Behavioral of id_ex_reg is
   signal reg_write  : std_logic;
   signal read_a     : std_logic_vector(15 downto 0);
   signal read_b     : std_logic_vector(15 downto 0);
+  
+  signal offset : std_logic_vector(4 downto 0);
   
 begin
   
@@ -80,6 +85,8 @@ begin
     reg_write <= '0';
     read_a <=  X"0000";
     read_b <=  X"0000"; 
+    offset <= "00000";
+    
   elsif (rising_edge(clk)  ) then 
     
     alu_ctl <= alu_ctl_in;
@@ -91,7 +98,7 @@ begin
     reg_write <= reg_write_in;
     read_a <=  read_a_in;
     read_b <=  read_b_in; 
-
+  offset <= offset_in;
 --  sig_regfile <= var_regfile after 
   end if;
 
@@ -107,5 +114,6 @@ end process;
   reg_write_out <= reg_write after 250 ps;
   read_a_out <= read_a after 250 ps;
   read_b_out <= read_b after 250 ps;
+   offset_out <= offset after 250 ps;
 end Behavioral;
 

@@ -43,7 +43,11 @@ port( reset         : in std_logic;
       alu_zero_in     : in std_logic;
       alu_zero_out    : out std_logic;         
       alu_result_in  : in std_logic_vector(15 downto 0);
-      alu_result_out : out std_logic_vector(15 downto 0)  
+      alu_result_out : out std_logic_vector(15 downto 0);
+      alu_ctl_in    : in std_logic_vector(1 downto 0);
+      alu_ctl_out   : out std_logic_vector(1 downto 0);
+      offset_in : in std_logic_vector(4 downto 0);
+      offset_out : out std_logic_vector(4 downto 0)
 );
 end ex_mem_reg;
 
@@ -56,6 +60,8 @@ architecture Behavioral of ex_mem_reg is
   signal data_b     : std_logic_vector(15 downto 0);
   signal alu_zero   : std_logic;
   signal alu_result : std_logic_vector(15 downto 0);
+  signal alu_ctl    : std_logic_vector(1 downto 0);
+  signal offset : std_logic_vector(4 downto 0);
   
 begin
   
@@ -71,6 +77,8 @@ begin
     data_b <= X"0000";
     alu_zero <= '0';
     alu_result <= X"0000";
+    alu_ctl <= "00";
+    offset <= "00000";
     
   elsif (rising_edge(clk)  ) then 
     mem_write <= mem_write_in;
@@ -80,6 +88,8 @@ begin
     data_b <= data_b_in;
     alu_zero <= alu_zero_in;
     alu_result <= alu_result_in;
+    alu_ctl <= alu_ctl_in;
+    offset <= offset_in;
   end if;
   
 
@@ -93,5 +103,7 @@ end process;
   data_b_out <= data_b after 250 ps;
   alu_zero_out <= alu_zero after 250 ps;
   alu_result_out <= alu_result after 250 ps;
+  alu_ctl_out <= alu_ctl after 250 ps;
+  offset_out <= offset after 250 ps;
 end Behavioral;
 
