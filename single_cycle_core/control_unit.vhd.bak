@@ -56,11 +56,12 @@ end control_unit;
 architecture behavioural of control_unit is
 
 --i've removed the first digit from each opcode
-constant OP_LOAD  : std_logic_vector(3 downto 0) := "001";
-constant OP_STORE : std_logic_vector(3 downto 0) := "011";
-constant OP_ADD   : std_logic_vector(3 downto 0) := "000";
-constant OP_BEQ   : std_logic_vector(3 downto 0) := "100"; --new opcode
-constant OP_SUB   : std_logic_vector(3 downto 0) := "110"; --new opcode
+constant OP_LOAD  : std_logic_vector(2 downto 0) := "001";
+constant OP_STORE : std_logic_vector(2 downto 0) := "011";
+constant OP_ADD   : std_logic_vector(2 downto 0) := "000";
+constant OP_ADDI   : std_logic_vector(2 downto 0) := "101";
+constant OP_BEQ   : std_logic_vector(2 downto 0) := "100"; --new opcode
+constant OP_SUB   : std_logic_vector(2 downto 0) := "110"; --new opcode
 
 
 begin
@@ -68,12 +69,12 @@ begin
     reg_dst    <= '1' after 1.5 ns when (opcode = OP_ADD or opcode = OP_SUB) else
                   '0' after 1.5 ns;
 
-    reg_write  <= '1' after 1.5 ns when (opcode = OP_ADD 
+    reg_write  <= '1' after 1.5 ns when (opcode = OP_ADD or opcode = OP_ADDI
                             or opcode = OP_LOAD or opcode = OP_SUB) else
                   '0'after 1.5 ns;
     
     alu_src    <= '1' after 1.5 ns when (opcode = OP_LOAD 
-                           or opcode = OP_STORE) else
+                           or opcode = OP_STORE or opcode = OP_ADDI) else
                   '0' after 1.5 ns;
                  
     mem_write  <= '1' after 1.5 ns when opcode = OP_STORE else
@@ -85,6 +86,7 @@ begin
     with opcode SELECT
     alucontrol    <=  "11" after 1.5 ns when OP_BEQ,
                       "01" after 1.5 ns when OP_ADD,
+                      "01" after 1.5 ns when OP_ADDI,
                       "10" after 1.5 ns when OP_SUB, 
                       "00" after 1.5 ns when others ;
   

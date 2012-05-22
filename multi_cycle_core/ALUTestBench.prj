@@ -1,0 +1,4 @@
+vhdl work "adder_8b.vhd"
+vhdl work "Comparator.vhd"
+vhdl work "alu.vhd"
+vhdl work "alu_test_bench.vhd"

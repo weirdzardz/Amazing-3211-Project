@@ -1,0 +1,8 @@
+xst -ise "C:/Users/Sacha/work/amazing3211/multi_cycle_core/Mutilcycle.ise" -intstyle ise -ifn "C:/Users/Sacha/work/amazing3211/multi_cycle_core/multi_cycle_core.xst" -ofn "C:/Users/Sacha/work/amazing3211/multi_cycle_core/multi_cycle_core.syr" 
+ngdbuild -ise "Mutilcycle.ise" -intstyle ise -dd _ngo -i -p xa9500xl multi_cycle_core.ngc multi_cycle_core.ngd  
+cpldfit -ise "C:/Users/Sacha/work/amazing3211/multi_cycle_core/Mutilcycle.ise" -intstyle ise -p xa95*xl-*-* -ofmt vhdl -optimize density -htmlrpt -loc on -slew fast -init low -inputs 54 -pterms 25 -terminate keeper multi_cycle_core.ngd 
+cpldfit -ise "C:/Users/Sacha/work/amazing3211/multi_cycle_core/Mutilcycle.ise" -intstyle ise -p xa95*xl-*-* -ofmt vhdl -optimize density -htmlrpt -loc on -slew fast -init low -inputs 54 -pterms 25 -terminate keeper multi_cycle_core.ngd 
+cpldfit -ise "C:/Users/Sacha/work/amazing3211/multi_cycle_core/Mutilcycle.ise" -intstyle ise -p xa95*xl-*-* -ofmt vhdl -optimize density -htmlrpt -loc on -slew fast -init low -inputs 54 -pterms 25 -terminate keeper multi_cycle_core.ngd 
+xst -ise "C:/Users/Sacha/work/amazing3211/multi_cycle_core/Mutilcycle.ise" -intstyle ise -ifn "C:/Users/Sacha/work/amazing3211/multi_cycle_core/multi_cycle_core.xst" -ofn "C:/Users/Sacha/work/amazing3211/multi_cycle_core/multi_cycle_core.syr" 
+ngdbuild -ise "Mutilcycle.ise" -intstyle ise -dd _ngo -i -p xa9500xl multi_cycle_core.ngc multi_cycle_core.ngd  
+cpldfit -ise "C:/Users/Sacha/work/amazing3211/multi_cycle_core/Mutilcycle.ise" -intstyle ise -p xa95*xl-*-* -ofmt vhdl -optimize density -htmlrpt -loc on -slew fast -init low -inputs 54 -pterms 25 -terminate keeper multi_cycle_core.ngd 

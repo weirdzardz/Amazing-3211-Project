@@ -1,0 +1,97 @@
+-- Forwarding Unit
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+---- Uncomment the following library declaration if instantiating
+---- any Xilinx primitives in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity forward_unit is
+    port( EX_MEM_regWrite : in std_logic;
+          MEM_WB_regWrite : in std_logic;
+          EX_MEM_reg_rd   : in std_logic_vector(3 downto 0);
+          MEM_WB_reg_rd   : in std_logic_vector(3 downto 0);
+          ID_EX_reg_rs    : in std_logic_vector(3 downto 0);
+          ID_EX_reg_rt    : in std_logic_vector(3 downto 0);
+          mux_sig_a       : out std_logic_vector(1 downto 0);
+          mux_sig_b       : out std_logic_vector (1 downto 0)
+    );
+  
+end forward_unit;
+
+architecture structural of forward_unit is
+  
+signal sig_forwarding_a: std_logic_vector(1 downto 0);
+signal sig_forwarding_b: std_logic_vector(1 downto 0);
+signal mem_hazard_rs_ok: std_logic;
+signal mem_hazard_rt_ok: std_logic;
+  
+  signal zeros  : std_logic_vector(3 downto 0);
+
+  begin
+    
+    zeros <= (others => '0');
+    
+    
+   
+    
+    process(EX_MEM_regWrite, MEM_WB_regWrite, EX_MEM_reg_rd, MEM_WB_reg_rd, ID_EX_reg_rs, ID_EX_reg_rt) is
+  begin
+    
+    sig_forwarding_a <= "00";
+    sig_forwarding_b <= "00";
+    
+    -----EX/MEM HAZARDS------
+    
+    -- IF EX/MEM.RegWrite AND EX/MEM.RegisterRd != 0 
+ if((EX_MEM_regWrite = '1' ) AND NOT (EX_MEM_reg_rd = zeros))  then
+    
+    --AND EX/MEM.RegisterRd = ID/EX.RegisterRs forward ALU result to first ALU op
+    if (EX_MEM_reg_rd = ID_EX_reg_rs) then
+   sig_forwarding_a <= "10"; 
+ end if;
+  
+   
+    -- AND EX/MEM.RegisterRd = ID/EX.RegisterRt forward ALU result to second ALU op
+    if((EX_MEM_regWrite = '1' ) AND NOT (EX_MEM_reg_rd = zeros)  AND
+    (EX_MEM_reg_rd = ID_EX_reg_rt)) then
+    sig_forwarding_b <= "10"; 
+  end if;
+
+   
+   
+  if(EX_MEM_regWrite =  '1' AND  NOT (EX_MEM_reg_rd = zeros) AND (EX_MEM_reg_rd = ID_EX_reg_rs)) then
+     mem_hazard_rs_ok <= '0';
+  else   mem_hazard_rs_ok <= '1';
+  end if;
+  
+  if(EX_MEM_regWrite =  '1' AND NOT (EX_MEM_reg_rd = zeros) AND (EX_MEM_reg_rd = ID_EX_reg_rt)) then
+     mem_hazard_rt_ok <= '0';
+  else   mem_hazard_rt_ok <= '1';
+  end if;
+   
+   
+   --IF MEM/WB.RegWrite AND MEM/WB.RegisterRd != 0
+   if(MEM_WB_regWrite = '1' AND NOT (MEM_WB_reg_rd = zeros) AND
+     mem_hazard_rs_ok = '1' AND (MEM_WB_reg_rd = ID_EX_reg_rs)) then
+       sig_forwarding_a <= "01";
+       --FORWARDA = 01;;
+ end if;    
+       
+  if(MEM_WB_regWrite = '1' AND NOT (MEM_WB_reg_rd = zeros) AND    
+   mem_hazard_rt_ok = '1' AND (MEM_WB_reg_rd = ID_EX_reg_rt)) then
+     sig_forwarding_b <= "01";
+     --FORWARDB = 01; 
+   end if;
+   
+end process;
+    
+    mux_sig_a <= sig_forwarding_a after 1.5 ns;
+    mux_sig_b <= sig_forwarding_b after 1.5 ns;
+  
+end structural;

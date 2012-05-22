@@ -4,6 +4,7 @@ vlib work
 
 ## 2. compile the dut
 vcom "adder_4b.vhd"
+vcom "adder_5b.vhd"
 vcom "adder_8b.vhd"
 vcom "alu.vhd"
 vcom "control_unit.vhd"
@@ -11,6 +12,7 @@ vcom "data_memory.vhd"
 vcom "instruction_memory.vhd"
 vcom "mux_2to1_1b.vhd"
 vcom "mux_2to1_4b.vhd"
+vcom "mux_2to1_5b.vhd"
 vcom "mux_2to1_16b.vhd"
 vcom "program_counter.vhd"
 vcom "register_file.vhd"
@@ -30,4 +32,4 @@ vsim -novopt single_cycle_core_testbench
 do wave.do
 
 ## 5. run simulation
-run 50us
+run 5000us

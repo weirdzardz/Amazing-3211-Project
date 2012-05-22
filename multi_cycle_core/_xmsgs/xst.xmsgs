@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated
+     by the Xilinx ISE software.  Any direct editing or
+     changes made to this file may result in unpredictable
+     behavior or data corruption.  It is strongly advised that
+     users do not edit the contents of this file. -->
+<messages>
+<msg type="warning" file="Xst" num="819" delta="unknown" >&quot;<arg fmt="%s" index="1">C:/Users/Sacha/work/amazing3211/multi_cycle_core/instruction_memory.vhd</arg>&quot; line <arg fmt="%d" index="2">40</arg>: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+<arg fmt="%s" index="3">&lt;reset&gt;</arg>
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_0$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0010000000100000</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_1$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0010000001000001</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_2$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0000001000000011</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_3$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0000001001000100</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_4$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0110000001100010</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_5$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0110000010000011</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_6$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">1100011010000101</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_7$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0010000011000100</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_8$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0000110011100111</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_9$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">1000011011101000</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_10$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0000000000000000</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_11$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0000000000000000</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_12$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0000000000000000</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_13$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0000000000000000</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_14$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0000000000000000</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_15$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0000000000000000</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_16$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0000000000000000</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_17$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0000000000000000</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_18$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0000000000000000</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_19$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0000000000000000</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_20$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0000000000000000</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_21$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0000000000000000</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_22$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0000000000000000</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_23$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0000000000000000</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_24$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0000000000000000</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_25$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0000000000000000</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_26$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0000000000000000</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_27$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0000000000000000</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_28$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0000000000000000</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_29$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0000000000000000</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_30$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0000000000000000</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="unknown" >Register &lt;<arg fmt="%s" index="1">var_insn_mem_31$mux0000</arg>&gt; in unit &lt;<arg fmt="%s" index="2">instruction_memory</arg>&gt; has a constant value of <arg fmt="%s" index="3">0000000000000000</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="warning" file="Xst" num="819" delta="unknown" >&quot;<arg fmt="%s" index="1">C:/Users/Sacha/work/amazing3211/multi_cycle_core/adder_8b.vhd</arg>&quot; line <arg fmt="%d" index="2">27</arg>: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+<arg fmt="%s" index="3">&lt;c_in&gt;</arg>
+</msg>
+
+<msg type="warning" file="Xst" num="819" delta="unknown" >&quot;<arg fmt="%s" index="1">C:/Users/Sacha/work/amazing3211/multi_cycle_core/data_memory.vhd</arg>&quot; line <arg fmt="%d" index="2">41</arg>: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+<arg fmt="%s" index="3">&lt;reset&gt;</arg>
+</msg>
+
+<msg type="warning" file="Xst" num="647" delta="unknown" >Input &lt;<arg fmt="%s" index="1">clk</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+</msg>
+
+<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">sig_insn_mem</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="737" delta="unknown" >Found <arg fmt="%d" index="1">16</arg>-bit latch for signal &lt;<arg fmt="%s" index="2">insn_out</arg>&gt;. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+</msg>
+
+<msg type="warning" file="Xst" num="1780" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">var_regfile&lt;0&gt;</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">sig_regfile</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">sig_data_mem</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="647" delta="unknown" >Input &lt;<arg fmt="%s" index="1">src_a&lt;15:8&gt;</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+</msg>
+
+<msg type="warning" file="Xst" num="647" delta="unknown" >Input &lt;<arg fmt="%s" index="1">src_b&lt;15:8&gt;</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+</msg>
+
+<msg type="warning" file="Xst" num="1780" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">sig_result</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">sig_prevcout2</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">sig_cout2</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">sig_pc_carry_out</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1780" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">sig_branch_mux</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1290" delta="unknown" >Hierarchical block &lt;<arg fmt="%s" index="1">pc</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">multi_cycle_core</arg>&gt;.
+It will be removed from the design.
+</msg>
+
+<msg type="warning" file="Xst" num="1290" delta="unknown" >Hierarchical block &lt;<arg fmt="%s" index="1">next_pc</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">multi_cycle_core</arg>&gt;.
+It will be removed from the design.
+</msg>
+
+<msg type="warning" file="Xst" num="1290" delta="unknown" >Hierarchical block &lt;<arg fmt="%s" index="1">insn_mem</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">multi_cycle_core</arg>&gt;.
+It will be removed from the design.
+</msg>
+
+<msg type="warning" file="Xst" num="1290" delta="unknown" >Hierarchical block &lt;<arg fmt="%s" index="1">sign_extend</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">multi_cycle_core</arg>&gt;.
+It will be removed from the design.
+</msg>
+
+<msg type="warning" file="Xst" num="1290" delta="unknown" >Hierarchical block &lt;<arg fmt="%s" index="1">ctrl_unit</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">multi_cycle_core</arg>&gt;.
+It will be removed from the design.
+</msg>
+
+<msg type="warning" file="Xst" num="1290" delta="unknown" >Hierarchical block &lt;<arg fmt="%s" index="1">reg_file</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">multi_cycle_core</arg>&gt;.
+It will be removed from the design.
+</msg>
+
+<msg type="warning" file="Xst" num="1290" delta="unknown" >Hierarchical block &lt;<arg fmt="%s" index="1">alu_unit</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">multi_cycle_core</arg>&gt;.
+It will be removed from the design.
+</msg>
+
+<msg type="warning" file="Xst" num="1290" delta="unknown" >Hierarchical block &lt;<arg fmt="%s" index="1">data_mem</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">multi_cycle_core</arg>&gt;.
+It will be removed from the design.
+</msg>
+
+<msg type="warning" file="Xst" num="1290" delta="unknown" >Hierarchical block &lt;<arg fmt="%s" index="1">mux_reg_dst</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">multi_cycle_core</arg>&gt;.
+It will be removed from the design.
+</msg>
+
+<msg type="warning" file="Xst" num="1290" delta="unknown" >Hierarchical block &lt;<arg fmt="%s" index="1">mux_alu_src</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">multi_cycle_core</arg>&gt;.
+It will be removed from the design.
+</msg>
+
+<msg type="warning" file="Xst" num="1290" delta="unknown" >Hierarchical block &lt;<arg fmt="%s" index="1">mux_mem_to_reg</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">multi_cycle_core</arg>&gt;.
+It will be removed from the design.
+</msg>
+
+<msg type="warning" file="Xst" num="1290" delta="unknown" >Hierarchical block &lt;<arg fmt="%s" index="1">mux_branch</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">multi_cycle_core</arg>&gt;.
+It will be removed from the design.
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">insn_out_4</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">instruction_memory</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">insn_out_8</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">instruction_memory</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="unknown" >FF/Latch &lt;<arg fmt="%s" index="1">insn_out_12</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">instruction_memory</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1290" delta="unknown" >Hierarchical block &lt;<arg fmt="%s" index="1">sign_extend</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">multi_cycle_core</arg>&gt;.
+It will be removed from the design.
+</msg>
+
+<msg type="warning" file="Xst" num="1290" delta="unknown" >Hierarchical block &lt;<arg fmt="%s" index="1">ctrl_unit</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">multi_cycle_core</arg>&gt;.
+It will be removed from the design.
+</msg>
+
+<msg type="warning" file="Xst" num="1290" delta="unknown" >Hierarchical block &lt;<arg fmt="%s" index="1">mux_reg_dst</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">multi_cycle_core</arg>&gt;.
+It will be removed from the design.
+</msg>
+
+<msg type="warning" file="Xst" num="1290" delta="unknown" >Hierarchical block &lt;<arg fmt="%s" index="1">mux_mem_to_reg</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">multi_cycle_core</arg>&gt;.
+It will be removed from the design.
+</msg>
+
+<msg type="warning" file="Xst" num="1290" delta="unknown" >Hierarchical block &lt;<arg fmt="%s" index="1">mux_alu_src</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">multi_cycle_core</arg>&gt;.
+It will be removed from the design.
+</msg>
+
+<msg type="warning" file="Xst" num="1290" delta="unknown" >Hierarchical block &lt;<arg fmt="%s" index="1">mux_branch</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">multi_cycle_core</arg>&gt;.
+It will be removed from the design.
+</msg>
+
+<msg type="warning" file="Xst" num="1290" delta="unknown" >Hierarchical block &lt;<arg fmt="%s" index="1">pc</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">multi_cycle_core</arg>&gt;.
+It will be removed from the design.
+</msg>
+
+<msg type="warning" file="Xst" num="1290" delta="unknown" >Hierarchical block &lt;<arg fmt="%s" index="1">next_pc</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">multi_cycle_core</arg>&gt;.
+It will be removed from the design.
+</msg>
+
+<msg type="warning" file="Xst" num="1290" delta="unknown" >Hierarchical block &lt;<arg fmt="%s" index="1">insn_mem</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">multi_cycle_core</arg>&gt;.
+It will be removed from the design.
+</msg>
+
+<msg type="warning" file="Xst" num="1290" delta="unknown" >Hierarchical block &lt;<arg fmt="%s" index="1">reg_file</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">multi_cycle_core</arg>&gt;.
+It will be removed from the design.
+</msg>
+
+<msg type="warning" file="Xst" num="1290" delta="unknown" >Hierarchical block &lt;<arg fmt="%s" index="1">data_mem</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">multi_cycle_core</arg>&gt;.
+It will be removed from the design.
+</msg>
+
+<msg type="warning" file="Xst" num="1290" delta="unknown" >Hierarchical block &lt;<arg fmt="%s" index="1">alu_unit</arg>&gt; is unconnected in block &lt;<arg fmt="%s" index="2">multi_cycle_core</arg>&gt;.
+It will be removed from the design.
+</msg>
+
+</messages>
+

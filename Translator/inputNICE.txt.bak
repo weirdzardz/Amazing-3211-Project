@@ -1,0 +1,51 @@
+
+--load from memory
+LOAD N, r0					 	
+ADDI memA, r0, 1
+ADD temp1, temp1, N
+ADDI temp2, temp2, 1
+BNE temp2, N, 2
+ADD memB, memA, temp1
+ADD memC, memB, temp1
+
+--loopi
+
+--loopj
+
+--loopk
+ADD indexA, i, kN 			#find address A
+ADD indexA, indexA, memA
+
+ADD indexB, k, jN 			#find address B
+ADD indexB, indexB, memB
+
+ADD indexC, i, jN 			#find address C
+ADD indexC, indexC, memC
+
+LOAD temp1, indexA 			#load value A from memory
+LOAD temp2, indexB 			#load value B form memory
+
+SUB temp1, temp1, temp2 	#subtract
+ADD temp3, temp3, temp1 	#accumulate (sum) C value  
+
+ADDI k, k, 1
+ADD kN, kN, N
+BNE k, N, 7
+---
+
+STORE temp3, indexC 	#store into C
+ADD temp3, r0, r0 		#temp3 cleared
+ADD k, r0, r0 			#k cleared
+ADD kN, r0, r0 			#kN cleared
+
+ADDI j, j, 1			#inc J
+ADD jN, jN, N 			#update jN
+BNE j, N, 7
+--
+
+ADD j, r0, r0
+ADD jN, r0, r0
+
+ADDI i, i, 1
+BNE i, N, 7
+--end	  	
