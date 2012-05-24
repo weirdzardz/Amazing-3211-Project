@@ -48,6 +48,7 @@ entity control_unit is
            alu_src    : out std_logic;
            mem_write  : out std_logic;
            mem_to_reg : out std_logic;
+           if_flush   : out std_logic;
            alucontrol : out std_logic_vector (1 downto 0) --new opcode sig
            );  
 end control_unit;
@@ -62,7 +63,6 @@ constant OP_ADD   : std_logic_vector(2 downto 0) := "010";
 constant OP_ADDI  : std_logic_vector(2 downto 0) := "101";
 constant OP_BNE   : std_logic_vector(2 downto 0) := "100"; 
 constant OP_SUB   : std_logic_vector(2 downto 0) := "110"; 
-constant OP_NOP   : std_logic_vector(2 downto 0) := "000"; --new opcode
 
 begin
 
@@ -82,13 +82,18 @@ begin
                  
     mem_to_reg <= '1' after 1.5 ns when opcode = OP_LOAD else
                   '0'after 1.5 ns;
+                 
+                 
+    if_flush <= '1' after 1.5 ns when opcode = OP_BNE else
+                  '0'after 1.5 ns;
+                  
                   
     with opcode SELECT
     alucontrol    <=  "11" after 1.5 ns when OP_BNE,
                       "01" after 1.5 ns when OP_ADD,
                       "01" after 1.5 ns when OP_ADDI,
                       "10" after 1.5 ns when OP_SUB, 
-                      "00" after 1.5 ns when OP_NOP ;
+                      "00" after 1.5 ns when others ;
 
 
 end behavioural;

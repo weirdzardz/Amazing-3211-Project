@@ -48,7 +48,7 @@ entity control_unit is
            alu_src    : out std_logic;
            mem_write  : out std_logic;
            mem_to_reg : out std_logic;
-           if_flush   : out std_logic;
+         
            alucontrol : out std_logic_vector (1 downto 0) --new opcode sig
            );  
 end control_unit;
@@ -84,8 +84,7 @@ begin
                   '0'after 1.5 ns;
                  
                  
-    if_flush <= '1' after 1.5 ns when opcode = OP_BNE else
-                  '0'after 1.5 ns;
+  
                   
                   
     with opcode SELECT

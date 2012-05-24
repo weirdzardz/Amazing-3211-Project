@@ -49,10 +49,11 @@ signal mem_hazard_rt_ok: std_logic;
     -----EX/MEM HAZARDS------
     
     -- IF EX/MEM.RegWrite AND EX/MEM.RegisterRd != 0 
- if((EX_MEM_regWrite = '1' ) AND NOT (EX_MEM_reg_rd = zeros))  then
+ 
     
     --AND EX/MEM.RegisterRd = ID/EX.RegisterRs forward ALU result to first ALU op
-    if (EX_MEM_reg_rd = ID_EX_reg_rs) then
+    if((EX_MEM_regWrite = '1' ) AND NOT (EX_MEM_reg_rd = zeros)) AND
+     (EX_MEM_reg_rd = ID_EX_reg_rs) then
    sig_forwarding_a <= "10"; 
  end if;
   

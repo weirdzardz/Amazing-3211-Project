@@ -92,7 +92,7 @@ signal mem_hazard_rt_ok: std_logic;
    
 end process;
     
-    mux_sig_a <= sig_forwarding_a after 1.5 ns;
-    mux_sig_b <= sig_forwarding_b after 1.5 ns;
+    mux_sig_a <= sig_forwarding_a after 0.5 ns;
+    mux_sig_b <= sig_forwarding_b after 0.5 ns;
   
 end structural;

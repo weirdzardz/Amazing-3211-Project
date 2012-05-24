@@ -44,21 +44,26 @@ signal var_regfile : std_logic_vector(15 downto 0);
 
 begin
   
-  reg_process: process (reset, clk, instruction_in, write_enable) is 
+  reg_process: process (reset, clk, instruction_in, write_enable, flush) is 
   
   begin 
+    
+    
     
   if (reset = '1') then
     var_regfile <=  X"0000";
   
-  elsif (rising_edge(clk)) then 
-    if (flush = '1') then
-    var_regfile <=  X"0000";
-    
-    elsif  (write_enable = '0') then
+  
+  
+  elsif (rising_edge(clk) ) then 
+     
+    if(flush = '1' ) then
+       var_regfile <=  X"0000";
+     else
     var_regfile <= instruction_in;
   end if;
-  end if;
+ end if;
+ 
   
   
 end process;

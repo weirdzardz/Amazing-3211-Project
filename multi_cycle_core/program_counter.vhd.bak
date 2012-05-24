@@ -42,7 +42,7 @@ begin
     begin
        if (reset = '1') then
            addr_out <= (others => '1'); 
-       elsif (rising_edge(clk) AND write_enable = '1') then
+       elsif (clk = '1' AND write_enable = '0') then
            addr_out <= addr_in after 0.5 ns; 
        end if;
     end process;

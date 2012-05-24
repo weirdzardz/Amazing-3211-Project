@@ -49,7 +49,8 @@ port( reset         : in std_logic;
       read_a_out : out std_logic_vector(15 downto 0);
       read_b_out : out std_logic_vector(15 downto 0);
       offset_in : in std_logic_vector(4 downto 0);
-      offset_out : out std_logic_vector(4 downto 0)
+      offset_out : out std_logic_vector(4 downto 0);
+      flush         : in std_logic --NEW FLUSH SIG
       
 );
   
@@ -66,12 +67,12 @@ architecture Behavioral of id_ex_reg is
   signal reg_write  : std_logic;
   signal read_a     : std_logic_vector(15 downto 0);
   signal read_b     : std_logic_vector(15 downto 0);
-  
+ 
   signal offset : std_logic_vector(4 downto 0);
   
 begin
   
-  reg_process: process (reset, clk, alu_ctl_in, mem_write_in, mem_to_reg_in,write_reg_in, reg_write_in, read_a_in, read_b_in) is 
+  reg_process: process (reset, clk, flush, alu_ctl_in, mem_write_in, mem_to_reg_in,write_reg_in, reg_write_in, read_a_in, read_b_in) is 
   
   begin 
     
@@ -89,6 +90,20 @@ begin
     
   elsif (rising_edge(clk)  ) then 
     
+    if ( flush = '1') then
+      
+    alu_ctl <= "00";
+    mem_write <= '0';
+    mem_to_reg <= '0';
+    reg_s <= X"0";
+    reg_t <= X"0";
+    write_reg <= X"0";
+    reg_write <= '0';
+    read_a <=  X"0000";
+    read_b <=  X"0000"; 
+    offset <= "00000";
+    
+  else
     alu_ctl <= alu_ctl_in;
     mem_write <= mem_write_in;
     mem_to_reg <= mem_to_reg_in;
@@ -98,8 +113,9 @@ begin
     reg_write <= reg_write_in;
     read_a <=  read_a_in;
     read_b <=  read_b_in; 
-  offset <= offset_in;
---  sig_regfile <= var_regfile after 
+  offset <= offset_in; 
+end if;
+
   end if;
 
 
