@@ -8,7 +8,7 @@ Z0 w1337822970
 Z1 DPx4 ieee 18 std_logic_unsigned 0 22 hEMVMlaNCR^<OOoVNV;m90
 Z2 DPx4 ieee 15 std_logic_arith 0 22 GJbAT?7@hRQU9IQ702DT]2
 Z3 DPx4 ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
-Z4 dC:\Users\Sacha\work\Amazing-3211-Project\multi_cycle_core
+Z4 dC:\Users\Sacha\work\amazing3211\multi_cycle_core
 Z5 8adder_4b.vhd
 Z6 Fadder_4b.vhd
 l0
@@ -228,13 +228,13 @@ R11
 o-O0
 R8
 Edata_memory
-R12
+Z34 w1338027051
 R1
 R2
 R3
 R4
-Z34 8data_memory.vhd
-Z35 Fdata_memory.vhd
+Z35 8data_memory.vhd
+Z36 Fdata_memory.vhd
 l0
 L26
 Vb;c[8m_zl?XFb[RUfYjMe1
@@ -250,8 +250,7 @@ R3
 DEx4 work 11 data_memory 0 22 b;c[8m_zl?XFb[RUfYjMe1
 l40
 L35
-VmigWZ1[6`oIdeoh>DBlb01
-!s100 LAa3L:J71FZGm>QE^QdfU2
+VfzIFK:25ooZ=Xh1HH]0[Z0
 R7
 32
 R9
@@ -259,14 +258,15 @@ R10
 R11
 o-O0
 R8
+!s100 UhR7NzcQbk8>lJF=Wz`150
 Eex_mem_reg
-Z36 w1337825508
+Z37 w1337825508
 R1
 R2
 R3
 R4
-Z37 8ex_mem_reg.vhd
-Z38 Fex_mem_reg.vhd
+Z38 8ex_mem_reg.vhd
+Z39 Fex_mem_reg.vhd
 l0
 L30
 VIdm]L>U;07bR<bj:l=]IN3
@@ -292,13 +292,13 @@ R11
 o-O0
 R8
 Eforward_unit
-Z39 w1337829150
+Z40 w1337829150
 R1
 R2
 R3
 R4
-Z40 8forward_unit.vhd
-Z41 Fforward_unit.vhd
+Z41 8forward_unit.vhd
+Z42 Fforward_unit.vhd
 l0
 L14
 VlIjEI6^212T?9XM`V0]K[0
@@ -324,30 +324,30 @@ R11
 o-O0
 R8
 Ehazard_detection_unit
-Z42 w1337842065
+Z43 w1338026143
 R1
 R2
 R3
 R4
-Z43 8hazard_detection_unit.vhd
-Z44 Fhazard_detection_unit.vhd
+Z44 8hazard_detection_unit.vhd
+Z45 Fhazard_detection_unit.vhd
 l0
 L30
-VzGU^8B=9jo<CHI>`09Q4g2
+V8IP4Ve?E;aI=]ai3Kje@P1
 R7
 32
 o-O0
 R8
-!s100 WRTMb=zjAj]`BF[`5<;?C1
+!s100 YzjBYkO^h^OkiSo2D[A;f2
 Abehavioural
 R1
 R2
 R3
-DEx4 work 21 hazard_detection_unit 0 22 zGU^8B=9jo<CHI>`09Q4g2
-l51
-L44
-VQDM;3@n4aj4MPR1ZZMgSN2
-!s100 RJPkhnW4NIhiJ2=kL3M8J2
+DEx4 work 21 hazard_detection_unit 0 22 8IP4Ve?E;aI=]ai3Kje@P1
+l52
+L45
+V0HMHK@J[zB[=`7inMDc=W2
+!s100 FzV=?mfmfRjXNYP]dgBOG1
 R7
 32
 R9
@@ -356,30 +356,30 @@ R11
 o-O0
 R8
 Eid_ex_reg
-Z45 w1337841954
+Z46 w1338023341
 R1
 R2
 R3
 R4
-Z46 8id_ex_reg.vhd
-Z47 Fid_ex_reg.vhd
+Z47 8id_ex_reg.vhd
+Z48 Fid_ex_reg.vhd
 l0
 L30
-VhZFkQ^DEh?U2bIRIji9KS1
+V^dPV`@a5=9h`6?A5ej;>^0
 R7
 32
 o-O0
 R8
-!s100 IAMXUO040;DCDRFDBo=f_2
+!s100 2cNAMoVziib3dGR5A=QbS1
 Abehavioral
 R1
 R2
 R3
-DEx4 work 9 id_ex_reg 0 22 hZFkQ^DEh?U2bIRIji9KS1
-l73
-L59
-VfWH`f>NMMoK^@GnI8am?D3
-!s100 :Y0A:@RB4c`KdE5ZDghKD2
+DEx4 work 9 id_ex_reg 0 22 ^dPV`@a5=9h`6?A5ej;>^0
+l75
+L61
+VY;M;K_DYOTSKGJbB`KHB51
+!s100 AEae>FzL95CNjEN8CVb851
 R7
 32
 R9
@@ -388,13 +388,13 @@ R11
 o-O0
 R8
 Eif_id_reg
-Z48 w1337840825
+Z49 w1338026443
 R1
 R2
 R3
 R4
-Z49 8if_id_reg.vhd
-Z50 Fif_id_reg.vhd
+Z50 8if_id_reg.vhd
+Z51 Fif_id_reg.vhd
 l0
 L30
 VPU6;^Bi=4ZH<IWahCaOa20
@@ -410,8 +410,8 @@ R3
 DEx4 work 9 if_id_reg 0 22 PU6;^Bi=4ZH<IWahCaOa20
 l45
 L41
-VW05^eEWV<z:[2d?g6GAnM3
-!s100 NWAmHWVVBLSem@YGVT1]83
+VZf8XRS4[5eE=@I5^8WjPb2
+!s100 1HOl@h@NfTiO^jcZ;:9H73
 R7
 32
 R9
@@ -420,13 +420,13 @@ R11
 o-O0
 R8
 Einstruction_memory
-Z51 w1337831660
+Z52 w1338026996
 R1
 R2
 R3
 R4
-Z52 8instruction_memory.vhd
-Z53 Finstruction_memory.vhd
+Z53 8instruction_memory.vhd
+Z54 Finstruction_memory.vhd
 l0
 L27
 Va`0[[GeH[N=iA69e7T?EP0
@@ -442,8 +442,8 @@ R3
 DEx4 work 18 instruction_memory 0 22 a`0[[GeH[N=iA69e7T?EP0
 l39
 L34
-V6lNI[7hb?lFnAeG<YRSQI2
-!s100 Z0?Oa3_@nOQ0ME^MAbENS1
+VGHRKPAfkgYh=<nh;oFNR03
+!s100 667=WKNEzmlQbf@zA[fW?2
 R7
 32
 R9
@@ -457,8 +457,8 @@ R1
 R2
 R3
 R4
-Z54 8mem_wb_reg.vhd
-Z55 Fmem_wb_reg.vhd
+Z55 8mem_wb_reg.vhd
+Z56 Fmem_wb_reg.vhd
 l0
 L30
 V_KaJ1RUOMF]X_3]gg0HgP2
@@ -484,13 +484,13 @@ R11
 o-O0
 R8
 Emulti_cycle_core
-Z56 w1337842105
+Z57 w1338025686
 R1
 R2
 R3
 R4
-Z57 8multi_cycle_core.vhd
-Z58 Fmulti_cycle_core.vhd
+Z58 8multi_cycle_core.vhd
+Z59 Fmulti_cycle_core.vhd
 l0
 L50
 VngjbI7^:@7Je<n:Yn>]Ml3
@@ -504,10 +504,10 @@ R1
 R2
 R3
 DEx4 work 16 multi_cycle_core 0 22 ngjbI7^:@7Je<n:Yn>]Ml3
-l342
+l346
 L55
-VV81dLMS2zgX1Ncl_Bjo;33
-!s100 Bzk]S@e@45oVnzlAlWP661
+V50b568:11Th86LbOVYAYU2
+!s100 0V>0h@8<fliz>K;kVciT=3
 R7
 32
 R9
@@ -521,8 +521,8 @@ R1
 R2
 R3
 R4
-Z59 8mux_2to1_16b.vhd
-Z60 Fmux_2to1_16b.vhd
+Z60 8mux_2to1_16b.vhd
+Z61 Fmux_2to1_16b.vhd
 l0
 L25
 V<84N<h^>hXDh]?WUj83K:0
@@ -553,8 +553,8 @@ R1
 R2
 R3
 R4
-Z61 8mux_2to1_1b.vhd
-Z62 Fmux_2to1_1b.vhd
+Z62 8mux_2to1_1b.vhd
+Z63 Fmux_2to1_1b.vhd
 l0
 L25
 VZ5?Z^R^NXHgSob4Pb3WC30
@@ -585,8 +585,8 @@ R1
 R2
 R3
 R4
-Z63 8mux_2to1_3b.vhd
-Z64 Fmux_2to1_3b.vhd
+Z64 8mux_2to1_3b.vhd
+Z65 Fmux_2to1_3b.vhd
 l0
 L25
 VOfQF8F8V3LZ^T3GWdeY3W2
@@ -617,8 +617,8 @@ R1
 R2
 R3
 R4
-Z65 8mux_2to1_4b.vhd
-Z66 Fmux_2to1_4b.vhd
+Z66 8mux_2to1_4b.vhd
+Z67 Fmux_2to1_4b.vhd
 l0
 L25
 V3Fen4DE3SSb`Wf^J?k=AJ2
@@ -649,8 +649,8 @@ R1
 R2
 R3
 R4
-Z67 8mux_2to1_5b.vhd
-Z68 Fmux_2to1_5b.vhd
+Z68 8mux_2to1_5b.vhd
+Z69 Fmux_2to1_5b.vhd
 l0
 L25
 VWkHPgeTIl=WkN2B]d19EY0
@@ -681,8 +681,8 @@ R1
 R2
 R3
 R4
-Z69 8mux_3to1_16b.vhd
-Z70 Fmux_3to1_16b.vhd
+Z70 8mux_3to1_16b.vhd
+Z71 Fmux_3to1_16b.vhd
 l0
 L10
 VOCRGBVlhKL;C1:c=iglH83
@@ -713,8 +713,8 @@ R1
 R2
 R3
 R4
-Z71 8mux_3to1_1b.vhd
-Z72 Fmux_3to1_1b.vhd
+Z72 8mux_3to1_1b.vhd
+Z73 Fmux_3to1_1b.vhd
 l0
 L9
 V1>kd8Ub<<h`Uf=7U5B^DS3
@@ -740,13 +740,13 @@ R11
 o-O0
 R8
 Eprogram_counter
-Z73 w1337835334
+Z74 w1337835334
 R1
 R2
 R3
 R4
-Z74 8program_counter.vhd
-Z75 Fprogram_counter.vhd
+Z75 8program_counter.vhd
+Z76 Fprogram_counter.vhd
 l0
 L28
 VBnh6kB^=AZekGP^bgkSdX0
@@ -777,8 +777,8 @@ R1
 R2
 R3
 R4
-Z76 8register_file.vhd
-Z77 Fregister_file.vhd
+Z77 8register_file.vhd
+Z78 Fregister_file.vhd
 l0
 L26
 Vj`5Rb<j[_Y^fz>f3D8Lin3
@@ -809,8 +809,8 @@ R1
 R2
 R3
 R4
-Z78 8sign_extend_4to16.vhd
-Z79 Fsign_extend_4to16.vhd
+Z79 8sign_extend_4to16.vhd
+Z80 Fsign_extend_4to16.vhd
 l0
 L25
 VleO7c6^;U`LWnBlED0COm3
@@ -836,15 +836,15 @@ R11
 o-O0
 R8
 Esingle_cycle_core_testbench
-Z80 w1337843166
+Z81 w1338026806
 R20
 R21
 R1
 R2
 R3
 R4
-Z81 8single_cycle_core_testbench.vhd
-Z82 Fsingle_cycle_core_testbench.vhd
+Z82 8single_cycle_core_testbench.vhd
+Z83 Fsingle_cycle_core_testbench.vhd
 l0
 L27
 V<h2hcOce;MGzG5eh^39e32
@@ -859,11 +859,11 @@ R21
 R1
 R2
 R3
-Z83 DEx4 work 27 single_cycle_core_testbench 0 22 <h2hcOce;MGzG5eh^39e32
+Z84 DEx4 work 27 single_cycle_core_testbench 0 22 <h2hcOce;MGzG5eh^39e32
 l50
 L30
-Z84 V8znYg<ETGD0?zaG>kYXnE0
-Z85 !s100 [kZh@mOKd2E@[1^IR?JJG2
+Z85 VBGg4nlHDaGd]>5j]mmkR<1
+Z86 !s100 Go[]4;QJ6lS;NFCR3l8ad2
 R7
 32
 R24

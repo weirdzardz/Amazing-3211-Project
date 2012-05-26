@@ -55,12 +55,13 @@ begin
   
   
   
-  elsif (rising_edge(clk) ) then 
+  elsif (rising_edge(clk) AND write_enable = '1' ) then 
      
     if(flush = '1' ) then
        var_regfile <=  X"0000";
-     end if;
+     else
     var_regfile <= instruction_in;
+  end if;
  end if;
  
   

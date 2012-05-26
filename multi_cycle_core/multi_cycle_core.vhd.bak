@@ -197,6 +197,8 @@ component id_ex_reg is
           read_b_in  : in std_logic_vector(15 downto 0);
           read_a_out : out std_logic_vector(15 downto 0);
           read_b_out : out std_logic_vector(15 downto 0);
+          read_b_nomux_in  : in std_logic_vector(15 downto 0);
+          read_b_nomux_out : out std_logic_vector(15 downto 0);
           offset_in : in std_logic_vector(4 downto 0);
           offset_out : out std_logic_vector(4 downto 0) ;
           flush         : in std_logic --NEW FLUSH SIG 
@@ -268,8 +270,8 @@ component hazard_detection_unit is
 		   --fush (branch) detect
 		   branch             : in std_logic;
 		   opcode             : in  std_logic_vector(2 downto 0);
-		   if_flush           : out std_logic
-		   
+		   if_flush           : out std_logic;
+		   flush_id_ex        : out std_logic
            );  
 end component;
 
@@ -298,6 +300,7 @@ signal sig_write_reg_to_ppl_id_ex   : std_logic_vector(3 downto 0);
 signal sig_write_reg_to_ppl_ex_mem  : std_logic_vector(3 downto 0);
 signal sig_write_reg_to_ppl_mem_wb  : std_logic_vector(3 downto 0);
 signal sig_write_register           : std_logic_vector(3 downto 0);
+signal  sig_write_date_to_ppl_ex_mem : std_logic_vector(15 downto 0);
 signal sig_reg_s_to_fu           : std_logic_vector(3 downto 0);
 signal sig_reg_t_to_fu           : std_logic_vector(3 downto 0);
 signal sig_write_data               : std_logic_vector(15 downto 0);
@@ -333,7 +336,8 @@ signal sig_alu_b_in             	   : std_logic_vector(15 downto 0);
 signal sig_stall                    : std_logic;
 signal sig_opcode_input             : std_logic_vector(2 downto 0);
 signal sig_flush                 : std_logic;
-
+signal sig_flush_id_ex            :std_logic;
+signal sig_flush_id_ex_inter            :std_logic;
 signal sig_offset_to_ex_mem   : std_logic_vector (4 downto 0);
 signal sig_offset_to_pc  : std_logic_vector (4 downto 0);
 
@@ -343,6 +347,7 @@ begin
 
     sig_one_5b <= "00001";
     sig_branch <= sig_alucontrol_ex(1) AND sig_alucontrol_ex(0) AND  NOT(sig_alu_zero_ex);
+    sig_flush_id_ex <= sig_flush or sig_flush_id_ex_inter;
 
     pc : program_counter
     port map ( reset    => reset,
@@ -465,6 +470,8 @@ begin
                 read_b_in  => sig_read_data_b_to_ppl_id_ex,
                 read_a_out => sig_read_data_a,
                 read_b_out => sig_read_data_b_to_ppl_ex_mem,
+                read_b_nomux_in  => sig_read_data_b_to_mux,
+                read_b_nomux_out => sig_write_date_to_ppl_ex_mem,
                 offset_in => sig_insn(4 downto 0),
                 offset_out => sig_offset_to_pc,
                   flush  => sig_flush
@@ -481,7 +488,7 @@ begin
                 write_reg_out   => sig_write_reg_to_ppl_mem_wb,
                 reg_write_in  => sig_reg_write_to_ppl_ex_mem,
                 reg_write_out => sig_reg_write_to_ppl_mem_wb,
-                data_b_in    => sig_read_data_b_to_ppl_ex_mem,
+                data_b_in    => sig_write_date_to_ppl_ex_mem,
                 data_b_out   => sig_read_data_b,                            
                
                 alu_result_in => sig_alu_result_to_ppl_ex_mem,
@@ -523,8 +530,10 @@ begin
 		   ID_reg_a           => sig_insn(12 downto 9),
 		   ID_reg_b           => sig_insn(8 downto 5),
 		   stall              => sig_stall,
+		   branch => sig_branch,
 		   opcode             => sig_opcode_input,
-		   if_flush           => sig_flush
+		   if_flush           => sig_flush,
+		   flush_id_ex => sig_flush_id_ex
            );  
 
   my_mux_alu_a : mux_3to1_16b

@@ -36,7 +36,8 @@ entity hazard_detection_unit is
 		   stall              : out std_logic;
 		   opcode             : in  std_logic_vector(2 downto 0);
 		   branch             : in std_logic;
-		   if_flush           : out std_logic
+		   if_flush           : out std_logic;
+		   flush_id_ex        : out std_logic
            );  
 end hazard_detection_unit;
 
@@ -44,7 +45,7 @@ end hazard_detection_unit;
 architecture behavioural of hazard_detection_unit is
 signal sig_stall : std_logic := '0';
 signal sig_flush : std_logic := '0';
-
+signal sig_flush_id_ex : std_logic := '0';
 constant OP_BNE   : std_logic_vector(2 downto 0) := "100"; 
 
 
@@ -56,13 +57,13 @@ begin
 process(EX_write_reg, EX_memread, ID_reg_a, ID_reg_b) is
   begin
     sig_stall <= '0';
-    
+    sig_flush_id_ex <= '0';
      
     
     
  if(EX_memread = '1' ) then
-        if (EX_write_reg = ID_reg_a) then sig_stall <= '1';
-        elsif (EX_write_reg = ID_reg_b) then sig_stall <= '1';
+        if (EX_write_reg = ID_reg_a) then sig_stall <= '1'; sig_flush_id_ex <= '1';
+        elsif (EX_write_reg = ID_reg_b) then sig_stall <= '1'; sig_flush_id_ex <='1';
         end if;
         
 
@@ -72,5 +73,5 @@ end process;
 
 stall <= sig_stall after 1.5 ns;  
 if_flush <= sig_flush after 1.5 ns;  
-        
+flush_id_ex <= sig_flush_id_ex after 1.5 ns;        
 end behavioural;

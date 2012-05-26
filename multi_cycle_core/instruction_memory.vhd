@@ -105,13 +105,13 @@ var_insn_mem(29) := "1000001011000111";   --BNE i, N, 7
 var_insn_mem(30) := "0100000000000001";   --ADD i, r0, r0
 var_insn_mem(31) := "0100000000000101";   --ADD iN, r0, r0
             
-            insn_out <= X"0000" after 1.5 ns;
+            insn_out <= X"0000" after 4 ns;
             
         
         else
             -- read instructions on the rising clock edge
             var_addr := conv_integer(addr_in);
-            insn_out <= var_insn_mem(var_addr) after 1.5 ns;
+            insn_out <= var_insn_mem(var_addr) after 4 ns;
         end if;
 
         -- the following are probe signals (for simulation purpose)

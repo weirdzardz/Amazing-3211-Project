@@ -48,6 +48,8 @@ port( reset         : in std_logic;
       read_b_in  : in std_logic_vector(15 downto 0);
       read_a_out : out std_logic_vector(15 downto 0);
       read_b_out : out std_logic_vector(15 downto 0);
+      read_b_nomux_in  : in std_logic_vector(15 downto 0);
+      read_b_nomux_out : out std_logic_vector(15 downto 0);
       offset_in : in std_logic_vector(4 downto 0);
       offset_out : out std_logic_vector(4 downto 0);
       flush         : in std_logic --NEW FLUSH SIG
@@ -67,7 +69,7 @@ architecture Behavioral of id_ex_reg is
   signal reg_write  : std_logic;
   signal read_a     : std_logic_vector(15 downto 0);
   signal read_b     : std_logic_vector(15 downto 0);
- 
+  signal read_b_nomux : std_logic_vector (15 downto 0);
   signal offset : std_logic_vector(4 downto 0);
   
 begin
@@ -86,7 +88,9 @@ begin
     reg_write <= '0';
     read_a <=  X"0000";
     read_b <=  X"0000"; 
+    read_b_nomux <=X"0000";
     offset <= "00000";
+  
     
   elsif (rising_edge(clk)  ) then 
     
@@ -101,6 +105,7 @@ begin
     reg_write <= '0';
     read_a <=  X"0000";
     read_b <=  X"0000"; 
+    read_b_nomux <=X"0000";
     offset <= "00000";
     
   else
@@ -113,6 +118,7 @@ begin
     reg_write <= reg_write_in;
     read_a <=  read_a_in;
     read_b <=  read_b_in; 
+    read_b_nomux <= read_b_nomux_in;
   offset <= offset_in; 
 end if;
 
@@ -130,6 +136,7 @@ end process;
   reg_write_out <= reg_write after 250 ps;
   read_a_out <= read_a after 250 ps;
   read_b_out <= read_b after 250 ps;
+  read_b_nomux_out <= read_b_nomux after 250 ps;
    offset_out <= offset after 250 ps;
 end Behavioral;
 

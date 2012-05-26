@@ -55,7 +55,7 @@ begin
   
   
   
-  elsif (rising_edge(clk) ) then 
+  elsif (rising_edge(clk) AND write_enable = '0' ) then 
      
     if(flush = '1' ) then
        var_regfile <=  X"0000";

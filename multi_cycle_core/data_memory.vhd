@@ -124,10 +124,10 @@ begin
         --wait for 5 ns;
        
         -- continuous read of the memory location given by var_addr 
-        data_out <= var_data_mem(var_addr) after 1.5 ns;
+        data_out <= var_data_mem(var_addr) after 4 ns;
  
         -- the following are probe signals (for simulation purpose) 
-        sig_data_mem <= var_data_mem after 1.5 ns;
+        sig_data_mem <= var_data_mem after 4 ns;
 
     end process;
   
