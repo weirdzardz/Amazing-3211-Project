@@ -1,31 +1,10 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date:    16:19:20 05/08/2012 
--- Design Name: 
--- Module Name:    if_id_reg - Behavioral 
--- Project Name: 
--- Target Devices: 
--- Tool versions: 
--- Description: 
---
--- Dependencies: 
---
--- Revision: 
--- Revision 0.01 - File Created
--- Additional Comments: 
---
+-- IF/ID Pipeline Register
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
-
----- Uncomment the following library declaration if instantiating
----- any Xilinx primitives in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
 
 entity if_id_reg is
     port( reset         : in std_logic;
@@ -40,33 +19,25 @@ end if_id_reg;
 
 architecture Behavioral of if_id_reg is
 
-signal var_regfile : std_logic_vector(15 downto 0);
-
 begin
   
   reg_process: process (reset, clk, instruction_in, write_enable, flush) is 
   
   begin 
-    
-    
-    
+            
   if (reset = '1') then
-    var_regfile <=  X"0000";
-  
-  
-  
-  elsif (rising_edge(clk) AND write_enable = '1' ) then 
+    instruction_out <= X"0000" after 250 ps;   
+  elsif (rising_edge(clk) AND write_enable = '0' ) then 
      
     if(flush = '1' ) then
-       var_regfile <=  X"0000";
+       instruction_out <= X"0000" after 250 ps;
      else
-    var_regfile <= instruction_in;
+      instruction_out <= instruction_in after 250 ps;
   end if;
  end if;
  
   
   
 end process;
-instruction_out <= var_regfile after 250 ps;
 end Behavioral;
 

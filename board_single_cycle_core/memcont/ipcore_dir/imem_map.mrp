@@ -1,0 +1,28 @@
+Release 11.1 Map L.33 (nt64)
+Xilinx Mapping Report File for Design 'imem'
+
+Design Information
+------------------
+Command Line   : map -ise imem.ise -intstyle ise -p xc3s400-ft256-5 -cm area -ir
+off -pr off -c 100 -o imem_map.ncd imem.ngd imem.pcf 
+Target Device  : xc3s400
+Target Package : ft256
+Target Speed   : -5
+Mapper Version : spartan3 -- $Revision: 1.51 $
+Mapped Date    : Sun May 27 10:18:55 2012
+
+Design Summary
+--------------
+Number of errors   :   2
+Number of warnings :   0
+
+Section 1 - Errors
+------------------
+ERROR:Map:116 - The design is empty.  No processing will be done.
+ERROR:Map:52 - Problem encountered processing RPMs. 
+
+Section 2 - Warnings
+--------------------
+
+Section 3 - Informational
+-------------------------

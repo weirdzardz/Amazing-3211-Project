@@ -1,0 +1,23 @@
+xst -ise "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/memcont.ise" -intstyle ise -ifn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.xst" -ofn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.syr" 
+ngdbuild -ise "memcont.ise" -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -i -p xc3s400-ft256-5 top.ngc top.ngd  
+xst -ise "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/memcont.ise" -intstyle ise -ifn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.xst" -ofn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.syr" 
+xst -ise "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/memcont.ise" -intstyle ise -ifn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.xst" -ofn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.syr" 
+xst -ise "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/memcont.ise" -intstyle ise -ifn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.xst" -ofn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.syr" 
+xst -ise "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/memcont.ise" -intstyle ise -ifn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.xst" -ofn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.syr" 
+xst -ise "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/memcont.ise" -intstyle ise -ifn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.xst" -ofn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.syr" 
+xst -ise "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/memcont.ise" -intstyle ise -ifn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.xst" -ofn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.syr" 
+xst -ise "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/memcont.ise" -intstyle ise -ifn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.xst" -ofn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.syr" 
+xst -ise "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/memcont.ise" -intstyle ise -ifn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.xst" -ofn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.syr" 
+xst -ise "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/memcont.ise" -intstyle ise -ifn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.xst" -ofn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.syr" 
+xst -ise "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/memcont.ise" -intstyle ise -ifn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.xst" -ofn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.syr" 
+xst -ise "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/memcont.ise" -intstyle ise -ifn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.xst" -ofn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.syr" 
+ngdbuild -ise "memcont.ise" -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -i -p xc3s400-ft256-5 top.ngc top.ngd  
+ngdbuild -ise "memcont.ise" -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -i -p xc3s400-ft256-5 top.ngc top.ngd  
+ngdbuild -ise "memcont.ise" -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -i -p xc3s400-ft256-5 top.ngc top.ngd  
+xst -intstyle ise -ifn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.xst" -ofn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc top.ucf -p xc3s400-ft256-5 top.ngc top.ngd  
+map -intstyle ise -p xc3s400-ft256-5 -cm area -ir off -pr off -c 100 -o top_map.ncd top.ngd top.pcf 
+par -w -intstyle ise -ol high -t 1 top_map.ncd top.ncd top.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml top.twx top.ncd -o top.twr top.pcf -ucf top.ucf 
+bitgen -intstyle ise -f top.ut top.ncd 
+xst -intstyle ise -ifn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.xst" -ofn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.syr" 

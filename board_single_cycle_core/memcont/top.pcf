@@ -1,0 +1,40 @@
+//! **************************************************************************
+// Written by: Map M.53d on Sun May 27 14:47:51 2012
+//! **************************************************************************
+
+SCHEMATIC START;
+COMP "par_wait" LOCATE = SITE "N5" LEVEL 1;
+COMP "par_data<0>" LOCATE = SITE "N12" LEVEL 1;
+COMP "par_data<1>" LOCATE = SITE "P12" LEVEL 1;
+COMP "par_data<2>" LOCATE = SITE "N11" LEVEL 1;
+COMP "par_data<3>" LOCATE = SITE "P11" LEVEL 1;
+COMP "par_data<4>" LOCATE = SITE "N10" LEVEL 1;
+COMP "par_data<5>" LOCATE = SITE "P10" LEVEL 1;
+COMP "par_data<6>" LOCATE = SITE "M10" LEVEL 1;
+COMP "par_data<7>" LOCATE = SITE "R10" LEVEL 1;
+COMP "mem_sel" LOCATE = SITE "N16" LEVEL 1;
+COMP "reset" LOCATE = SITE "K12" LEVEL 1;
+COMP "pbs<0>" LOCATE = SITE "J13" LEVEL 1;
+COMP "pbs<1>" LOCATE = SITE "K13" LEVEL 1;
+COMP "par_ast" LOCATE = SITE "N8" LEVEL 1;
+COMP "par_dst" LOCATE = SITE "P7" LEVEL 1;
+COMP "clk" LOCATE = SITE "A8" LEVEL 1;
+COMP "par_wr" LOCATE = SITE "N7" LEVEL 1;
+COMP "clk_manual" LOCATE = SITE "K14" LEVEL 1;
+COMP "clk_sel" LOCATE = SITE "M15" LEVEL 1;
+COMP "switches<0>" LOCATE = SITE "N15" LEVEL 1;
+COMP "switches<1>" LOCATE = SITE "J16" LEVEL 1;
+COMP "switches<2>" LOCATE = SITE "K16" LEVEL 1;
+COMP "switches<3>" LOCATE = SITE "K15" LEVEL 1;
+COMP "switches<4>" LOCATE = SITE "L15" LEVEL 1;
+COMP "switches<5>" LOCATE = SITE "M16" LEVEL 1;
+COMP "leds<0>" LOCATE = SITE "L14" LEVEL 1;
+COMP "leds<1>" LOCATE = SITE "L13" LEVEL 1;
+COMP "leds<2>" LOCATE = SITE "M14" LEVEL 1;
+COMP "leds<3>" LOCATE = SITE "L12" LEVEL 1;
+COMP "leds<4>" LOCATE = SITE "N14" LEVEL 1;
+COMP "leds<5>" LOCATE = SITE "M13" LEVEL 1;
+COMP "leds<6>" LOCATE = SITE "P14" LEVEL 1;
+COMP "leds<7>" LOCATE = SITE "R16" LEVEL 1;
+SCHEMATIC END;
+

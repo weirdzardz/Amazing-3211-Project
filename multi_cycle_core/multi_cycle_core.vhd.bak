@@ -474,7 +474,7 @@ begin
                 read_b_nomux_out => sig_write_date_to_ppl_ex_mem,
                 offset_in => sig_insn(4 downto 0),
                 offset_out => sig_offset_to_pc,
-                  flush  => sig_flush
+                  flush  => sig_flush_id_ex
                );   
                
     ex_mem_ppl_reg : ex_mem_reg
@@ -533,7 +533,7 @@ begin
 		   branch => sig_branch,
 		   opcode             => sig_opcode_input,
 		   if_flush           => sig_flush,
-		   flush_id_ex => sig_flush_id_ex
+		   flush_id_ex => sig_flush_id_ex_inter
            );  
 
   my_mux_alu_a : mux_3to1_16b

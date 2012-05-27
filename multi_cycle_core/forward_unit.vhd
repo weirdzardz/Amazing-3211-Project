@@ -1,15 +1,11 @@
+----------------------------------------------
 -- Forwarding Unit
-
+---------------------------------------
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
-
----- Uncomment the following library declaration if instantiating
----- any Xilinx primitives in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
 
 entity forward_unit is
     port( EX_MEM_regWrite : in std_logic;

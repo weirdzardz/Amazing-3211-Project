@@ -1,31 +1,10 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date:    16:20:35 05/08/2012 
--- Design Name: 
--- Module Name:    mem_wb_reg - Behavioral 
--- Project Name: 
--- Target Devices: 
--- Tool versions: 
--- Description: 
---
--- Dependencies: 
---
--- Revision: 
--- Revision 0.01 - File Created
--- Additional Comments: 
---
+-- MEM/WB Pipeline Register
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
-
----- Uncomment the following library declaration if instantiating
----- any Xilinx primitives in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
 
 entity mem_wb_reg is
 port( reset         : in std_logic;
@@ -46,13 +25,7 @@ port( reset         : in std_logic;
 end mem_wb_reg;
 
 architecture Behavioral of mem_wb_reg is
-  
-  signal mem_to_reg : std_logic;
-  signal write_reg  : std_logic_vector(3 downto 0);
-  signal reg_write  : std_logic;
-  signal alu_result : std_logic_vector(15 downto 0);
-  signal data_mem   : std_logic_vector(15 downto 0);
-  
+
 begin
   
   reg_process: process (reset, clk, mem_to_reg_in, write_reg_in, reg_write_in, alu_result_in, data_mem_in) is 
@@ -60,26 +33,18 @@ begin
   begin 
     
   if (reset = '1') then
-    mem_to_reg <= '0';
-    write_reg <= X"0";
-    reg_write <= '0';
-    alu_result <= X"0000";
-    data_mem <= X"0000";
-    
+    mem_to_reg_out <= '0' after 250 ps;
+    write_reg_out <= X"0" after 250 ps;
+    reg_write_out <= '0' after 250 ps;
+    alu_result_out <= X"0000" after 250 ps;
+    data_mem_out <= X"0000" after 250 ps;
   elsif (rising_edge(clk)  ) then 
-    mem_to_reg <= mem_to_reg_in;
-    write_reg <= write_reg_in;
-    reg_write <= reg_write_in;
-    alu_result <= alu_result_in;
-    data_mem <= data_mem_in;
+    mem_to_reg_out <= mem_to_reg_in after 250 ps;
+    write_reg_out <= write_reg_in after 250 ps;
+    reg_write_out <= reg_write_in after 250 ps;
+    alu_result_out <= alu_result_in after 250 ps;
+    data_mem_out <= data_mem_in after 250 ps;
   end if;
-  
-  mem_to_reg_out <= mem_to_reg after 250 ps;
-  write_reg_out <= write_reg after 250 ps;
-  reg_write_out <= reg_write after 250 ps;
-  alu_result_out <= alu_result after 250 ps;
-  data_mem_out <= data_mem after 250 ps;
-  
   
 end process;
 

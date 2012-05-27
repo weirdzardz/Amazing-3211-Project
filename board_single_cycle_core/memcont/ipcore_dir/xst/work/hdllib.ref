@@ -1,0 +1,4 @@
+EN dmem NULL C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/ipcore_dir/dmem.vhd sub00/vhpl00 1338077758
+AR dmem dmem_a C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/ipcore_dir/dmem.vhd sub00/vhpl01 1338077759
+EN imem NULL C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/ipcore_dir/imem.vhd sub00/vhpl02 1338077913
+AR imem imem_a C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/ipcore_dir/imem.vhd sub00/vhpl03 1338077914

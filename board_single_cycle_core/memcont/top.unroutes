@@ -1,0 +1,31 @@
+Release 12.1 - par M.53d (nt64)
+Copyright (c) 1995-2010 Xilinx, Inc.  All rights reserved.
+
+Sun May 27 14:59:25 2012
+
+All signals are completely routed.
+
+WARNING:ParHelpers:362 - There are 8 sourceless signals in this design. This design will not pass the DRC check run by
+   Bitgen.
+
+   leds<0>_OBUF
+   leds<1>_OBUF
+   leds<2>_OBUF
+   leds<3>_OBUF
+   leds<4>_OBUF
+   leds<5>_OBUF
+   leds<6>_OBUF
+   leds<7>_OBUF
+WARNING:ParHelpers:361 - There are 8 loadless signals in this design. This design will cause Bitgen to issue DRC
+   warnings.
+
+   pbs<0>_IBUF
+   pbs<1>_IBUF
+   switches<0>_IBUF
+   switches<1>_IBUF
+   switches<2>_IBUF
+   switches<3>_IBUF
+   switches<4>_IBUF
+   switches<5>_IBUF
+
+

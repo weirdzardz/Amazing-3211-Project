@@ -2,22 +2,6 @@
 -- instruction_memory.vhd - Implementation of A Single-Port, 16 x 16-bit
 --                          Instruction Memory.
 -- 
--- Notes: refer to headers in single_cycle_core.vhd for the supported ISA.
---
--- Copyright (C) 2006 by Lih Wen Koh (lwkoh@cse.unsw.edu.au)
--- All Rights Reserved. 
---
--- The single-cycle processor core is provided AS IS, with no warranty of 
--- any kind, express or implied. The user of the program accepts full 
--- responsibility for the application of the program and the use of any 
--- results. This work may be downloaded, compiled, executed, copied, and 
--- modified solely for nonprofit, educational, noncommercial research, and 
--- noncommercial scholarship purposes provided that this notice in its 
--- entirety accompanies all copies. Copies of the modified software can be 
--- delivered to persons who use it solely for nonprofit, educational, 
--- noncommercial research, and noncommercial scholarship purposes provided 
--- that this notice in its entirety accompanies all copies.
---
 ---------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -46,31 +30,11 @@ begin
     begin
         if (reset = '1') then
 
-            -- inst : op | rs | rt | (rd or offset)
-
-
             -- load : 1 - "001"
             -- store : 3 - "011"
             -- add : 0   - "010"
             -- bne : 4   - "100"
             -- sub : 5   - "110"
-       
-            -- initial values of the instruction memory :
-            --  insn_0 : load  $1, $0, 0   - load data 0($0) into $1
-            --  insn_1 : load  $2, $0, 1   - load data 1($0) into $2
-            --  insn_2 : add   $3, $0, $1  - $3 <- $0 + $1
-            --  insn_3 : add   $4, $1, $2  - $4 <- $1 + $2
-            --  insn_4 : store $3, $0, 2   - store data $3 into 2($0)
-            --  insn_5 : store $4, $0, 3   - store data $4 into 3($0)
-            --  insn_6 : subabs $5, $3, $4
-            --  insn_7 : load  $6, $0, 4   - load data 4($0) into $6
-            --  insn_8 : add   $7, $6, $7  - $7 <- $6 +$7
-            --  insn_9 : beq   $3, $7, D   - jump to insn_13 if $3 == $7
-            --  insn_10 : noop
-            --  insn_11 : jmp 0, 0, 8      - jump to insn_8
-            --  insn_12 - insn_15 : noop    - end of program
-
-
 
 var_insn_mem(0) := "0010000011000000";   --LOAD N, r0
 var_insn_mem(1) := "1010000011100001";   --ADDI memA, r0, 1

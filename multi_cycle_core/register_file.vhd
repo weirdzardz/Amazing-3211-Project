@@ -25,7 +25,6 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity register_file is
     port ( reset           : in  std_logic;
-           clk             : in  std_logic;
            read_register_a : in  std_logic_vector(3 downto 0);
            read_register_b : in  std_logic_vector(3 downto 0);
            write_enable    : in  std_logic;
@@ -43,7 +42,6 @@ signal sig_regfile : reg_file;
 begin
 
     mem_process : process ( reset,
-                            clk,
                             read_register_a,
                             read_register_b,
                             write_enable,
@@ -65,7 +63,7 @@ begin
             -- initial values of the registers - reset to zeroes
             var_regfile := (others => X"0000");
 
-        elsif (falling_edge(clk) and write_enable = '1') then
+        elsif (write_enable = '1') then
             -- register write on the falling clock edge
             var_regfile(var_write_addr) := write_data;
         end if;

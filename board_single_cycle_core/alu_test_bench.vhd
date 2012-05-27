@@ -1,0 +1,169 @@
+-------------------------------------------------------------------------
+---- Simulation Tutorial
+----
+---- Description: Top level testbench using "FileIO" as a stimuli generator
+----
+---- Author: Victor Lai, Lingkan Gong
+----
+---- Date: 13/02/2011
+----
+----
+-------------------------------------------------------------------------
+
+library IEEE;
+
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+-- you must include the "std_logic_textio" library if you want to use file IO
+use ieee.std_logic_textio.all;
+
+-- you must include the "std.textio" library if you want to use file IO
+library std;
+use std.textio.all;
+
+entity ALUTestBench is
+    -- no portmap, no IO
+end ALUTestBench;
+
+architecture TBusingFileIO of ALUTestBench is
+
+    signal clk           : std_logic:= '0'; -- initial value of clock
+    signal rst           : std_logic:= '1'; -- initial value of reset
+
+    signal alucontrol     : std_logic_vector (1 downto 0);
+    signal src_a             : std_logic_vector(15 downto 0);
+    signal src_b             : std_logic_vector(15 downto 0);
+    signal res           : std_logic_vector(15 downto 0);
+    signal zero          : std_logic;
+
+
+  --  signal src_a_ref         : std_logic_vector(3 downto 0);
+ --   signal src_b_ref         : std_logic_vector(3 downto 0);
+    signal res_ref       : std_logic_vector(15 downto 0);
+    signal zero_ref      : std_logic;
+    signal pass_or_fail  : std_logic;
+
+    component alu is
+        port (  alucontrol: in std_logic_vector(1 downto 0); 
+                src_a     : in  std_logic_vector(15 downto 0);
+                src_b     : in  std_logic_vector(15 downto 0);
+                res       : out std_logic_vector(15 downto 0);
+                zero      : out std_logic ); --TRUE if subtraction led to 0
+    end component;
+
+    component Comparator is
+        port(
+            zero         : in  std_logic;
+            zero_ref     : in  std_logic;
+            res          : in  std_logic_vector(15 downto 0);
+            res_ref      : in  std_logic_vector(15 downto 0);
+            pass_or_fail : out std_logic
+        );
+    end component;
+
+    --------------------------------------------
+    -- file IO relevant declarations
+    --------------------------------------------
+    file stimuli_file    : text open read_mode  is "alu_stimuli.txt";
+    file results_file    : text open read_mode is "alu_expected_results.txt";
+
+    begin
+
+    --------------------------------------------
+    -- clock and reset
+    --------------------------------------------
+    clk <= not clk after 10 ns;
+    rst <= '0' after 25 ns;
+
+    --------------------------------------------
+    -- stimuli generation: the file IO
+    --------------------------------------------
+    stimuli_gen_fileio: process
+       variable data_buf : std_logic_vector(15 downto 0);
+       variable line_buf : line;
+    begin
+        -- wait for reset and clock signals
+        if rst = '1' then
+            wait until rst = '0';
+        end if;
+        wait until clk'event and clk = '1';
+
+        -- read, drive, write 
+        if not endfile(stimuli_file) then
+
+            -- read from file
+            readline(stimuli_file, line_buf);
+            hread(line_buf, data_buf);
+            src_a <= data_buf;
+            hread(line_buf, data_buf);
+            src_b <= data_buf;
+            hread(line_buf, data_buf);
+            alucontrol <= data_buf(1 downto 0);
+
+            wait for 1 ns; -- wait awhile for signals of the DUT to update.
+
+            -- write "pass_or_fail" value as results to file
+       --     hwrite(line_buf, conv_std_logic_vector(pass_or_fail, 4));
+        --    writeline(results_file, line_buf);
+
+        end if;
+
+    end process;
+
+   --------------------------------------------
+    -- results checking
+    --------------------------------------------
+    results_chk_fileio: process
+      variable data_buf : std_logic_vector(15 downto 0);
+       variable line_buf : line;
+    begin
+        -- wait for reset and clock signals
+        if rst = '1' then
+            wait until rst = '0';
+        end if;
+        wait until clk'event and clk = '1';
+
+        -- read and check 
+        if not endfile(results_file) then
+
+            -- read from file
+            readline(results_file, line_buf);
+            hread(line_buf, data_buf);
+            zero_ref <= data_buf(0);
+            hread(line_buf, data_buf);
+            res_ref <= data_buf;
+
+          
+            wait for 1 ns; -- wait awhile for signals of the DUT to update.
+        end if;
+
+    end process;
+
+
+
+    --------------------------------------------
+    -- instantiate the dut
+    --------------------------------------------
+    i_dut: alu
+        port map(
+            alucontrol    => alucontrol,
+            src_a    => src_a,
+            src_b  => src_b,
+            res => res,
+            zero => zero
+        );
+        
+    --------------------------------------------
+    -- instantiate the result checker
+    --------------------------------------------
+    i_resultchecker: Comparator
+        port map(
+            zero         => zero,
+            zero_ref     => zero_ref,
+            res          => res,
+            res_ref      => res_ref,
+            pass_or_fail => pass_or_fail
+        );
+
+end TBusingFileIO;

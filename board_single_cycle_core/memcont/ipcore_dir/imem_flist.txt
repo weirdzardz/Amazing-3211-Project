@@ -1,0 +1,17 @@
+# Output products list for <imem>
+_xmsgs\pn_parser.xmsgs
+dist_mem_gen_ds322.pdf
+dist_mem_gen_readme.txt
+imem.asy
+imem.gise
+imem.ngc
+imem.sym
+imem.v
+imem.veo
+imem.vhd
+imem.vho
+imem.xco
+imem.xise
+imem_flist.txt
+imem_readme.txt
+imem_xmdf.tcl

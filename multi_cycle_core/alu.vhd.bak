@@ -66,7 +66,7 @@ signal  overflow_val:    STD_LOGIC_VECTOR(7 DOWNTO 0);
 signal sig_res : STD_LOGIC_VECTOR(7 downto 0);
 signal sig_beq : std_logic;
 signal sig_zero : std_logic;
---alucontrol: '01' for add
+--alucontrol: '01' for add, addi
 --alucontrol: '10' for sub
 --alucontrol: '11' for beq
 
@@ -128,6 +128,6 @@ adder2: adder_8b
 
     res <= "00000000" & sig_res after 2 ns;
     
-    zero     <= NOT(sig_zero) after 2 ns;
+    zero     <= (sig_zero) after 2 ns;
     
 end structural;

@@ -1,0 +1,17 @@
+# Bencher : Creating project file
+single_cycle_core_testbench_bencher.prj
+# Bencher Waveform : PDCL (jhdparse)
+# xst flow : RunXST
+single_cycle_core_summary.html
+# ModelSim : Simulate Behavioral VHDL Model
+single_cycle_core_testbench.fdo
+# ModelSim : Simulate Behavioral VHDL Model
+vsim.wlf
+# xst flow : RunXST
+single_cycle_core_summary.html
+# xst flow : RunXST
+single_cycle_core_summary.html
+# xst flow : RunXST
+single_cycle_core_summary.html
+# ModelSim : Simulate Behavioral VHDL Model
+vsim.wlf

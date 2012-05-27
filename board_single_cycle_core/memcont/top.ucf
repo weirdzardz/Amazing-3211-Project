@@ -1,0 +1,36 @@
+
+# PlanAhead Generated physical constraints 
+
+NET "clk" LOC = A8;
+NET "clk_manual" LOC = K14;
+NET "clk_sel" LOC = M15;
+NET "leds[0]" LOC = L14;
+NET "leds[1]" LOC = L13;
+NET "leds[2]" LOC = M14;
+NET "leds[3]" LOC = L12;
+NET "leds[4]" LOC = N14;
+NET "leds[5]" LOC = M13;
+NET "leds[6]" LOC = P14;
+NET "leds[7]" LOC = R16;
+NET "mem_sel" LOC = N16;
+NET "par_ast" LOC = N8;
+NET "par_data[0]" LOC = N12;
+NET "par_data[1]" LOC = P12;
+NET "par_data[2]" LOC = N11;
+NET "par_data[3]" LOC = P11;
+NET "par_data[4]" LOC = N10;
+NET "par_data[5]" LOC = P10;
+NET "par_data[6]" LOC = M10;
+NET "par_data[7]" LOC = R10;
+NET "par_dst" LOC = P7;
+NET "par_wait" LOC = N5;
+NET "par_wr" LOC = N7;
+NET "pbs[0]" LOC = J13;
+NET "pbs[1]" LOC = K13;
+NET "reset" LOC = K12;
+NET "switches[0]" LOC = N15;
+NET "switches[1]" LOC = J16;
+NET "switches[2]" LOC = K16;
+NET "switches[3]" LOC = K15;
+NET "switches[4]" LOC = L15;
+NET "switches[5]" LOC = M16;

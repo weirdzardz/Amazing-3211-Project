@@ -1,0 +1,3 @@
+xst -ise "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/ipcore_dir/dmem.ise" -intstyle ise -ifn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/ipcore_dir/dmem.xst" -ofn "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/ipcore_dir/dmem.syr" 
+ngdbuild -ise "dmem.ise" -intstyle ise -dd _ngo -nt timestamp -i -p xc3s400-ft256-5 dmem.ngc dmem.ngd  
+map -ise "dmem.ise" -intstyle ise -p xc3s400-ft256-5 -cm area -ir off -pr off -c 100 -o dmem_map.ncd dmem.ngd dmem.pcf 

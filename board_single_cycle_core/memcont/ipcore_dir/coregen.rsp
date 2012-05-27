@@ -1,0 +1,10 @@
+NEWPROJECT "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/ipcore_dir/"
+SETPROJECT "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/ipcore_dir/"
+SET BusFormat = BusFormatAngleBracketNotRipped
+SET devicefamily = spartan3
+SET device = xc3s400
+SET package = ft256
+SET speedgrade = -5
+SET FlowVendor = Foundation_iSE
+SET VerilogSim = True
+SET VHDLSim = True

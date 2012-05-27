@@ -1,0 +1,465 @@
+Release 12.1 - xst M.53d (nt64)
+Copyright (c) 1995-2010 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.25 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.25 secs
+ 
+--> Reading design: top.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "top.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "top"
+Output Format                      : NGC
+Target Device                      : xc3s400-5-ft256
+
+---- Source Options
+Top Module Name                    : top
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : lut
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : YES
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : YES
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Multiplier Style                   : auto
+Automatic Register Balancing       : No
+
+---- Target Options
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 500
+Add Generic Clock Buffer(BUFG)     : 8
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Yes
+Use Synchronous Set                : Yes
+Use Synchronous Reset              : Yes
+Pack IO Registers into IOBs        : auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Library Search Order               : top.lso
+Keep Hierarchy                     : NO
+Netlist Hierarchy                  : as_optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+---- Other Options
+Cores Search Directories           : {"ipcore_dir"  }
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/mux_2to1_1b.vhd" in Library work.
+Architecture behavioural of Entity mux_2to1_1b is up to date.
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/adder_8b.vhd" in Library work.
+Architecture behavioral of Entity adder_8b is up to date.
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/program_counter.vhd" in Library work.
+Architecture behavioral of Entity program_counter is up to date.
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/adder_5b.vhd" in Library work.
+Architecture behavioural of Entity adder_7b is up to date.
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/sign_extend_4to16.vhd" in Library work.
+Architecture behavioral of Entity sign_extend_4to16 is up to date.
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/control_unit.vhd" in Library work.
+Architecture behavioural of Entity control_unit is up to date.
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/register_file.vhd" in Library work.
+Architecture behavioral of Entity register_file is up to date.
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/alu.vhd" in Library work.
+Architecture structural of Entity alu is up to date.
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/mux_2to1_4b.vhd" in Library work.
+Architecture structural of Entity mux_2to1_4b is up to date.
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/mux_2to1_16b.vhd" in Library work.
+Architecture structural of Entity mux_2to1_16b is up to date.
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/mux_2to1_5b.vhd" in Library work.
+Architecture structural of Entity mux_2to1_8b is up to date.
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/single_cycle_core.vhd" in Library work.
+Architecture structural of Entity single_cycle_core is up to date.
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/ipcore_dir/dmem.vhd" in Library work.
+Architecture dmem_a of Entity dmem is up to date.
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/ipcore_dir/imem.vhd" in Library work.
+Architecture imem_a of Entity imem is up to date.
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/adder_4b.vhd" in Library work.
+Architecture behavioural of Entity adder_4b is up to date.
+Compiling vhdl file "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.vhd" in Library work.
+Entity <top> compiled.
+Entity <top> (Architecture <behavioral>) compiled.
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for entity <top> in library <work> (architecture <behavioral>).
+
+Analyzing hierarchy for entity <single_cycle_core> in library <work> (architecture <structural>).
+
+Analyzing hierarchy for entity <program_counter> in library <work> (architecture <behavioral>).
+
+Analyzing hierarchy for entity <adder_7b> in library <work> (architecture <behavioural>).
+
+Analyzing hierarchy for entity <sign_extend_4to16> in library <work> (architecture <behavioral>).
+
+Analyzing hierarchy for entity <control_unit> in library <work> (architecture <behavioural>).
+
+Analyzing hierarchy for entity <register_file> in library <work> (architecture <behavioral>).
+
+Analyzing hierarchy for entity <alu> in library <work> (architecture <structural>).
+
+Analyzing hierarchy for entity <mux_2to1_4b> in library <work> (architecture <structural>).
+
+Analyzing hierarchy for entity <mux_2to1_16b> in library <work> (architecture <structural>).
+
+Analyzing hierarchy for entity <mux_2to1_8b> in library <work> (architecture <structural>).
+
+Analyzing hierarchy for entity <adder_8b> in library <work> (architecture <behavioral>).
+
+Analyzing hierarchy for entity <mux_2to1_1b> in library <work> (architecture <behavioural>).
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing Entity <top> in library <work> (Architecture <behavioral>).
+WARNING:Xst:2211 - "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.vhd" line 445: Instantiating black box module <dmem>.
+WARNING:Xst:2211 - "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.vhd" line 453: Instantiating black box module <imem>.
+Entity <top> analyzed. Unit <top> generated.
+
+Analyzing Entity <single_cycle_core> in library <work> (Architecture <structural>).
+Entity <single_cycle_core> analyzed. Unit <single_cycle_core> generated.
+
+Analyzing Entity <program_counter> in library <work> (Architecture <behavioral>).
+Entity <program_counter> analyzed. Unit <program_counter> generated.
+
+Analyzing Entity <adder_7b> in library <work> (Architecture <behavioural>).
+Entity <adder_7b> analyzed. Unit <adder_7b> generated.
+
+Analyzing Entity <sign_extend_4to16> in library <work> (Architecture <behavioral>).
+Entity <sign_extend_4to16> analyzed. Unit <sign_extend_4to16> generated.
+
+Analyzing Entity <control_unit> in library <work> (Architecture <behavioural>).
+Entity <control_unit> analyzed. Unit <control_unit> generated.
+
+Analyzing Entity <register_file> in library <work> (Architecture <behavioral>).
+Entity <register_file> analyzed. Unit <register_file> generated.
+
+Analyzing Entity <alu> in library <work> (Architecture <structural>).
+Entity <alu> analyzed. Unit <alu> generated.
+
+Analyzing Entity <adder_8b> in library <work> (Architecture <behavioral>).
+WARNING:Xst:819 - "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/adder_8b.vhd" line 27: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <c_in>
+Entity <adder_8b> analyzed. Unit <adder_8b> generated.
+
+Analyzing Entity <mux_2to1_4b> in library <work> (Architecture <structural>).
+Entity <mux_2to1_4b> analyzed. Unit <mux_2to1_4b> generated.
+
+Analyzing Entity <mux_2to1_1b> in library <work> (Architecture <behavioural>).
+Entity <mux_2to1_1b> analyzed. Unit <mux_2to1_1b> generated.
+
+Analyzing Entity <mux_2to1_16b> in library <work> (Architecture <structural>).
+Entity <mux_2to1_16b> analyzed. Unit <mux_2to1_16b> generated.
+
+Analyzing Entity <mux_2to1_8b> in library <work> (Architecture <structural>).
+Entity <mux_2to1_8b> analyzed. Unit <mux_2to1_8b> generated.
+
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <program_counter>.
+    Related source file is "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/program_counter.vhd".
+    Found 8-bit register for signal <addr_out>.
+    Summary:
+	inferred   8 D-type flip-flop(s).
+Unit <program_counter> synthesized.
+
+
+Synthesizing Unit <adder_7b>.
+    Related source file is "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/adder_5b.vhd".
+    Found 9-bit adder for signal <sig_result>.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+Unit <adder_7b> synthesized.
+
+
+Synthesizing Unit <sign_extend_4to16>.
+    Related source file is "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/sign_extend_4to16.vhd".
+Unit <sign_extend_4to16> synthesized.
+
+
+Synthesizing Unit <control_unit>.
+    Related source file is "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/control_unit.vhd".
+Unit <control_unit> synthesized.
+
+
+Synthesizing Unit <register_file>.
+    Related source file is "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/register_file.vhd".
+WARNING:Xst:1780 - Signal <var_regfile<0>> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <sig_regfile> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 16-bit 16-to-1 multiplexer for signal <read_data_a>.
+    Found 16-bit 16-to-1 multiplexer for signal <read_data_b>.
+    Found 240-bit register for signal <var_regfile<1:15>>.
+    Summary:
+	inferred 240 D-type flip-flop(s).
+	inferred  32 Multiplexer(s).
+Unit <register_file> synthesized.
+
+
+Synthesizing Unit <adder_8b>.
+    Related source file is "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/adder_8b.vhd".
+    Found 8-bit xor2 for signal <sum>.
+    Found 8-bit xor2 for signal <h_sum>.
+Unit <adder_8b> synthesized.
+
+
+Synthesizing Unit <mux_2to1_1b>.
+    Related source file is "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/mux_2to1_1b.vhd".
+Unit <mux_2to1_1b> synthesized.
+
+
+Synthesizing Unit <alu>.
+    Related source file is "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/alu.vhd".
+WARNING:Xst:647 - Input <src_a<15:8>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <src_b<15:8>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:1780 - Signal <sig_result> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <sig_prevcout2> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <sig_cout2> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 1-bit xor2 for signal <sig_overflow$xor0000> created at line 108.
+Unit <alu> synthesized.
+
+
+Synthesizing Unit <mux_2to1_4b>.
+    Related source file is "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/mux_2to1_4b.vhd".
+Unit <mux_2to1_4b> synthesized.
+
+
+Synthesizing Unit <mux_2to1_16b>.
+    Related source file is "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/mux_2to1_16b.vhd".
+Unit <mux_2to1_16b> synthesized.
+
+
+Synthesizing Unit <mux_2to1_8b>.
+    Related source file is "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/mux_2to1_5b.vhd".
+Unit <mux_2to1_8b> synthesized.
+
+
+Synthesizing Unit <single_cycle_core>.
+    Related source file is "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/single_cycle_core.vhd".
+WARNING:Xst:646 - Signal <sig_pc_carry_out> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <sig_branch_mux> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+Unit <single_cycle_core> synthesized.
+
+
+Synthesizing Unit <top>.
+    Related source file is "C:/Users/Sacha/work/amazing3211/board_single_cycle_core/memcont/top.vhd".
+WARNING:Xst:647 - Input <switches> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found finite state machine <FSM_0> for signal <cs>.
+    -----------------------------------------------------------------------
+    | States             | 11                                             |
+    | Transitions        | 38                                             |
+    | Inputs             | 7                                              |
+    | Outputs            | 14                                             |
+    | Clock              | clk_mem                   (rising_edge)        |
+    | Reset              | reset                     (positive)           |
+    | Reset type         | asynchronous                                   |
+    | Reset State        | stidle                                         |
+    | Power Up State     | stidle                                         |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Using one-hot encoding for signal <data_crlf>.
+    Found 16x8-bit ROM for signal <data_ascii>.
+    Found 8-bit tristate buffer for signal <par_data>.
+    Found 8-bit 4-to-1 multiplexer for signal <leds>.
+    Found 12-bit up counter for signal <addr_cnt>.
+    Found 1-bit register for signal <clk_debounced>.
+    Found 16-bit register for signal <data_buf>.
+    Found 7-bit up counter for signal <debounce_cnt>.
+    Found 1-bit xor2 for signal <debounce_cnt$xor0000> created at line 174.
+    Found 1-bit register for signal <mode>.
+    Found 1-bit register for signal <par_ast_l>.
+    Found 8-bit register for signal <par_data_l>.
+    Found 1-bit register for signal <par_dst_l>.
+    Found 1-bit register for signal <par_wr_l>.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred   1 ROM(s).
+	inferred   2 Counter(s).
+	inferred  29 D-type flip-flop(s).
+	inferred   8 Multiplexer(s).
+	inferred   8 Tristate(s).
+Unit <top> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# ROMs                                                 : 1
+ 16x8-bit ROM                                          : 1
+# Adders/Subtractors                                   : 1
+ 9-bit adder                                           : 1
+# Counters                                             : 2
+ 12-bit up counter                                     : 1
+ 7-bit up counter                                      : 1
+# Registers                                            : 23
+ 1-bit register                                        : 5
+ 16-bit register                                       : 16
+ 8-bit register                                        : 2
+# Multiplexers                                         : 3
+ 16-bit 16-to-1 multiplexer                            : 2
+ 8-bit 4-to-1 multiplexer                              : 1
+# Tristates                                            : 1
+ 8-bit tristate buffer                                 : 1
+# Xors                                                 : 20
+ 1-bit xor2                                            : 18
+ 8-bit xor2                                            : 2
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Analyzing FSM <FSM_0> for best encoding.
+Optimizing FSM <cs/FSM> on signal <cs[1:11]> with one-hot encoding.
+-------------------------------
+ State          | Encoding
+-------------------------------
+ stidle         | 00000000001
+ stackwriteaddr | 00000000010
+ stackwritedata | 00000000100
+ stwritedata    | 00001000000
+ stackignore    | 00000001000
+ streaddata     | 00000010000
+ stackread      | 00000100000
+ stidlecr       | 00010000000
+ stackcr        | 00100000000
+ stidlelf       | 01000000000
+ stacklf        | 10000000000
+-------------------------------
+Reading core <ipcore_dir/dmem.ngc>.
+Reading core <ipcore_dir/imem.ngc>.
+Loading core <dmem> for timing and area information for instance <data_mem>.
+Loading core <imem> for timing and area information for instance <inst_mem>.
+WARNING:Xst:1290 - Hierarchical block <muxes[15].bit_mux> is unconnected in block <mux_alu_src>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <muxes[14].bit_mux> is unconnected in block <mux_alu_src>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <muxes[13].bit_mux> is unconnected in block <mux_alu_src>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <muxes[12].bit_mux> is unconnected in block <mux_alu_src>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <muxes[11].bit_mux> is unconnected in block <mux_alu_src>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <muxes[10].bit_mux> is unconnected in block <mux_alu_src>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <muxes[9].bit_mux> is unconnected in block <mux_alu_src>.
+   It will be removed from the design.
+WARNING:Xst:1290 - Hierarchical block <muxes[8].bit_mux> is unconnected in block <mux_alu_src>.
+   It will be removed from the design.
+
+Synthesizing (advanced) Unit <top>.
+INFO:Xst:3034 - In order to maximize performance and save block RAM resources, the small ROM <Mrom_data_ascii> will be implemented on LUT. If you want to force its implementation on block, use option/constraint rom_style.
+Unit <top> synthesized (advanced).
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# FSMs                                                 : 1
+# ROMs                                                 : 1
+ 16x8-bit ROM                                          : 1
+# Adders/Subtractors                                   : 1
+ 9-bit adder                                           : 1
+# Counters                                             : 2
+ 12-bit up counter                                     : 1
+ 7-bit up counter                                      : 1
+# Registers                                            : 277
+ Flip-Flops                                            : 277
+# Multiplexers                                         : 33
+ 1-bit 16-to-1 multiplexer                             : 32
+ 8-bit 4-to-1 multiplexer                              : 1
+# Xors                                                 : 20
+ 1-bit xor2                                            : 18
+ 8-bit xor2                                            : 2
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <top> ...
+
+Optimizing unit <program_counter> ...
+
+Optimizing unit <register_file> ...
+
+Optimizing unit <adder_8b> ...
+
+Optimizing unit <alu> ...
+
+Optimizing unit <single_cycle_core> ...
+
+Mapping all equations...
+Building and optimizing final netlist ...
