@@ -127,7 +127,6 @@ end component;
 
 component register_file is
     port ( reset           : in  std_logic;
-           clk             : in  std_logic;
            read_register_a : in  std_logic_vector(3 downto 0);
            read_register_b : in  std_logic_vector(3 downto 0);
            write_enable    : in  std_logic;
@@ -392,7 +391,6 @@ begin
 
     reg_file : register_file 
     port map ( reset           => reset, 
-               clk             => clk,
                read_register_a => sig_insn(12 downto 9),  --new bit range
                read_register_b => sig_insn(8 downto 5), --new bit range
                write_enable    => sig_reg_write,

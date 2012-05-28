@@ -161,7 +161,7 @@ component data_memory is
            clk          : in  std_logic;
            write_enable : in  std_logic;
            write_data   : in  std_logic_vector(15 downto 0);
-           addr_in      : in  std_logic_vector(8 downto 0);
+           addr_in      : in  std_logic_vector(5 downto 0);
            data_out     : out std_logic_vector(15 downto 0) );
 end component;
 
@@ -411,7 +411,7 @@ begin
                clk          => clk,
                write_enable => sig_mem_write,
                write_data   => sig_read_data_b,
-               addr_in      => sig_alu_result_to_ppl_mem_wb(8 downto 0),
+               addr_in      => sig_alu_result_to_ppl_mem_wb(5 downto 0),
                data_out     => sig_data_mem_out_to_ppl );
     
     mux_reg_dst : mux_2to1_4b 

@@ -140,7 +140,7 @@ component data_memory is
            clk          : in  std_logic;
            write_enable : in  std_logic;
            write_data   : in  std_logic_vector(15 downto 0);
-           addr_in      : in  std_logic_vector(8 downto 0); -- NEW VALUE
+           addr_in      : in  std_logic_vector(5 downto 0); -- NEW VALUE
            data_out     : out std_logic_vector(15 downto 0) );
 end component;
 
@@ -168,10 +168,10 @@ signal sig_alu_zero             : std_logic;
 signal sig_branch               : std_logic;
 -- took out jump and jump mux
 signal sig_branch_mux           : std_logic_vector (4 downto 0);
-signal sig_dm_addrin            : std_logic_vector(8 downto 0);
+signal sig_dm_addrin            : std_logic_vector(5 downto 0);
 begin
 
-sig_dm_addrin <= sig_alu_result(8 downto 0);
+sig_dm_addrin <= sig_alu_result(5 downto 0);
     sig_one_5b <= "00001";
     sig_branch <= sig_alu_zero AND sig_alucontrol(1) AND sig_alucontrol(0);
 
