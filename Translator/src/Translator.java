@@ -1,4 +1,3 @@
-
 import java.io.*; 
 import java.util.*;
 
@@ -165,7 +164,7 @@ private static String  getOpcode(String s) throws Exception {
 	
 	if( s.equals("NOP")) return "000";
 
-	if(s.equals ("ADD"))  return "000";
+	if(s.equals ("ADD"))  return "010";
 	    
 	if(s.equals ("SUB")) return "110";
 		  
